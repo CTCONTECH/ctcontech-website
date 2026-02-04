@@ -1,0 +1,930 @@
+<!-- =========================
+     FILE: index.html (HOME) — BEST MIDDLE-GROUND (subtle hover, no “fake click” cues)
+     ========================= -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CTCONTECH – Remote IT Support</title>
+
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --ink:#0f172a;
+      --muted:#5b6677;
+      --bg:#ffffff;
+      --panel:#f6f8fb;
+      --line:rgba(15,23,42,.10);
+      --shadow:0 12px 28px rgba(15,23,42,.10);
+      --shadow-soft:0 16px 26px rgba(15,23,42,.10);
+      --radius:16px;
+
+      --green:#7cc242;
+      --green-2:#66b63d;
+      --nav-h:74px;
+      --max:1120px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    html{scroll-behavior:smooth;}
+    body{
+      margin:0;
+      font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--ink);
+      background:var(--bg);
+      line-height:1.45;
+    }
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .container{width:min(var(--max),calc(100% - 40px)); margin:0 auto;}
+
+    /* ---------- NAV ---------- */
+    .nav{
+      position:sticky; top:0; z-index:50;
+      background:#fff;
+      border-bottom:1px solid var(--line);
+      height:var(--nav-h);
+      display:flex; align-items:center;
+      transition: box-shadow .18s ease, border-color .18s ease;
+    }
+    .nav.scrolled{
+      box-shadow:0 12px 28px rgba(15,23,42,.10);
+      border-bottom-color:rgba(15,23,42,.12);
+    }
+
+    .nav-inner{display:flex; align-items:center; justify-content:space-between; gap:16px;}
+    .brand{display:flex; align-items:center; gap:10px; min-width:210px;}
+    .brand .logo{
+      width:42px;
+      height:42px;
+      display:grid;
+      place-items:center;
+      border-radius:10px;
+      background:#fff;
+      box-shadow:0 8px 18px rgba(11,58,99,.12);
+      overflow:hidden;
+    }
+    .brand .logo svg{display:block}
+    .brand .wordmark{
+      font-weight:800; letter-spacing:.2px;
+      display:flex; align-items:baseline; gap:2px;
+    }
+    .brand .wordmark span:first-child{color:#0b3a63}
+    .brand .wordmark span:last-child{color:var(--green)}
+    .brand small{display:block; color:var(--muted); font-size:11px; margin-top:-2px}
+
+    .menu{display:flex; align-items:center; gap:18px}
+    .menu a{
+      font-size:12px; font-weight:600;
+      color:#2b3442;
+      padding:8px 6px;
+      opacity:.9;
+      position:relative;
+    }
+    .menu a:hover{opacity:1}
+    .menu a.active{opacity:1; color:#0b3a63}
+    .menu a::after{
+      content:"";
+      position:absolute; left:6px; right:6px; bottom:2px;
+      height:2px; border-radius:999px;
+      background:linear-gradient(90deg, rgba(124,194,66,.0), rgba(124,194,66,.85), rgba(124,194,66,.0));
+      transform:scaleX(0);
+      opacity:0;
+      transition:.18s ease;
+    }
+    .menu a:hover::after,
+    .menu a.active::after{
+      transform:scaleX(1);
+      opacity:1;
+    }
+
+    .cta{display:flex; align-items:center; gap:10px;}
+
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      border:0; cursor:pointer;
+      padding:10px 14px;
+      border-radius:10px;
+      font-weight:700;
+      font-size:12px;
+      transition:.15s transform, .15s filter, .15s box-shadow;
+      white-space:nowrap;
+      will-change:transform;
+    }
+    .btn:active{transform:translateY(1px)}
+    .btn:hover{transform:translateY(-1px)}
+    .btn-primary{
+      background:var(--green);
+      color:#fff;
+      box-shadow:0 10px 22px rgba(124,194,66,.22);
+    }
+    .btn-primary:hover{filter:brightness(.98); box-shadow:0 14px 28px rgba(124,194,66,.26)}
+    .btn-ghost{
+      background:transparent;
+      border:1px solid var(--line);
+      color:#0b3a63;
+      cursor:pointer;
+    }
+
+    .burger{display:none; border:1px solid var(--line); background:#fff; border-radius:10px; padding:9px 10px; cursor:pointer}
+    .burger span{display:block; width:18px; height:2px; background:#243144; margin:3px 0}
+
+    /* ---------- HERO ---------- */
+    .hero{
+      position:relative;
+      min-height:460px;
+      display:flex; align-items:stretch;
+      overflow:hidden;
+      border-bottom:1px solid var(--line);
+    }
+    .hero::before{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        linear-gradient(90deg, rgba(2,6,23,.70), rgba(2,6,23,.25) 55%, rgba(2,6,23,.15)),
+        url("https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=2000&q=75");
+      background-size:cover;
+      background-position:center;
+      transform:scale(1.02);
+    }
+    .hero::after{
+      content:"";
+      position:absolute; inset:-40% -30%;
+      background:radial-gradient(circle at 25% 30%, rgba(124,194,66,.14), transparent 55%);
+      transform:rotate(-8deg);
+      pointer-events:none;
+      opacity:.8;
+    }
+    .hero-inner{
+      position:relative;
+      width:100%;
+      display:flex;
+      padding:60px 0 54px;
+    }
+    .hero-copy{
+      width:min(620px, 100%);
+      color:#fff;
+      padding-left:44px;
+    }
+    .hero h1{
+      margin:0 0 10px;
+      font-size:clamp(20px, 2.2vw, 36px);
+      line-height:1.05;
+      font-weight:800;
+      letter-spacing:-.5px;
+      text-shadow:0 12px 30px rgba(0,0,0,.25);
+    }
+    .hero p{
+      margin:0 0 18px;
+      color:rgba(255,255,255,.86);
+      font-size:14px;
+      max-width:520px;
+    }
+    .hero .btn{
+      padding:12px 16px;
+      border-radius:12px;
+      font-size:12px;
+    }
+
+    /* ---------- FEATURE STRIP ---------- */
+    .strip{
+      background:#eef2f6;
+      padding:16px 0;
+      border-bottom:1px solid var(--line);
+    }
+    .strip-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:10px;
+      align-items:center;
+    }
+    .pill{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:999px;
+      padding:10px 14px;
+      display:flex; align-items:center; gap:10px;
+      box-shadow:0 10px 18px rgba(15,23,42,.05);
+      justify-content:center;
+      text-align:center;
+      font-size:12px;
+      font-weight:600;
+      color:#334155;
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    /* BEST MIDDLE-GROUND: subtle hover, no pointer cursor */
+    .pill:hover{transform:translateY(-2px); box-shadow:var(--shadow-soft);}
+    .pill svg{width:18px;height:18px; color:var(--green)}
+    .pill b{font-weight:700}
+
+    /* ---------- SECTIONS ---------- */
+    section{padding:56px 0}
+    .section-title{
+      text-align:center;
+      margin:0 0 22px;
+      font-size:26px;
+      font-weight:800;
+      letter-spacing:-.3px;
+    }
+    .section-sub{
+      text-align:center;
+      color:var(--muted);
+      font-size:13px;
+      max-width:760px;
+      margin:0 auto 34px;
+    }
+
+    /* Services cards */
+    .services-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+    }
+    .card{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .card:hover{transform:translateY(-2px); box-shadow:var(--shadow-soft);}
+    .card .media{
+      height:130px;
+      background:#cbd5e1;
+      background-size:cover;
+      background-position:center;
+      transition: transform .35s ease;
+    }
+    /* super subtle — polish, not “click me” */
+    .card:hover .media{transform:scale(1.01)}
+    .card .pad{padding:16px 16px 18px}
+    .card h3{margin:0 0 6px; font-size:14px; font-weight:800}
+    .card p{margin:0; font-size:12px; color:var(--muted)}
+
+    /* Packages band */
+    .band{
+      position:relative;
+      overflow:hidden;
+      padding:52px 0 60px;
+      border-top:1px solid var(--line);
+      border-bottom:1px solid var(--line);
+      background:
+        linear-gradient(180deg, rgba(2,6,23,.28), rgba(2,6,23,.10)),
+        url("https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=2000&q=70");
+      background-size:cover;
+      background-position:center;
+    }
+    .band .section-title{color:#fff; text-shadow:0 14px 30px rgba(0,0,0,.22)}
+    .pricing{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+      margin-top:22px;
+    }
+    .price-card{
+      background:rgba(255,255,255,.92);
+      backdrop-filter:blur(4px);
+      border:1px solid rgba(255,255,255,.55);
+      border-radius:18px;
+      box-shadow:0 16px 34px rgba(0,0,0,.12);
+      padding:18px 16px;
+      text-align:center;
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .price-card:hover{transform:translateY(-2px); box-shadow:0 20px 42px rgba(0,0,0,.14);}
+    .price-icon{
+      width:46px;height:46px; border-radius:14px;
+      margin:2px auto 10px;
+      display:grid; place-items:center;
+      background:rgba(124,194,66,.14);
+      color:var(--green);
+      border:1px solid rgba(124,194,66,.28);
+    }
+    .price-card h4{margin:0 0 6px; font-size:13px; font-weight:800}
+    .price-card p{margin:0; font-size:12px; color:var(--muted)}
+
+    /* Why choose */
+    .why{background:#fff;}
+    .why-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:18px;
+      max-width:880px;
+      margin:0 auto;
+    }
+    .check{
+      display:flex; gap:10px; align-items:flex-start;
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:var(--panel);
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .check:hover{transform:translateY(-2px); box-shadow:var(--shadow-soft);}
+    .check svg{width:18px;height:18px; flex:0 0 auto; margin-top:2px; color:var(--green)}
+    .check div{font-size:12.5px; font-weight:600; color:#243144}
+
+    /* Intake + contact */
+    .map-wrap{
+      background:#eef2f6;
+      padding:30px 0 56px;
+    }
+    #contact{scroll-margin-top: calc(var(--nav-h) + 12px);}
+
+    .map-card{
+      display:grid;
+      grid-template-columns:1.3fr .7fr;
+      gap:16px;
+      align-items:stretch;
+    }
+    .issue-panel{
+      border-radius:18px;
+      border:1px solid var(--line);
+      background:#fff;
+      box-shadow:var(--shadow);
+      padding:18px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      min-height:240px;
+    }
+    .issue-panel h3{margin:0;font-size:16px;font-weight:800;color:#0b3a63}
+    .issue-panel p{margin:0;font-size:12.5px;color:var(--muted)}
+    .form-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+      margin-top:6px;
+    }
+    .field{display:flex;flex-direction:column;gap:6px}
+    .field label{font-size:11px;font-weight:700;color:#334155}
+    .field input,
+    .field textarea{
+      width:100%;
+      border:1px solid var(--line);
+      border-radius:12px;
+      padding:10px 12px;
+      font-family:inherit;
+      font-size:12.5px;
+      outline:none;
+      background:var(--panel);
+      transition: box-shadow .18s ease, border-color .18s ease, background .18s ease;
+    }
+    .field input:focus,
+    .field textarea:focus{
+      border-color: rgba(124,194,66,.55);
+      box-shadow: 0 0 0 4px rgba(124,194,66,.18);
+      background:#fff;
+    }
+    .field textarea{
+      resize:vertical;
+      min-height:92px;
+      grid-column:1 / -1;
+    }
+    .issue-actions{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      margin-top:auto;
+      flex-wrap:wrap;
+    }
+    .issue-actions .btn{padding:12px 14px; border-radius:12px}
+    .micro{font-size:11px;color:var(--muted)}
+
+    .contact{
+      border-radius:18px;
+      background:#fff;
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+      padding:16px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    .contact .top{display:flex;align-items:center;gap:12px}
+    .contact .badge{
+      width:54px;height:54px;border-radius:16px;background:#fff;
+      display:grid;place-items:center;border:1px solid var(--line);
+      box-shadow:0 12px 22px rgba(11,58,99,.10);
+      overflow:hidden;
+    }
+    .contact .badge svg{display:block}
+    .contact h3{margin:0;font-size:16px;font-weight:800}
+    .contact .row{
+      display:flex;align-items:center;gap:10px;
+      font-size:12.5px;font-weight:600;color:#2b3442;
+      padding:9px 10px;border-radius:12px;
+      background:var(--panel);border:1px solid var(--line);
+      transition: box-shadow .18s ease, transform .18s ease;
+    }
+    /* BEST MIDDLE-GROUND: slight polish hover, but link itself is the click target */
+    .contact .row:hover{transform:translateY(-1px); box-shadow:0 14px 22px rgba(15,23,42,.10);}
+    .contact .row svg{width:16px;height:16px;color:var(--green)}
+    .contact .row a{color:inherit;text-decoration:none}
+    .contact .hint{margin-top:auto;font-size:11px;color:var(--muted)}
+
+    /* ---------- Compact Footer (ONLY legal lines) ---------- */
+    footer{
+      background:#0b1220;
+      color:rgba(255,255,255,.86);
+      padding:14px 0;
+      border-top:1px solid rgba(255,255,255,.10);
+    }
+    .footer-compact{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:16px;
+      flex-wrap:wrap;
+      font-size:12px;
+      line-height:1.6;
+      opacity:.88;
+    }
+    .footer-compact .left{min-width:280px}
+    .footer-compact .right{text-align:right}
+    .footer-compact a{
+      color:inherit;
+      text-decoration:underline;
+      text-underline-offset:3px;
+      opacity:.9;
+    }
+    .footer-compact a:hover{opacity:1}
+    .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace}
+
+    /* ---------- Reveal on scroll ---------- */
+    .reveal{opacity:0; transform:translateY(14px); transition: opacity .55s ease, transform .55s ease;}
+    .reveal.show{opacity:1; transform:translateY(0);}
+    @media (prefers-reduced-motion: reduce){
+      html{scroll-behavior:auto}
+      .reveal{opacity:1; transform:none; transition:none}
+      .btn,.card,.pill,.check,.price-card,.contact .row{transition:none}
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 920px){
+      .services-grid, .pricing{grid-template-columns:1fr; max-width:520px; margin:0 auto;}
+      .strip-grid{grid-template-columns:1fr; max-width:520px; margin:0 auto;}
+      .why-grid{grid-template-columns:1fr}
+      .map-card{grid-template-columns:1fr}
+      .hero{min-height:420px}
+      .menu{display:none}
+      .burger{display:inline-block}
+      .form-grid{grid-template-columns:1fr}
+      .hero-copy{padding-left:18px}
+      .footer-compact .right{text-align:left}
+    }
+
+    /* ---------- MOBILE PANEL (animated dropdown) ---------- */
+    .mobile-panel{
+      border-top:1px solid var(--line);
+      background:#fff;
+
+      display:block;
+      max-height:0;
+      overflow:hidden;
+      opacity:0;
+      transform:translateY(-8px);
+      transition: max-height .22s ease, opacity .18s ease, transform .18s ease;
+    }
+    .mobile-panel.open{
+      max-height:520px;
+      opacity:1;
+      transform:translateY(0);
+    }
+    .mobile-panel a{
+      display:block;
+      padding:14px 20px;
+      border-bottom:1px solid var(--line);
+      font-weight:700;
+      font-size:13px;
+      color:#243144;
+    }
+    .mobile-panel .mobile-cta{padding:12px 20px}
+    .mobile-panel .mobile-cta .btn{width:100%}
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <header class="nav" aria-label="Top navigation">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html">
+        <div class="logo" aria-hidden="true">
+          <img src="logo.svg" alt="" width="42" height="42">
+        </div>
+        <div>
+          <div class="wordmark" aria-label="CTCONTECH">
+            <span>CTCON</span><span>TECH</span>
+          </div>
+          <small>Reliable remote support</small>
+        </div>
+      </a>
+
+      <nav class="menu" aria-label="Primary">
+        <a href="index.html" class="active">HOME</a>
+        <a href="it-support.html">IT SUPPORT</a>
+        <a href="web-development.html">WEB DEVELOPMENT</a>
+        <a href="portfolio.html">PORTFOLIOS</a>
+      </nav>
+
+      <div class="cta">
+        <button class="burger" id="burger" aria-label="Open menu" aria-controls="mobilePanel" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+
+        <a class="btn btn-primary"
+           href="https://wa.me/27823203406?text=Hi%20CTCONTECH%2C%20I%27d%20like%20to%20request%20a%20quote."
+           target="_blank" rel="noopener">
+          Request a Quote
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-panel" id="mobilePanel" aria-label="Mobile menu">
+    <a href="index.html">HOME</a>
+    <a href="it-support.html">IT SUPPORT</a>
+    <a href="web-development.html">WEB DEVELOPMENT</a>
+    <a href="portfolio.html">PORTFOLIOS</a>
+    <div class="mobile-cta">
+      <a class="btn btn-primary"
+         href="https://wa.me/27823203406?text=Hi%20CTCONTECH%2C%20I%27d%20like%20to%20request%20a%20quote."
+         target="_blank" rel="noopener">
+        Request a Quote
+      </a>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <main id="home">
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <h1>Remote IT Support<br/>for Small Businesses</h1>
+          <p>
+            CTCONTech is a practical division of CTCON (Pty) Ltd. We help small businesses
+            avoid IT headaches, with dependable remote support and professional websites that rock.
+          </p>
+
+          <a class="btn btn-primary" href="#contact">
+            Request a Call
+            <span aria-hidden="true">↳</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURE STRIP -->
+    <div class="strip">
+      <div class="container strip-grid">
+        <div class="pill">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M6.5 3.5l3 3c.6.6.6 1.6 0 2.2l-1.3 1.3c1.3 2.7 3.5 4.9 6.2 6.2l1.3-1.3c.6-.6 1.6-.6 2.2 0l3 3c.6.6.6 1.6 0 2.2l-1.1 1.1c-1 1-2.5 1.3-3.8.8-8.1-3-11.7-6.6-14.7-14.7-.5-1.3-.2-2.8.8-3.8L4.3 3.5c.6-.6 1.6-.6 2.2 0Z"
+                  stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span><b>No Contracts Required</b></span>
+        </div>
+
+        <div class="pill">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M7 7h5l8 8-5 5-8-8V7Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+            <path d="M7 7l-3 3v5l8 8" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+            <circle cx="9.5" cy="9.5" r="1.2" fill="currentColor"/>
+          </svg>
+          <span><b>Pay-As-You-Go</b></span>
+        </div>
+
+        <div class="pill">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 21s7-5.2 7-11a7 7 0 1 0-14 0c0 5.8 7 11 7 11Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+            <circle cx="12" cy="10" r="2.2" stroke="currentColor" stroke-width="1.8"/>
+          </svg>
+          <span><b>Local Cape Town Based</b></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SERVICES -->
+    <section id="support">
+      <div class="container">
+        <h2 class="section-title">IT Support &amp; Website Development</h2>
+
+        <p class="section-sub">
+          CTCONTech is a practical offshoot of CTCON (Pty) Ltd. We set up small business systems,
+          provide responsive IT support, and build clean websites for local SMEs.
+        </p>
+
+        <div class="services-grid">
+          <article class="card">
+            <div class="media" style="background-image:url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1200&q=70');"></div>
+            <div class="pad">
+              <h3>Remote IT Support</h3>
+              <p>We keep your computers, email, backups and accounts running smoothly.</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="media" style="background-image:url('https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1200&q=70');"></div>
+            <div class="pad">
+              <h3>Website Development</h3>
+              <p>Professional websites made for Cape Town SMEs — fast, clear, and modern.</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="media" style="background-image:url('https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?auto=format&fit=crop&w=1200&q=70');"></div>
+            <div class="pad">
+              <h3>Networking</h3>
+              <p>Router, Wi-Fi and cabling setup for reliable connectivity at your site.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- PACKAGES -->
+    <section class="band" aria-label="Packages & Pricing">
+      <div class="container">
+        <h2 class="section-title">Packages &amp; Pricing</h2>
+
+        <div class="pricing">
+          <div class="price-card">
+            <div class="price-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" width="22" height="22">
+                <path d="M8 4h8v16H8z" stroke="currentColor" stroke-width="1.8" />
+                <path d="M10 7h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M11.5 18h1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h4>Free Discovery Call</h4>
+            <p>We assess your setup and recommend next steps for stability and security.</p>
+          </div>
+
+          <div class="price-card">
+            <div class="price-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" width="22" height="22">
+                <path d="M4 5h16v11H4z" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M9 19h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h4>SME Website</h4>
+            <p>A modern website designed to convert visitors into calls and enquiries.</p>
+          </div>
+
+          <div class="price-card">
+            <div class="price-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" width="22" height="22">
+                <path d="M12 22a10 10 0 1 0-10-10 10 10 0 0 0 10 10Z" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M12 7v6l4 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h4>After-Hours Help</h4>
+            <p>Fast troubleshooting when issues happen outside normal business hours.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY CHOOSE -->
+    <section class="why">
+      <div class="container">
+        <h2 class="section-title">Why Choose CTCONTech</h2>
+
+        <div class="why-grid">
+          <div class="check">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <div>Understand small business needs</div>
+          </div>
+
+          <div class="check">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <div>Simple IT support, no fuss</div>
+          </div>
+
+          <div class="check">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <div>Pay only for what you need</div>
+          </div>
+
+          <div class="check">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <div>Reliable online presence</div>
+          </div>
+
+          <div class="check">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <div>Responsive after-hours options</div>
+          </div>
+
+          <div class="check">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <div>Friendly support, 24/7 readiness</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTAKE + CONTACT -->
+    <section class="map-wrap" id="contact">
+      <div class="container">
+        <div class="map-card">
+          <div class="issue-panel" aria-label="Describe your issue">
+            <h3>Describe your issue</h3>
+            <p>Tell us what you need help with and we’ll respond as soon as possible. This will open WhatsApp with your message pre-filled.</p>
+
+            <form id="issueForm" autocomplete="on">
+              <div class="form-grid">
+                <div class="field">
+                  <label for="name">Name</label>
+                  <input id="name" name="name" type="text" placeholder="Your name" />
+                </div>
+
+                <div class="field">
+                  <label for="time">Preferred contact time</label>
+                  <input id="time" name="time" type="text" placeholder="e.g., Today 2pm / Anytime" />
+                </div>
+
+                <div class="field" style="grid-column:1/-1;">
+                  <label for="issue">What can we help with?</label>
+                  <textarea id="issue" name="issue" placeholder="Example: Email not working, PC running slow, need a website quote, Wi-Fi issues..." required></textarea>
+                </div>
+              </div>
+
+              <div class="issue-actions">
+                <button class="btn btn-primary" id="waBtn" type="submit">Send via WhatsApp</button>
+                <span class="micro">Or use the top “Request a Quote” button.</span>
+              </div>
+            </form>
+          </div>
+
+          <aside class="contact" aria-label="Contact card">
+            <div class="top">
+              <div class="badge" aria-hidden="true">
+                <img src="logo.svg" alt="" width="42" height="42">
+              </div>
+              <div>
+                <h3>Talk to Us Anytime</h3>
+                <div style="color:var(--muted); font-size:12px; font-weight:600">Support & Website Requests</div>
+              </div>
+            </div>
+
+            <div class="row">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M6.5 3.5l3 3c.6.6.6 1.6 0 2.2l-1.3 1.3c1.3 2.7 3.5 4.9 6.2 6.2l1.3-1.3c.6-.6 1.6-.6 2.2 0l3 3c.6.6.6 1.6 0 2.2l-1.1 1.1c-1 1-2.5 1.3-3.8 .8-8.1-3-11.7-6.6-14.7-14.7-.5-1.3-.2-2.8.8-3.8L4.3 3.5c.6-.6 1.6-.6 2.2 0Z"
+                      stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <a href="tel:+27823203406">082 320 3406</a>
+            </div>
+
+            <div class="row">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M4 6h16v12H4z" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M4 7l8 6 8-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <a href="mailto:ctconenquiry@gmail.com">ctconenquiry@gmail.com</a>
+            </div>
+
+            <div class="hint">Remote support available nationwide • On-site visits by appointment.</div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- COMPACT FOOTER -->
+  <footer>
+    <div class="container footer-compact">
+      <div class="left">
+        © <span id="y"></span> CTCONTECH (a division of CTCON (Pty) Ltd)<br/>
+        Company Registration No: <span class="mono">2021/559551/07</span>
+      </div>
+      <div class="right">
+        Remote support nationwide • On-site visits by appointment • Cape Town<br/>
+        <a href="privacy.html">Privacy</a> • <a href="terms.html">Terms</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Nav: add shadow on scroll
+    const navEl = document.querySelector('.nav');
+    const onScroll = () => navEl?.classList.toggle('scrolled', window.scrollY > 8);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    // Mobile menu UX
+    const burger = document.getElementById('burger');
+    const panel = document.getElementById('mobilePanel');
+    function closeMenu() {
+      panel?.classList.remove('open');
+      burger?.setAttribute('aria-expanded', 'false');
+    }
+    burger?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const open = panel.classList.toggle('open');
+      burger.setAttribute('aria-expanded', String(open));
+    });
+    panel?.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+    document.addEventListener('click', (e) => {
+      if (!panel?.classList.contains('open')) return;
+      const target = e.target;
+      if (!(target instanceof Node)) return;
+      const clickedInside = panel.contains(target) || burger?.contains(target);
+      if (!clickedInside) closeMenu();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMenu();
+    });
+
+    // Footer: auto year
+    const yEl = document.getElementById('y');
+    if (yEl) yEl.textContent = String(new Date().getFullYear());
+
+    // Reveal on scroll (reset on pageshow so animations replay when returning)
+    let revealObserver = null;
+    function setupReveals() {
+      const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReduced) return;
+
+      // Add reveal class where needed (idempotent)
+      document.querySelectorAll('section, .strip, footer').forEach(el => el.classList.add('reveal'));
+
+      // Reset state
+      document.querySelectorAll('.reveal').forEach(el => el.classList.remove('show'));
+
+      // Rebuild observer
+      if (revealObserver) revealObserver.disconnect();
+      revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => entry.isIntersecting && entry.target.classList.add('show'));
+      }, { threshold: 0.12 });
+
+      document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+    }
+    setupReveals();
+    window.addEventListener('pageshow', setupReveals);
+
+    // WhatsApp intake form + visible feedback
+    const issueForm = document.getElementById('issueForm');
+    const waBtn = document.getElementById('waBtn');
+
+    issueForm?.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById('name')?.value?.trim() || "";
+      const time = document.getElementById('time')?.value?.trim() || "";
+      const issue = document.getElementById('issue')?.value?.trim() || "";
+
+      if (!issue) {
+        alert("Please describe what you need help with.");
+        document.getElementById('issue')?.focus();
+        return;
+      }
+
+      const originalText = waBtn?.textContent || "Send via WhatsApp";
+      if (waBtn) {
+        waBtn.textContent = "Opening WhatsApp…";
+        waBtn.disabled = true;
+      }
+
+      const lines = [
+        "Hi CTCONTECH, I'd like to request a quote.",
+        name ? `Name: ${name}` : null,
+        time ? `Preferred contact time: ${time}` : null,
+        `Issue: ${issue}`
+      ].filter(Boolean);
+
+      const text = encodeURIComponent(lines.join("\n"));
+      const url = `https://wa.me/27823203406?text=${text}`;
+
+      window.open(url, "_blank", "noopener");
+      issueForm.reset();
+
+      window.setTimeout(() => {
+        if (!waBtn) return;
+        waBtn.textContent = originalText;
+        waBtn.disabled = false;
+      }, 900);
+    });
+  </script>
+</body>
+</html>
