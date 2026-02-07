@@ -1,0 +1,50 @@
+# Netlify configuration for CTCONTECH website
+# Auto-deploys on every GitHub push to main branch
+
+[build]
+  # No build step needed - static HTML files
+  command = ""
+  publish = "."
+
+[build.environment]
+  # Node version for any future dependencies
+  NODE_VERSION = "20"
+
+# Redirects for single-page app routing (if needed)
+[[redirects]]
+  from = "/*"
+  to = "/Index.html"
+  status = 200
+
+# Headers for performance and security
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+
+[[headers]]
+  for = "/*.{js,css,svg,woff,woff2}"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=3600, must-revalidate"
+
+# Context-specific settings
+[context.production]
+  command = ""
+  publish = "."
+
+[context.deploy-preview]
+  command = ""
+  publish = "."
+
+[context.branch-deploy]
+  command = ""
+  publish = "."
