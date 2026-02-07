@@ -1,0 +1,12 @@
+{
+  "name": "ctcontech",
+  "version": "1.0.0",
+  "description": "CTCONTECH - Remote IT Support & Web Development",
+  "scripts": {
+    "dev": "bun --hot run server.js",
+    "start": "bun run server.js"
+  },
+  "keywords": ["it-support", "web-development", "remote-support", "cape-town"],
+  "author": "CTCONTECH",
+  "license": "MIT"
+}
