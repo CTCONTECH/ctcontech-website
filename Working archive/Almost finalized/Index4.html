@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en-ZA">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CTCON (Pty) Ltd | Welding, Fabrication & Maintenance (Cape Town)</title>
+  <meta name="description" content="CTCON (Pty) Ltd provides welding, light fabrication, repairs and maintenance in Cape Town. Fast quotations, tidy work, reliable turnaround." />
+
+  <style>
+    :root{
+      --blue:#1f6feb;
+      --green:#2fbf55;
+      --ink:#0b1220;
+      --muted:#5b6474;
+      --line:#e5e7eb;
+      --soft:#f6f8fb;
+      --shadow:0 18px 45px rgba(15,23,42,.12);
+      --radius:18px;
+      --max:1180px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif;
+      color:var(--ink);
+      background:#fff;
+    }
+    a{color:inherit}
+    .wrap{max-width:var(--max);margin:0 auto;padding:0 22px}
+
+    /* Header */
+    .topbar{background:#fff;border-bottom:1px solid var(--line)}
+    header{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:14px 0;flex-wrap:wrap}
+    .brand{display:flex;align-items:center;gap:14px;text-decoration:none}
+    .brand img{height:64px}
+    .brand .title{font-weight:900;font-size:18px}
+    .brand .sub{font-size:13px;color:var(--muted)}
+
+    nav{display:flex;gap:18px;align-items:center;font-weight:800}
+    nav a{text-decoration:none}
+    nav a:hover{color:var(--blue)}
+    .cta{
+      padding:11px 15px;border-radius:12px;color:#fff;
+      background:linear-gradient(90deg,var(--blue),var(--green));
+      text-decoration:none;font-weight:900;
+      box-shadow:0 10px 24px rgba(31,111,235,.25)
+    }
+
+    /* Hero */
+    .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+    .heroMedia{
+      position:absolute;inset:0;
+      background:
+        linear-gradient(90deg, rgba(11,18,32,.88) 0%, rgba(11,18,32,.6) 55%, rgba(47,191,85,.18) 100%),
+        url("https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=2200&q=80");
+      background-size:cover;
+      background-position:center;
+    }
+    .heroInner{position:relative;padding:48px 0 32px}
+    .heroGrid{display:grid;grid-template-columns:1.15fr .85fr;gap:18px}
+
+    .heroCard,.side{
+      background:rgba(255,255,255,.94);
+      border:1px solid rgba(255,255,255,.6);
+      border-radius:var(--radius);
+      padding:22px;
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(6px);
+    }
+
+    /* UPDATED: less oversized headline */
+    h1{margin:0 0 12px;font-size:36px;line-height:1.15;letter-spacing:-.2px}
+
+    .lead{margin:0;color:#2b3446;line-height:1.75}
+
+    .badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+    .badge{
+      background:#fff;border:1px solid var(--line);
+      border-radius:999px;padding:8px 12px;
+      font-size:13px;font-weight:800;display:flex;gap:8px;align-items:center
+    }
+    .dot{width:9px;height:9px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--green))}
+
+    .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+    .btn{
+      padding:12px 16px;border-radius:12px;border:1px solid var(--line);
+      background:#fff;font-weight:900;text-decoration:none
+    }
+    .btn.primary{
+      background:linear-gradient(90deg,var(--blue),var(--green));
+      color:#fff;border:0;box-shadow:0 10px 24px rgba(31,111,235,.25)
+    }
+
+    .panelTitle{font-weight:900;margin:0 0 10px}
+    .kv{display:grid;gap:9px;font-size:14px}
+    .kv strong{color:var(--ink)}
+    .divider{height:1px;background:var(--line);margin:14px 0}
+    ul{margin:0;padding-left:18px;line-height:1.7}
+
+    .strip{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px}
+    .pill{
+      background:#fff;border:1px solid var(--line);
+      border-radius:14px;padding:12px;text-align:center;font-weight:900
+    }
+    .pill small{display:block;color:var(--muted);font-weight:700;margin-top:4px}
+
+    section{padding:44px 0}
+    .kicker{color:var(--green);font-size:12px;font-weight:900;letter-spacing:.14em;text-transform:uppercase}
+    h2{margin:8px 0 0;font-size:28px}
+    .subline{color:var(--muted);max-width:75ch;line-height:1.7;margin-top:10px}
+
+    .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:22px}
+    .card{
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:16px;background:#fff;
+      box-shadow:0 10px 22px rgba(15,23,42,.06)
+    }
+    .card h3{margin:0 0 6px;font-size:16px}
+    .card p{margin:0;color:var(--muted);font-size:14px;line-height:1.6}
+
+    footer{border-top:1px solid var(--line);padding:22px 0;font-size:13px;color:var(--muted)}
+    .foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+
+    @media(max-width:960px){
+      .heroGrid{grid-template-columns:1fr}
+      .strip{grid-template-columns:1fr 1fr}
+      .grid3{grid-template-columns:1fr}
+      h1{font-size:32px}
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <header>
+      <a class="brand" href="#">
+        <img src="ctcon-logo-cropped.png" alt="CTCON Logo">
+        <div>
+          <div class="title">CTCON (Pty) Ltd</div>
+          <div class="sub">Welding · Light Fabrication · Repairs · Maintenance (Cape Town)</div>
+        </div>
+      </a>
+      <nav>
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <a class="cta" href="https://wa.me/27823203406">WhatsApp Quote</a>
+      </nav>
+    </header>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="heroMedia"></div>
+  <div class="wrap heroInner">
+    <div class="heroGrid">
+      <div class="heroCard">
+        <!-- UPDATED: more professional headline + copy -->
+        <h1>Professional welding, fabrication & maintenance services.</h1>
+        <p class="lead">
+          CTCON (Pty) Ltd provides <strong>small-to-medium</strong> welding repairs, light fabrication and general
+          maintenance for homes, small businesses and facilities across Cape Town. Our focus is clear communication,
+          dependable workmanship, and efficient turnaround.
+        </p>
+
+        <div class="badges">
+          <span class="badge"><span class="dot"></span> Fast quotations</span>
+          <span class="badge"><span class="dot"></span> Call-outs & scheduled</span>
+          <span class="badge"><span class="dot"></span> Durbanville & Cape Town</span>
+        </div>
+
+        <div class="actions">
+          <a class="btn primary" href="https://wa.me/27823203406">Request a Quote (WhatsApp)</a>
+          <a class="btn" href="tel:+27823203406">Call Now</a>
+          <a class="btn" href="mailto:ctconenquiry@gmail.com">Email</a>
+        </div>
+      </div>
+
+      <aside class="side">
+        <div class="panelTitle">Quick details</div>
+        <div class="kv">
+          <div><strong>Phone:</strong> 082 320 3406</div>
+          <div><strong>Email:</strong> ctconenquiry@gmail.com</div>
+          <div><strong>Location:</strong> Durbanville, Cape Town</div>
+          <div><strong>Company Reg:</strong> 2021/559551/07</div>
+          <div><strong>VAT:</strong> Not VAT registered</div>
+        </div>
+        <div class="divider"></div>
+        <div class="panelTitle">Typical jobs</div>
+        <ul>
+          <li>Welding repairs & reinforcements</li>
+          <li>Gates, hinges, brackets & frames</li>
+          <li>Light fabrication & modifications</li>
+          <li>General maintenance (call-out / scheduled)</li>
+        </ul>
+      </aside>
+    </div>
+
+    <div class="strip">
+      <div class="pill">Same-day response<small>where possible</small></div>
+      <div class="pill">Clear scope<small>before work starts</small></div>
+      <div class="pill">Neat finish<small>tidy workmanship</small></div>
+      <div class="pill">Reliable timing<small>kept informed</small></div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="wrap">
+    <span class="kicker">Services</span>
+    <h2>What we do</h2>
+    <p class="subline">Practical engineering and maintenance work, completed professionally.</p>
+
+    <div class="grid3">
+      <div class="card">
+        <h3>Welding repairs</h3>
+        <p>Structural repairs, reinforcements, hinges, brackets and general metal fixes.</p>
+      </div>
+      <div class="card">
+        <h3>Light fabrication</h3>
+        <p>Custom parts, frames and modifications—built to suit your application.</p>
+      </div>
+      <div class="card">
+        <h3>Maintenance</h3>
+        <p>Ongoing or call-out maintenance to keep equipment and facilities running.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about" style="background:var(--soft);border-top:1px solid var(--line)">
+  <div class="wrap">
+    <span class="kicker">About</span>
+    <h2>Local. Reliable. Straightforward.</h2>
+    <p class="subline">
+      CTCON (Pty) Ltd focuses on honest workmanship, clear communication and reliable turnaround.
+      We’re set up for small-to-medium jobs where quality and responsiveness matter.
+    </p>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <span class="kicker">Contact</span>
+    <h2>Get in touch</h2>
+    <div class="grid3">
+      <div class="card"><strong>Phone</strong><br>082 320 3406</div>
+      <div class="card"><strong>Email</strong><br>ctconenquiry@gmail.com</div>
+      <div class="card"><strong>Company</strong><br>Reg: 2021/559551/07</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <div>© <span id="y"></span> CTCON (Pty) Ltd</div>
+    <div>Durbanville, Cape Town</div>
+  </div>
+</footer>
+
+<script>document.getElementById("y").textContent = new Date().getFullYear();</script>
+
+</body>
+</html>

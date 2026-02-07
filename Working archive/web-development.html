@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CTCONTECH – Web Development</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --ink:#0f172a; --muted:#5b6677; --bg:#ffffff; --panel:#f6f8fb;
+      --line:rgba(15,23,42,.10); --shadow:0 12px 28px rgba(15,23,42,.10);
+      --radius:16px; --green:#7cc242; --nav-h:74px; --max:1120px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--ink);
+      background:var(--bg);
+      line-height:1.45;
+    }
+    a{color:inherit;text-decoration:none}
+    .container{width:min(var(--max),calc(100% - 40px));margin:0 auto}
+
+    /* NAV */
+    .nav{
+      position:sticky;top:0;z-index:50;background:#fff;
+      border-bottom:1px solid var(--line);height:var(--nav-h);
+      display:flex;align-items:center;
+      transition: box-shadow .18s ease, border-color .18s ease;
+    }
+    .nav.scrolled{
+      box-shadow:0 12px 28px rgba(15,23,42,.10);
+      border-bottom-color:rgba(15,23,42,.12);
+    }
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;align-items:center;gap:10px;min-width:210px}
+    .logo{width:42px;height:42px;display:grid;place-items:center;border-radius:10px;background:#fff;box-shadow:0 8px 18px rgba(11,58,99,.12);overflow:hidden}
+    .wordmark{font-weight:800;display:flex;gap:2px;letter-spacing:.2px}
+    .wordmark span:first-child{color:#0b3a63}
+    .wordmark span:last-child{color:var(--green)}
+    .brand small{display:block;color:var(--muted);font-size:11px;margin-top:-2px}
+
+    .menu{display:flex;gap:18px;align-items:center}
+    .menu a{font-size:12px;font-weight:600;opacity:.9;position:relative;padding:8px 6px}
+    .menu a:hover{opacity:1}
+    .menu a.active{opacity:1;color:#0b3a63}
+    .menu a::after{
+      content:"";position:absolute;left:6px;right:6px;bottom:2px;height:2px;border-radius:999px;
+      background:linear-gradient(90deg, rgba(124,194,66,.0), rgba(124,194,66,.85), rgba(124,194,66,.0));
+      transform:scaleX(0);opacity:0;transition:.18s ease;
+    }
+    .menu a:hover::after,.menu a.active::after{transform:scaleX(1);opacity:1}
+
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      background:var(--green);color:#fff;padding:10px 14px;border-radius:10px;
+      font-weight:700;font-size:12px;white-space:nowrap;
+      transition:.15s transform,.15s box-shadow,.15s filter;
+      box-shadow:0 10px 22px rgba(124,194,66,.22);
+    }
+    .btn:hover{transform:translateY(-1px);filter:brightness(.98);box-shadow:0 14px 28px rgba(124,194,66,.26)}
+    .btn:active{transform:translateY(1px)}
+
+    .burger{display:none;border:1px solid var(--line);background:#fff;border-radius:10px;padding:9px 10px;cursor:pointer}
+    .burger span{display:block;width:18px;height:2px;background:#243144;margin:3px 0}
+
+    .mobile-panel{
+      border-top:1px solid var(--line);
+      background:#fff;
+      display:block;
+      max-height:0;overflow:hidden;opacity:0;transform:translateY(-8px);
+      transition:max-height .22s ease, opacity .18s ease, transform .18s ease;
+    }
+    .mobile-panel.open{max-height:520px;opacity:1;transform:translateY(0)}
+    .mobile-panel a{
+      display:block;padding:14px 20px;border-bottom:1px solid var(--line);
+      font-weight:700;font-size:13px;color:#243144;
+    }
+    .mobile-panel .mobile-cta{padding:12px 20px}
+    .mobile-panel .mobile-cta .btn{width:100%}
+
+    /* HERO */
+    .hero{
+      position:relative;
+      background:
+        linear-gradient(90deg, rgba(2,6,23,.75), rgba(2,6,23,.2)),
+        url("https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=2000&q=70");
+      background-size:cover;
+      background-position:center;
+      color:#fff;
+      padding:56px 0 48px;
+      border-bottom:1px solid var(--line);
+      overflow:hidden;
+    }
+    .hero::after{
+      content:"";
+      position:absolute; inset:-40% -30%;
+      background:radial-gradient(circle at 25% 30%, rgba(124,194,66,.14), transparent 55%);
+      transform:rotate(-8deg);
+      pointer-events:none;
+      opacity:.8;
+    }
+    .hero .container{position:relative}
+    .hero h1{margin:0 0 10px;font-size:clamp(22px,2.5vw,36px);font-weight:800}
+    .hero p{margin:0;color:rgba(255,255,255,.86);max-width:720px;font-size:13.5px}
+
+    section{padding:44px 0}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .tile{
+      background:#fff;border:1px solid var(--line);
+      border-radius:16px;box-shadow:var(--shadow);padding:16px;
+      transition:transform .18s ease, box-shadow .18s ease;
+    }
+    .tile:hover{transform:translateY(-4px);box-shadow:0 18px 38px rgba(15,23,42,.14)}
+    .tile h3{margin:0 0 6px;font-size:14px;font-weight:800}
+    .tile p{margin:0;font-size:12.5px;color:var(--muted)}
+
+    /* CTA */
+    .cta-band{
+      background:#eef2f6;
+      padding:46px 0;
+      border-top:1px solid var(--line);
+    }
+    .cta-box{
+      max-width:760px;
+      margin:0 auto;
+      background:#fff;
+      border-radius:18px;
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+      padding:22px;
+      text-align:center;
+    }
+    .cta-box h3{margin:0 0 8px;font-size:18px;font-weight:800}
+    .cta-box p{margin:0 0 16px;font-size:13px;color:var(--muted)}
+
+    /* Compact Footer */
+    footer{
+      background:#0b1220;
+      color:rgba(255,255,255,.86);
+      padding:14px 0;
+      border-top:1px solid rgba(255,255,255,.10);
+    }
+    .footer-compact{
+      display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;
+      font-size:12px;line-height:1.6;opacity:.88;
+    }
+    .footer-compact .left{min-width:280px}
+    .footer-compact .right{text-align:right}
+    .footer-compact a{text-decoration:underline;text-underline-offset:3px;opacity:.9}
+    .footer-compact a:hover{opacity:1}
+    .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace}
+
+    /* Reveal */
+    .reveal{opacity:0; transform:translateY(14px); transition: opacity .55s ease, transform .55s ease;}
+    .reveal.show{opacity:1; transform:translateY(0);}
+    @media (prefers-reduced-motion: reduce){
+      html{scroll-behavior:auto}
+      .reveal{opacity:1; transform:none; transition:none}
+      .btn,.tile{transition:none}
+    }
+
+    @media(max-width:900px){
+      .grid{grid-template-columns:1fr}
+      .menu{display:none}
+      .burger{display:inline-block}
+      .footer-compact .right{text-align:left}
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="nav" aria-label="Top navigation">
+  <div class="container nav-inner">
+    <a class="brand" href="index.html" aria-label="Go to Home">
+      <div class="logo" aria-hidden="true">
+        <svg viewBox="0 0 64 64" width="42" height="42" role="presentation" aria-hidden="true">
+          <path d="M32 4 56 18v28L32 60 8 46V18L32 4Z" fill="none" stroke="#0b3a63" stroke-width="6" stroke-linejoin="round"/>
+          <path d="M22 24h22v8H30v16h-8V24Z" fill="#0b3a63"/>
+          <path d="M30 32h16v8H38v14h-8V32Z" fill="#7cc242"/>
+        </svg>
+      </div>
+      <div>
+        <div class="wordmark" aria-label="CTCONTECH"><span>CTCON</span><span>TECH</span></div>
+        <small>Reliable remote support</small>
+      </div>
+    </a>
+
+    <nav class="menu" aria-label="Primary navigation">
+      <a href="index.html">HOME</a>
+      <a href="it-support.html">IT SUPPORT</a>
+      <a href="web-development.html" class="active">WEB DEVELOPMENT</a>
+      <a href="portfolio.html">PORTFOLIOS</a>
+    </nav>
+
+    <div class="cta" style="display:flex;align-items:center;gap:10px">
+      <button class="burger" id="burger" aria-label="Open menu" aria-controls="mobilePanel" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <a class="btn"
+         href="https://wa.me/27823203406?text=Hi%20CTCONTECH%2C%20I%20need%20a%20website%20quote."
+         target="_blank" rel="noopener">Request a Quote</a>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-panel" id="mobilePanel" aria-label="Mobile menu">
+  <a href="index.html">HOME</a>
+  <a href="it-support.html">IT SUPPORT</a>
+  <a href="web-development.html">WEB DEVELOPMENT</a>
+  <a href="portfolio.html">PORTFOLIOS</a>
+  <div class="mobile-cta">
+    <a class="btn"
+       href="https://wa.me/27823203406?text=Hi%20CTCONTECH%2C%20I%20need%20a%20website%20quote."
+       target="_blank" rel="noopener">Request a Quote</a>
+  </div>
+</div>
+
+<main>
+  <section class="hero">
+    <div class="container">
+      <h1>Websites Built for Small Businesses</h1>
+      <p>Clean, fast and professional websites designed to turn visitors into real enquiries — without unnecessary complexity.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="grid">
+        <div class="tile"><h3>Business Websites</h3><p>Professional websites tailored for small businesses and service providers.</p></div>
+        <div class="tile"><h3>Landing Pages</h3><p>Focused pages built specifically to convert traffic into leads.</p></div>
+        <div class="tile"><h3>Website Redesigns</h3><p>Modern refreshes for outdated or underperforming websites.</p></div>
+        <div class="tile"><h3>Mobile-First Design</h3><p>Optimised layouts that look great on phones, tablets and desktops.</p></div>
+        <div class="tile"><h3>Performance & SEO Basics</h3><p>Fast load times, clean structure and a solid SEO foundation.</p></div>
+        <div class="tile"><h3>Ongoing Maintenance</h3><p>Optional updates, backups and content changes when you need them.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band" id="contact">
+    <div class="container">
+      <div class="cta-box">
+        <h3>Ready to Get Started?</h3>
+        <p>Tell us what kind of website you need and we’ll guide you through the best option.</p>
+        <a class="btn"
+           href="https://wa.me/27823203406?text=Hi%20CTCONTECH%2C%20I%27d%20like%20a%20website%20quote."
+           target="_blank" rel="noopener">Request a Quote on WhatsApp</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-compact">
+    <div class="left">
+      © <span id="y"></span> CTCONTECH (a division of CTCON (Pty) Ltd)<br/>
+      Company Registration No: <span class="mono">2021/559551/07</span>
+    </div>
+    <div class="right">
+      Remote support nationwide • On-site visits by appointment • Cape Town<br/>
+      <a href="privacy.html">Privacy</a> • <a href="terms.html">Terms</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const navEl = document.querySelector('.nav');
+  const onScroll = () => navEl?.classList.toggle('scrolled', window.scrollY > 8);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  const burger = document.getElementById('burger');
+  const panel = document.getElementById('mobilePanel');
+  function closeMenu() {
+    panel?.classList.remove('open');
+    burger?.setAttribute('aria-expanded', 'false');
+  }
+  burger?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const open = panel.classList.toggle('open');
+    burger.setAttribute('aria-expanded', String(open));
+  });
+  panel?.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+  document.addEventListener('click', (e) => {
+    if (!panel?.classList.contains('open')) return;
+    const target = e.target;
+    if (!(target instanceof Node)) return;
+    const clickedInside = panel.contains(target) || burger?.contains(target);
+    if (!clickedInside) closeMenu();
+  });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+
+  const yEl = document.getElementById('y');
+  if (yEl) yEl.textContent = String(new Date().getFullYear());
+
+  const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!prefersReduced) {
+    document.querySelectorAll('section, footer').forEach(el => el.classList.add('reveal'));
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => entry.isIntersecting && entry.target.classList.add('show'));
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  }
+</script>
+
+</body>
+</html>
