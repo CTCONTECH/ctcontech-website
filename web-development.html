@@ -356,12 +356,29 @@
       width:100%;
       height:200px;
       background:linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+      background-size:cover;
+      background-position:center;
+      background-repeat:no-repeat;
       display:flex;
       align-items:center;
       justify-content:center;
       color:#000;
       font-weight:700;
       font-size:14px;
+      position:relative;
+      overflow:hidden;
+    }
+    .gallery-card .img.kuils{
+      background-image:
+        linear-gradient(180deg, rgba(0,0,0,.15) 0%, rgba(0,0,0,.55) 100%),
+        url('/public/assets/projects/kuils-river-primary-school/KuilsriverPrimary.png');
+      color:#fff;
+    }
+    .gallery-card .img.performance{
+      background-image:
+        linear-gradient(180deg, rgba(0,0,0,.2) 0%, rgba(0,0,0,.6) 100%),
+        url('/public/assets/projects/performance-den/PerformanceDen.png');
+      color:#fff;
     }
     .gallery-card .body{padding:20px;}
     .gallery-card .tag{
@@ -730,7 +747,7 @@
 
         <div class="gallery-grid">
           <div class="gallery-card reveal" data-category="education">
-            <div class="img">Kuils River Primary</div>
+            <div class="img kuils" role="img" aria-label="Kuils River Primary School website preview"></div>
             <div class="body">
               <span class="tag">Education</span>
               <h3>Kuils River Primary School</h3>
@@ -738,7 +755,7 @@
             </div>
           </div>
           <div class="gallery-card reveal" data-category="automotive">
-            <div class="img">Performance Den</div>
+            <div class="img performance" role="img" aria-label="Performance Den website preview"></div>
             <div class="body">
               <span class="tag">Automotive</span>
               <h3>Performance Den Showcase</h3>
