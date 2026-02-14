@@ -63,14 +63,12 @@
     .nav-inner{display:flex; align-items:center; justify-content:space-between; gap:20px;}
     .brand{display:flex; align-items:center; gap:12px; min-width:240px;}
     .brand .logo{
-      width:48px; height:48px;
+      width:60px; height:60px;
       display:grid; place-items:center;
-      border-radius:12px;
-      background:linear-gradient(135deg, var(--accent), var(--accent-dark));
-      box-shadow:0 8px 20px rgba(124,194,66,.25);
-      overflow:hidden;
+      overflow:visible;
       flex-shrink:0;
     }
+    .brand .logo img{display:block; width:60px; height:60px; object-fit:contain; object-position:center;}
     .brand .logo svg{display:block; width:28px; height:28px; color:#000;}
     .brand .wordmark{
       font-weight:800; letter-spacing:.3px;
@@ -636,9 +634,7 @@
     <div class="container nav-inner">
       <a class="brand" href="index.html">
         <div class="logo" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none">
-            <path d="M3 12h18M12 3v18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          </svg>
+          <img src="/public/assets/Logo/UPDATED%20SHIELD.png" alt="CTCONTECH">
         </div>
         <div>
           <div class="wordmark">CTCONTECH</div>
@@ -659,7 +655,7 @@
         </button>
 
         <a class="btn btn-primary"
-           href="https://wa.me/27823203406?text=Hi%20CTCONTECH%2C%20I%27d%20like%20to%20request%20a%20quote."
+           href="https://wa.me/27823203406?text=Hi%20CTCONTECH%2C%20I%27d%20like%20to%20discuss%20a%20project."
            target="_blank" rel="noopener">
           Get Started
         </a>
@@ -674,7 +670,7 @@
     <a href="portfolio.html">PORTFOLIO</a>
     <div class="mobile-cta">
       <a class="btn btn-primary"
-         href="https://wa.me/27823203406?text=Hi%20CTCONTECH%2C%20I%27d%20like%20to%20request%20a%20quote."
+         href="https://wa.me/27823203406?text=Hi%20CTCONTECH%2C%20I%27d%20like%20to%20discuss%20a%20project."
          target="_blank" rel="noopener">
         Get Started
       </a>
@@ -803,7 +799,7 @@
                 </div>
               </div>
               <p class="project-desc">
-                Reliable, practical IT support for small businesses across Africa. No contracts required. Covers email, backups, networking, PC troubleshooting, and security audits.
+                Reliable, practical IT support for small businesses across Africa. No contracts required. Covers email, backups, networking, and PC troubleshooting.
               </p>
               <div class="tech-stack">
                 <span class="tech-badge">Remote Support</span>
@@ -846,7 +842,7 @@
           <div class="testimonial-card reveal">
             <div class="testimonial-stars">★★★★★</div>
             <p class="testimonial-text">
-              "Their IT support keeps us running 24/7. No more downtime stress. Professional, responsive, and honest pricing."
+              "Their IT support team is responsive and professional. We appreciate the straightforward pricing and honest communication."
             </p>
             <div class="testimonial-author">
               <div class="testimonial-avatar">SM</div>

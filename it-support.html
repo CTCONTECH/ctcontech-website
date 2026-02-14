@@ -61,14 +61,12 @@
     .nav-inner{display:flex; align-items:center; justify-content:space-between; gap:20px;}
     .brand{display:flex; align-items:center; gap:12px; min-width:240px;}
     .brand .logo{
-      width:48px; height:48px;
+      width:60px; height:60px;
       display:grid; place-items:center;
-      border-radius:12px;
-      background:linear-gradient(135deg, var(--accent), var(--accent-dark));
-      box-shadow:0 8px 20px rgba(124,194,66,.25);
-      overflow:hidden;
+      overflow:visible;
       flex-shrink:0;
     }
+    .brand .logo img{display:block; width:60px; height:60px; object-fit:contain; object-position:center;}
     .brand .logo svg{display:block; width:28px; height:28px; color:#000;}
     .brand .wordmark{
       font-weight:800; letter-spacing:.3px;
@@ -665,7 +663,7 @@
     <div class="container nav-inner">
       <a class="brand" href="index.html">
         <div class="logo" aria-hidden="true">
-          <img src="/public/assets/Logo/CTCONTECH%20LOGO.png" alt="CTCONTECH" style="width:100%; height:100%; object-fit:contain;">
+          <img src="/public/assets/Logo/UPDATED%20SHIELD.png" alt="CTCONTECH">
         </div>
         <div>
           <div class="wordmark">CTCONTECH</div>

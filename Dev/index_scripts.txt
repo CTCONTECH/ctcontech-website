@@ -1,0 +1,40 @@
+----- SCRIPT BLOCK -----
+
+    // Simple mobile menu toggle
+    const burger = document.getElementById('burger');
+    const panel = document.getElementById('mobilePanel');
+    burger?.addEventListener('click', () => {
+      const open = panel.classList.toggle('open');
+      burger.setAttribute('aria-expanded', String(open));
+    });
+
+    // Close menu when clicking a link (mobile)
+    panel?.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        panel.classList.remove('open');
+        burger.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // WhatsApp intake form -> prefilled message
+    const issueForm = document.getElementById('issueForm');
+    issueForm?.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById('name')?.value?.trim() || "";
+      const time = document.getElementById('time')?.value?.trim() || "";
+      const issue = document.getElementById('issue')?.value?.trim() || "";
+
+      const lines = [
+        "Hi CTCONTECH, I'd like to request a quote.",
+        name ? `Name: ${name}` : null,
+        time ? `Preferred contact time: ${time}` : null,
+        issue ? `Issue: ${issue}` : null
+      ].filter(Boolean);
+
+      const text = encodeURIComponent(lines.join("\n"));
+      const url = `https://wa.me/27823203406?text=${text}`;
+      window.open(url, "_blank", "noopener");
+    });
+  
+

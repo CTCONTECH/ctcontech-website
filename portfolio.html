@@ -61,14 +61,12 @@
     .nav-inner{display:flex; align-items:center; justify-content:space-between; gap:20px;}
     .brand{display:flex; align-items:center; gap:12px; min-width:240px;}
     .brand .logo{
-      width:48px; height:48px;
+      width:60px; height:60px;
       display:grid; place-items:center;
-      border-radius:12px;
-      background:linear-gradient(135deg, var(--accent), var(--accent-dark));
-      box-shadow:0 8px 20px rgba(124,194,66,.25);
-      overflow:hidden;
+      overflow:visible;
       flex-shrink:0;
     }
+    .brand .logo img{display:block; width:60px; height:60px; object-fit:contain; object-position:center;}
     .brand .logo svg{display:block; width:28px; height:28px; color:#000;}
     .brand .wordmark{
       font-weight:800; letter-spacing:.3px;
@@ -593,9 +591,7 @@
     <div class="container nav-inner">
       <a class="brand" href="index.html">
         <div class="logo" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none">
-            <path d="M3 12h18M12 3v18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          </svg>
+          <img src="/public/assets/Logo/UPDATED%20SHIELD.png" alt="CTCONTECH">
         </div>
         <div>
           <div class="wordmark">CTCONTECH</div>
@@ -666,8 +662,8 @@
             <div class="label">Annual Visitors</div>
           </div>
           <div class="stat-card">
-            <div class="value">98%</div>
-            <div class="label">Uptime SLA</div>
+            <div class="value">Fast</div>
+            <div class="label">Performance Rating</div>
           </div>
           <div class="stat-card">
             <div class="value">100%</div>
@@ -687,7 +683,9 @@
 
         <!-- Case Study 1: Kuils River -->
         <div class="case-study reveal">
-          <div class="cs-viz">Kuils River Primary</div>
+          <div class="cs-viz" style="background:linear-gradient(135deg, var(--accent), var(--accent-dark)); display:flex; align-items:center; justify-content:center; border-radius:var(--radius);">
+            <img src="public/assets/projects/kuils-river-primary-school/KuilsriverPrimary.png" alt="Kuils River Primary School" style="width:100%; height:100%; object-fit:cover; border-radius:var(--radius);">
+          </div>
           <div class="cs-content">
             <span class="cs-tag">Education</span>
             <h3 class="cs-title">Kuils River Primary School</h3>
@@ -705,8 +703,8 @@
                 <span class="label">Delivery Time</span>
               </div>
               <div class="cs-metric">
-                <span class="value">92</span>
-                <span class="label">Lighthouse Score</span>
+                <span class="value">High</span>
+                <span class="label">Performance Rating</span>
               </div>
               <div class="cs-metric">
                 <span class="value">15</span>
@@ -721,14 +719,15 @@
             </div>
             <div class="cs-actions">
               <a class="btn btn-primary" href="#">View Live</a>
-              <a class="btn btn-secondary" href="#">View Code</a>
             </div>
           </div>
         </div>
 
         <!-- Case Study 2: Performance Den -->
         <div class="case-study reveal">
-          <div class="cs-viz">Performance Den</div>
+          <div class="cs-viz" style="background:linear-gradient(135deg, var(--accent), var(--accent-dark)); display:flex; align-items:center; justify-content:center; border-radius:var(--radius);">
+            <img src="public/assets/projects/performance-den/PerformanceDen.png" alt="Performance Den" style="width:100%; height:100%; object-fit:cover; border-radius:var(--radius);">
+          </div>
           <div class="cs-content">
             <span class="cs-tag">Automotive</span>
             <h3 class="cs-title">Performance Den Showcase</h3>
@@ -738,8 +737,8 @@
             </p>
             <div class="cs-metrics">
               <div class="cs-metric">
-                <span class="value">1.2s</span>
-                <span class="label">Page Load Time</span>
+                <span class="value">Fast</span>
+                <span class="label">Load Performance</span>
               </div>
               <div class="cs-metric">
                 <span class="value">100+</span>
@@ -750,8 +749,8 @@
                 <span class="label">API Integrations</span>
               </div>
               <div class="cs-metric">
-                <span class="value">94</span>
-                <span class="label">Lighthouse Score</span>
+                <span class="value">High</span>
+                <span class="label">Performance Rating</span>
               </div>
             </div>
             <div class="cs-tech">
@@ -762,14 +761,15 @@
             </div>
             <div class="cs-actions">
               <a class="btn btn-primary" href="#">View Live</a>
-              <a class="btn btn-secondary" href="#">View Code</a>
             </div>
           </div>
         </div>
 
         <!-- Case Study 3: CTCONTECH Home -->
         <div class="case-study reveal">
-          <div class="cs-viz">CTCONTECH</div>
+          <div class="cs-viz" style="background:linear-gradient(135deg, var(--accent), var(--accent-dark)); display:flex; align-items:center; justify-content:center; border-radius:var(--radius);">
+            <img src="public/assets/projects/ctcontech/screenshot.png" alt="CTCONTECH Agency Website" style="width:100%; height:100%; object-fit:cover; border-radius:var(--radius);">
+          </div>
           <div class="cs-content">
             <span class="cs-tag">Services</span>
             <h3 class="cs-title">CTCONTECH Agency Website</h3>
@@ -787,12 +787,12 @@
                 <span class="label">Interactive Components</span>
               </div>
               <div class="cs-metric">
-                <span class="value">1.1s</span>
-                <span class="label">Load Time</span>
+                <span class="value">Optimized</span>
+                <span class="label">Performance Build</span>
               </div>
               <div class="cs-metric">
-                <span class="value">96</span>
-                <span class="label">Lighthouse Score</span>
+                <span class="value">Optimized</span>
+                <span class="label">Performance Build</span>
               </div>
             </div>
             <div class="cs-tech">
@@ -803,7 +803,7 @@
             </div>
             <div class="cs-actions">
               <a class="btn btn-primary" href="index.html">View Live</a>
-              <a class="btn btn-secondary" href="https://github.com/ctcontech/website" target="_blank" rel="noopener">View Code</a>
+              <a class="btn btn-secondary" href="https://github.com/ctcontech/website" target="_blank" rel="noopener">GitHub Repo</a>
             </div>
           </div>
         </div>

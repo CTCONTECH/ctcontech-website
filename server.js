@@ -5,29 +5,40 @@ const PORT = 5502;
 const server = Bun.serve({
   port: PORT,
   async fetch(req) {
-    let pathname = new URL(req.url).pathname;
+    try {
+      let pathname = new URL(req.url).pathname;
 
-    if (!pathname || pathname === "/") {
-      pathname = "/Index.html";
-    }
+      if (!pathname || pathname === "/") {
+        pathname = "/Index.html";
+      }
 
-    if (pathname.endsWith("/")) {
-      pathname += "index.html";
-    }
+      if (pathname.endsWith("/")) {
+        pathname += "index.html";
+      }
 
-    const decodedPath = decodeURIComponent(pathname);
-    const safePath = normalize(decodedPath).replace(/^([\\/])+/, "").replace(/^(\.\.[\\/])+/, "");
-    const filePath = safePath ? join(".", safePath) : "./Index.html";
+      const decodedPath = decodeURIComponent(pathname);
+      const safePath = normalize(decodedPath).replace(/^([\\/])+/, "").replace(/^(\.\.[\\/])+/, "");
+      const filePath = safePath ? join(".", safePath) : "./Index.html";
 
-    const file = Bun.file(filePath);
-    if (await file.exists()) {
-      const contentType = getContentType(filePath);
-      return new Response(file, {
-        headers: { "Content-Type": contentType }
+      console.log(`[${new Date().toISOString()}] ${req.method} ${pathname} -> ${filePath}`);
+
+      const file = Bun.file(filePath);
+      if (await file.exists()) {
+        const contentType = getContentType(filePath);
+        return new Response(file, {
+          headers: { "Content-Type": contentType }
+        });
+      }
+
+      console.warn(`[404] File not found: ${filePath}`);
+      return new Response("404 Not Found", { status: 404 });
+    } catch (error) {
+      console.error(`[500] Server error:`, error);
+      return new Response("500 Internal Server Error", { 
+        status: 500,
+        headers: { "Content-Type": "text/plain" }
       });
     }
-
-    return new Response("404 Not Found", { status: 404 });
   }
 });
 
