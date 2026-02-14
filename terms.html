@@ -229,7 +229,29 @@
     .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;}
 
     /* ---------- Footer ---------- */
-    footer{\n      background:var(--bg-alt);\n      color:var(--muted);\n      padding:24px 0;\n      border-top:1px solid var(--line);\n    }\n    .footer-compact{\n      display:flex;\n      justify-content:space-between;\n      align-items:flex-start;\n      gap:20px;\n      flex-wrap:wrap;\n      font-size:13px;\n      line-height:1.8;\n    }\n    .footer-compact .left{min-width:300px;}\n    .footer-compact .right{text-align:right;}\n    .footer-compact a{\n      color:var(--accent);\n      text-decoration:none;\n      transition: opacity .2s ease;\n    }\n    .footer-compact a:hover{opacity:.8;}
+    footer{
+      background:var(--bg-alt);
+      color:var(--muted);
+      padding:24px 0;
+      border-top:1px solid var(--line);
+    }
+    .footer-compact{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:20px;
+      flex-wrap:wrap;
+      font-size:13px;
+      line-height:1.8;
+    }
+    .footer-compact .left{min-width:300px;}
+    .footer-compact .right{text-align:right;}
+    .footer-compact a{
+      color:var(--accent);
+      text-decoration:none;
+      transition: opacity .2s ease;
+    }
+    .footer-compact a:hover{opacity:.8;}
 
     /* ---------- Reveal on scroll ---------- */
     .reveal{opacity:0; transform:translateY(14px); transition: opacity .55s ease, transform .55s ease;}
@@ -355,7 +377,7 @@
 
         <h2>7) Privacy</h2>
         <p>
-          Please review our <a href="privacy.html" style="color:#0b3a63; text-decoration:underline; text-underline-offset:3px;">Privacy Policy</a>.
+          Please review our <a href="privacy.html">Privacy Policy</a>.
         </p>
 
         <h2>8) Changes to these Terms</h2>
