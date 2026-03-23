@@ -13,7 +13,7 @@
 # Redirects for single-page app routing (if needed)
 [[redirects]]
   from = "/*"
-  to = "/Index.html"
+  to = "/index.html"
   status = 200
 
 # Headers for performance and security

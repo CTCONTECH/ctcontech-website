@@ -9,7 +9,7 @@ const server = Bun.serve({
       let pathname = new URL(req.url).pathname;
 
       if (!pathname || pathname === "/") {
-        pathname = "/Index.html";
+        pathname = "/index.html";
       }
 
       if (pathname.endsWith("/")) {
@@ -17,8 +17,8 @@ const server = Bun.serve({
       }
 
       const decodedPath = decodeURIComponent(pathname);
-      const safePath = normalize(decodedPath).replace(/^([\\/])+/, "").replace(/^(\.\.[\\/])+/, "");
-      const filePath = safePath ? join(".", safePath) : "./Index.html";
+      const safePath = normalize(decodedPath).replace(/^([\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\/])+/, "").replace(/^(\.\\.[\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\/])+/, "");
+      const filePath = safePath ? join(".", safePath) : "./index.html";
 
       console.log(`[${new Date().toISOString()}] ${req.method} ${pathname} -> ${filePath}`);
 
