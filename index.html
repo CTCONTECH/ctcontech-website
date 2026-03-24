@@ -1,18 +1,17 @@
 <!-- =========================
-     CTCONTECH — Professional Web Development & Process Automation
-     Enhanced Design: Vegatech-inspired polish with CTCONTECH's unique voice
+     CTCONTECH — Web Design & Development for Small Business
      ========================= -->
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="Fast, modern websites and automation for growing businesses. We build what converts. Based in Cape Town, serving businesses nationwide." />
-  <meta property="og:title" content="CTCONTECH – Fast Websites & Business Automation" />
-  <meta property="og:description" content="Websites that drive leads. Automation that saves time. We help small and mid-sized businesses scale online." />
+  <meta name="description" content="Custom web design and development for small businesses. Fast, modern websites that convert visitors into customers. Based in Cape Town, serving nationwide." />
+  <meta property="og:title" content="CTCONTECH – Web Design & Development for Small Business" />
+  <meta property="og:description" content="Custom websites that drive leads and grow your business. Built fast, performing faster. Web design for small businesses." />
   <meta property="og:image" content="/public/assets/Logo/UPDATED%20SHIELD.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <title>CTCONTECH – Fast Websites & Automation That Converts</title>
+  <title>CTCONTECH – Web Design & Development for Small Business</title>
 
   <link rel="icon" type="image/png" href="/public/assets/Logo/UPDATED%20SHIELD.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -236,29 +235,37 @@
     /* ---------- HERO ---------- */
     .hero{
       position:relative;
-      min-height:600px;
+      min-height:100vh;
       display:flex; align-items:center;
       justify-content:center;
       overflow:hidden;
       padding:100px 20px 80px;
       border-bottom:1px solid var(--line);
-      background:linear-gradient(135deg, rgba(10,10,10,1) 0%, rgba(17,19,24,.8) 100%);
+      background:#0a0a0a;
+    }
+
+    .hero-canvas{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      z-index:0;
+      pointer-events:none;
     }
 
     .hero::before{
       content:"";
       position:absolute; inset:0;
       background:
-        radial-gradient(circle at 70% 0%, rgba(124,194,66,.2) 0%, transparent 50%),
-        radial-gradient(circle at 30% 100%, rgba(124,194,66,.15) 0%, transparent 50%);
-      z-index:0;
+        radial-gradient(circle at 70% 0%, rgba(124,194,66,.12) 0%, transparent 50%),
+        radial-gradient(circle at 30% 100%, rgba(124,194,66,.08) 0%, transparent 50%);
+      z-index:1;
       pointer-events:none;
-      animation:pulse 6s ease-in-out infinite;
     }
 
     .hero-content{
       position:relative;
-      z-index:1;
+      z-index:2;
       text-align:center;
       max-width:900px;
       margin:0 auto;
@@ -278,10 +285,10 @@
 
     .hero h1{
       margin:0 0 calc(var(--spacing) * 4);
-      font-size:clamp(36px, 6vw, 68px);
+      font-size:clamp(28px, 4vw, 48px);
       line-height:1.15;
       font-weight:800;
-      letter-spacing:-.8px;
+      letter-spacing:-.5px;
       animation:fadeInUp .6s ease-out .1s forwards;
       opacity:0;
     }
@@ -417,17 +424,14 @@
     .value-card:hover::before{transform:scaleY(1);}
 
     .value-card .icon{
-      font-size:44px;
       margin-bottom:calc(var(--spacing) * 2);
       display:inline-block;
-      animation:float 3s ease-in-out infinite;
+      transition: transform .3s ease;
     }
 
-    .value-card:nth-child(2) .icon{animation-delay:.2s;}
-    .value-card:nth-child(3) .icon{animation-delay:.4s;}
-    .value-card:nth-child(4) .icon{animation-delay:.6s;}
-    .value-card:nth-child(5) .icon{animation-delay:.8s;}
-    .value-card:nth-child(6) .icon{animation-delay:1s;}
+    .value-card:hover .icon{transform:translateY(-4px);}
+
+    .value-card .icon svg{display:block;}
 
     .value-card h3{
       margin:0 0 calc(var(--spacing) * 2);
@@ -513,144 +517,129 @@
       line-height:1.6;
     }
 
-    /* ---------- PORTFOLIO SECTION ---------- */
-    .portfolio-grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit, minmax(340px, 1fr));
-      gap:calc(var(--spacing) * 4);
-    }
-
-    .portfolio-card{
-      background:var(--surface);
-      border:1px solid var(--line);
-      border-radius:16px;
+    /* ---------- WORK GALLERY — full-width carousel ---------- */
+    .work-gallery{
+      position:relative;
+      padding:80px 0;
       overflow:hidden;
-      transition: all .3s ease;
-      display:flex;
-      flex-direction:column;
     }
-
-    .portfolio-card:hover{
-      border-color:var(--accent);
-      box-shadow:0 20px 48px rgba(124,194,66,.25);
-      transform:translateY(-8px);
+    .gallery-track{
+      position:relative;
+      width:100%;
+      overflow:hidden;
     }
-
-    .portfolio-card-image{
-      height:240px;
-      background:linear-gradient(135deg, rgba(124,194,66,.15) 0%, rgba(124,194,66,.05) 100%);
+    .gallery-slides{
       display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:80px;
+      transition:transform .5s cubic-bezier(.4,0,.2,1);
+      will-change:transform;
+    }
+    .gallery-slide{
+      min-width:100%;
+      position:relative;
+    }
+    .gallery-slide-img{
+      width:100%;
+      height:70vh;
+      min-height:420px;
+      max-height:700px;
+      background:#111;
       overflow:hidden;
       position:relative;
-      flex-shrink:0;
     }
-
-    .portfolio-card:hover .portfolio-card-image{
-      background:linear-gradient(135deg, rgba(124,194,66,.25) 0%, rgba(124,194,66,.15) 100%);
+    .gallery-slide-img iframe{
+      width:200%;
+      height:200%;
+      transform:scale(.5);
+      transform-origin:top left;
+      border:0;
+      pointer-events:none;
+      position:absolute;
+      top:0;left:0;
     }
-
-    .portfolio-card-content{
-      padding:calc(var(--spacing) * 5);
+    .gallery-slide-img img{
+      width:100%;height:100%;
+      object-fit:cover;
+    }
+    .gallery-overlay{
+      position:absolute;
+      bottom:0;left:0;right:0;
+      background:linear-gradient(transparent,rgba(10,10,10,.85));
+      padding:60px 40px 40px;
       display:flex;
-      flex-direction:column;
-      flex:1;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:20px;
     }
-
-    .portfolio-card-tag{
+    .gallery-overlay .tag{
       display:inline-block;
       background:rgba(124,194,66,.2);
       color:var(--accent);
-      padding:calc(var(--spacing) * 1) calc(var(--spacing) * 2);
+      padding:4px 12px;
       border-radius:6px;
       font-size:11px;
       font-weight:700;
       text-transform:uppercase;
-      margin-bottom:calc(var(--spacing) * 2);
-      width:fit-content;
+      margin-bottom:8px;
+    }
+    .gallery-overlay h3{
+      margin:0 0 6px;font-size:clamp(20px,3vw,32px);font-weight:800;color:#fff;
+    }
+    .gallery-overlay p{
+      margin:0;font-size:14px;color:rgba(255,255,255,.7);max-width:500px;line-height:1.6;
+    }
+    .gallery-overlay .btn{flex-shrink:0;}
+
+    /* Arrows */
+    .gallery-arrow{
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      z-index:10;
+      width:52px;height:52px;
+      border-radius:50%;
+      border:1px solid rgba(255,255,255,.2);
+      background:rgba(10,10,10,.6);
+      backdrop-filter:blur(8px);
+      color:#fff;
+      display:grid;place-items:center;
+      cursor:pointer;
+      transition:all .2s;
+    }
+    .gallery-arrow:hover{
+      background:var(--accent);color:#000;border-color:var(--accent);
+      transform:translateY(-50%) scale(1.08);
+    }
+    .gallery-arrow--prev{left:20px;}
+    .gallery-arrow--next{right:20px;}
+    .gallery-arrow svg{width:20px;height:20px;}
+
+    /* Dots */
+    .gallery-dots{
+      display:flex;justify-content:center;gap:10px;
+      margin-top:20px;
+    }
+    .gallery-dot{
+      width:10px;height:10px;border-radius:50%;
+      background:rgba(255,255,255,.2);
+      border:0;cursor:pointer;
+      transition:all .2s;
+    }
+    .gallery-dot.active{
+      background:var(--accent);
+      transform:scale(1.2);
     }
 
-    .portfolio-card h3{
-      margin:0 0 calc(var(--spacing) * 2);
-      font-size:20px;
-      font-weight:800;
+    @media (max-width:768px){
+      .gallery-slide-img{height:50vh;min-height:320px;}
+      .gallery-overlay{padding:40px 20px 24px;flex-direction:column;align-items:flex-start;}
+      .gallery-arrow{width:40px;height:40px;}
+      .gallery-arrow--prev{left:12px;}
+      .gallery-arrow--next{right:12px;}
     }
-
-    .portfolio-card p{
-      margin:0 0 calc(var(--spacing) * 3);
-      font-size:14px;
-      color:var(--muted);
-      line-height:1.7;
-      flex:1;
-    }
-
-    .portfolio-card .btn{display:inline-flex; padding:8px 16px; font-size:12px;}
-
-    /* ---------- ABOUT SECTION ---------- */
-    .about-content{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:calc(var(--spacing) * 8);
-      align-items:center;
-    }
-
-    .about-text h3{
-      font-size:32px;
-      margin:0 0 calc(var(--spacing) * 3);
-      font-weight:800;
-      line-height:1.3;
-    }
-
-    .about-text p{
-      font-size:15px;
-      color:var(--muted);
-      margin:0 0 calc(var(--spacing) * 3);
-      line-height:1.8;
-    }
-
-    .about-highlights{
-      display:flex;
-      flex-direction:column;
-      gap:calc(var(--spacing) * 2);
-    }
-
-    .highlight-item{
-      display:flex;
-      gap:calc(var(--spacing) * 2);
-      align-items:flex-start;
-      padding:calc(var(--spacing) * 2);
-      border-radius:10px;
-      background:rgba(124,194,66,.05);
-      border:1px solid rgba(124,194,66,.1);
-      transition: all .2s ease;
-    }
-
-    .highlight-item:hover{
-      background:rgba(124,194,66,.08);
-      border-color:rgba(124,194,66,.2);
-    }
-
-    .highlight-item::before{
-      content:"✓";
-      color:var(--accent);
-      font-weight:800;
-      font-size:20px;
-      flex-shrink:0;
-      line-height:1;
-    }
-
-    .about-image{
-      width:100%;
-      height:420px;
-      background:linear-gradient(135deg, rgba(124,194,66,.15) 0%, rgba(124,194,66,.05) 100%);
-      border-radius:16px;
-      border:1px solid var(--line);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:100px;
+    @media (max-width:480px){
+      .gallery-slide-img{height:40vh;min-height:260px;}
+      .gallery-overlay h3{font-size:18px;}
+      .gallery-overlay p{font-size:12px;}
     }
 
     /* ---------- TESTIMONIALS ---------- */
@@ -815,8 +804,6 @@
       .menu{display:none}
       .burger{display:inline-block}
       .nav-contact{display:none}
-      .about-content{grid-template-columns:1fr; gap:calc(var(--spacing) * 5);}
-      .about-image{height:300px; font-size:60px;}
     }
 
     @media (max-width:480px){
@@ -853,20 +840,16 @@
         </div>
         <div>
           <div class="wordmark">CTCONTECH</div>
-          <small>Web Development & Automation</small>
+          <small>Concept to Creation</small>
         </div>
       </a>
 
       <nav class="menu" aria-label="Primary navigation">
         <a href="index.html" class="active">HOME</a>
-        <a href="web-development.html">WEB DEVELOPMENT</a>
-        <a href="process-automation.html">AUTOMATION</a>
+        <a href="services.html">SERVICES</a>
+        <a href="about.html">ABOUT</a>
         <a href="portfolio.html">PORTFOLIO</a>
       </nav>
-
-      <div class="nav-contact">
-        <a href="tel:+27823203406" title="Call us">📞 082 320 3406</a>
-      </div>
 
       <div class="cta">
         <button class="burger" id="burger" aria-label="Open menu" aria-controls="mobilePanel" aria-expanded="false">
@@ -884,10 +867,10 @@
 
   <div class="mobile-panel" id="mobilePanel" aria-label="Mobile menu">
     <a href="index.html" class="active">HOME</a>
-    <a href="web-development.html">WEB DEVELOPMENT</a>
-    <a href="process-automation.html">AUTOMATION</a>
+    <a href="services.html">SERVICES</a>
+    <a href="about.html">ABOUT</a>
     <a href="portfolio.html">PORTFOLIO</a>
-    <a href="tel:+27823203406">📞 082 320 3406</a>
+    <a href="tel:+27823203406">082 320 3406</a>
     <div class="mobile-cta">
       <a class="btn btn-primary"
          href="https://wa.me/27823203406?text=Hi%20CTCONTECH%2C%20I%27d%20like%20to%20discuss%20a%20project."
@@ -899,15 +882,16 @@
 
   <!-- HERO -->
   <section class="hero" id="home">
+    <canvas class="hero-canvas" id="networkCanvas"></canvas>
     <div class="container">
       <div class="hero-content">
-        <span class="eyebrow fade-in-up">Web Development & Automation</span>
-        <h1 class="fade-in-up stagger-1">Websites That Convert. Automation That Scales.</h1>
-        <p class="fade-in-up stagger-2">We build fast, modern websites and smart workflows that help growing businesses win more customers and save countless hours. No templates. No compromises.</p>
+        <span class="eyebrow fade-in-up">Web Design & Development for Small Business</span>
+        <h1 class="fade-in-up stagger-1">Your Small Business Deserves a Website That Works as Hard as You Do</h1>
+        <p class="fade-in-up stagger-2">We design and build fast, modern websites that turn visitors into customers. No cookie-cutter templates. No bloated code. Just clean, conversion-focused sites built for businesses like yours.</p>
         
         <div class="hero-actions fade-in-up stagger-3">
-          <a class="btn btn-primary" href="https://wa.me/27823203406?text=Hi%20CTCONTECH%2C%20I%20want%20to%20discuss%20a%20web%20project." target="_blank" rel="noopener">💬 Start Your Project</a>
-          <a class="btn btn-secondary" href="#about">Learn More</a>
+          <a class="btn btn-primary" href="https://wa.me/27823203406?text=Hi%20CTCONTECH%2C%20I%20want%20to%20discuss%20a%20web%20project." target="_blank" rel="noopener">Start Your Project <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a class="btn btn-secondary" href="#about">See Our Work</a>
         </div>
 
         <div class="stats fade-in-up stagger-3" data-scroll>
@@ -916,62 +900,56 @@
             <div class="label">Live Projects</div>
           </div>
           <div class="stat-item">
-            <div class="number" data-count="100">100</div>
-            <div class="label">% Satisfaction</div>
+            <div class="number">2 Weeks</div>
+            <div class="label">Avg. Delivery</div>
           </div>
           <div class="stat-item">
-            <div class="number">∞</div>
-            <div class="label">Uptime</div>
+            <div class="number">100%</div>
+            <div class="label">Client Satisfaction</div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- VALUE PROPS -->
+  <!-- SERVICES -->
   <section data-scroll>
     <div class="container">
       <div class="section-header" data-scroll>
-        <span class="eyebrow">Why Choose CTCONTECH</span>
-        <h2>The Full Package</h2>
-        <p>Everything you need to succeed online, from stunning websites to workflows that do the heavy lifting</p>
+        <span class="eyebrow">What We Build</span>
+        <h2>Everything Your Business Needs Online</h2>
+        <p>Custom websites built to bring in customers — we handle the design, code, and performance so you can focus on your business</p>
       </div>
 
       <div class="value-grid">
         <div class="value-card" data-scroll>
-          <div class="icon">⚡</div>
-          <h3>Lightning Fast</h3>
-          <p>Performance-obsessed builds. We test, optimize, and iterate. Lighthouse 90+, zero compromise.</p>
+          <div class="icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+          <h3>Custom Website Design</h3>
+          <p>Bespoke designs built around your brand and audience. Mobile-first, fast-loading, SEO-ready from day one.</p>
         </div>
 
         <div class="value-card" data-scroll>
-          <div class="icon">🎯</div>
-          <h3>Conversion Focused</h3>
-          <p>Every pixel is placed for a reason. We design to turn visitors into customers, not just look pretty.</p>
+          <div class="icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/><line x1="14" y1="4" x2="10" y2="20"/></svg></div>
+          <h3>Web Development</h3>
+          <p>Clean, modern code using React & TypeScript. Scalable architecture that grows with your business.</p>
         </div>
 
         <div class="value-card" data-scroll>
-          <div class="icon">🔧</div>
-          <h3>Future-Proof</h3>
-          <p>Built with modern tech: React, TypeScript. Scalable from day one, ready to grow with you.</p>
+          <div class="icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+          <h3>Performance & SEO</h3>
+          <p>Speed matters. We optimize every build for Google rankings, fast load times, and real conversions.</p>
         </div>
 
         <div class="value-card" data-scroll>
-          <div class="icon">🤝</div>
-          <h3>True Partnership</h3>
-          <p>Not a vendor. Direct communication, transparent pricing, real results. Your success is ours.</p>
+          <div class="icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
+          <h3>Mobile-First Design</h3>
+          <p>Your customers are on their phones. We design for mobile first, then scale up beautifully for desktop.</p>
         </div>
 
         <div class="value-card" data-scroll>
-          <div class="icon">⏰</div>
-          <h3>Built Fast</h3>
-          <p>From discovery to launch in weeks, not months. Agile process, rapid iterations, rapid results.</p>
-        </div>
-
-        <div class="value-card" data-scroll>
-          <div class="icon">🔄</div>
-          <h3>Automation Included</h3>
-          <p>Your website talks to your business. Automated workflows that save hours every single week.</p>
+          <div class="icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <h3>Ongoing Support</h3>
+          <p>We don't disappear after launch. Direct access, quick updates, and a partner who's invested in your growth.</p>
         </div>
       </div>
     </div>
@@ -1026,92 +1004,86 @@
     </div>
   </section>
 
-  <!-- ABOUT -->
-  <section id="about" data-scroll>
-    <div class="container">
-      <div class="section-header" data-scroll>
-        <span class="eyebrow">About Us</span>
-        <h2>We're Web Builders Who Understand Business</h2>
-        <p>Not just developers. We obsess over making your business more profitable online.</p>
-      </div>
-
-      <div class="about-content">
-        <div class="about-text" data-scroll>
-          <h3>Built for Cape Town. Trusted Nationwide.</h3>
-          <p>CTCONTECH started because we saw too many small businesses with websites that cost them customers. We decided to build differently.</p>
-          <p>We don't just build websites. We build revenue engines. Every project is approached like we own the business ourselves.</p>
-          
-          <div class="about-highlights">
-            <div class="highlight-item" data-scroll>
-              <div><strong>Modern Tech Stack</strong> — React, TypeScript, Zapier automation</div>
-            </div>
-            <div class="highlight-item" data-scroll>
-              <div><strong>Performance First</strong> — Lighthouse 90+, mobile-optimized always</div>
-            </div>
-            <div class="highlight-item" data-scroll>
-              <div><strong>Direct Access</strong> — Your own point of contact, no middlemen</div>
-            </div>
-            <div class="highlight-item" data-scroll>
-              <div><strong>Scalable Solutions</strong> — Everything grows with your business</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="about-image" data-scroll>🏗️</div>
-      </div>
+  <!-- WORK GALLERY -->
+  <section class="work-gallery" data-scroll>
+    <div class="section-header" data-scroll style="padding:0 20px;">
+      <span class="eyebrow">Our Work</span>
+      <h2>Projects That Deliver</h2>
     </div>
-  </section>
 
-  <!-- PORTFOLIO -->
-  <section data-scroll>
-    <div class="container">
-      <div class="section-header" data-scroll>
-        <span class="eyebrow">Our Work</span>
-        <h2>Projects That Deliver</h2>
-        <p>From education to automotive, we build websites that work as hard as our clients do</p>
+    <div class="gallery-track">
+      <div class="gallery-slides" id="gallerySlides">
+
+        <!-- Slide 1: Kuils River Primary -->
+        <div class="gallery-slide">
+          <div class="gallery-slide-img">
+            <iframe src="https://kuils-river-primary-school.netlify.app/" loading="lazy" title="Kuils River Primary School"></iframe>
+          </div>
+          <div class="gallery-overlay">
+            <div>
+              <span class="tag">Education</span>
+              <h3>Kuils River Primary School</h3>
+              <p>Modern website for 900+ learners. Staff directory, news portal, and parent communication hub.</p>
+            </div>
+            <a class="btn btn-primary" href="https://kuils-river-primary-school.netlify.app/" target="_blank" rel="noopener">View Live <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg></a>
+          </div>
+        </div>
+
+        <!-- Slide 2: Performance Den -->
+        <div class="gallery-slide">
+          <div class="gallery-slide-img">
+            <iframe src="https://performanceden.netlify.app/" loading="lazy" title="Performance Den"></iframe>
+          </div>
+          <div class="gallery-overlay">
+            <div>
+              <span class="tag">Automotive</span>
+              <h3>Performance Den</h3>
+              <p>High-speed showcase for custom vehicles and performance modifications. Instagram feeds, video galleries.</p>
+            </div>
+            <a class="btn btn-primary" href="https://performanceden.netlify.app/" target="_blank" rel="noopener">View Live <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg></a>
+          </div>
+        </div>
+
+        <!-- Slide 3: CTCONTECH -->
+        <div class="gallery-slide">
+          <div class="gallery-slide-img" style="background:linear-gradient(135deg,#0d0d0d,#1a1a1a);display:flex;align-items:center;justify-content:center;">
+            <div style="text-align:center;">
+              <div style="font-size:clamp(36px,5vw,64px);font-weight:800;color:var(--accent);margin-bottom:8px;">CTCONTECH</div>
+              <div style="font-size:16px;color:var(--muted);">You're looking at it</div>
+            </div>
+          </div>
+          <div class="gallery-overlay">
+            <div>
+              <span class="tag">Agency</span>
+              <h3>CTCONTECH Website</h3>
+              <p>Our own site. Dark theme, particle network animation, WhatsApp integration. Proof of our own standards.</p>
+            </div>
+            <a class="btn btn-primary" href="#home">View Live <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg></a>
+          </div>
+        </div>
+
       </div>
 
-      <div class="portfolio-grid">
-        <div class="portfolio-card" data-scroll>
-          <div class="portfolio-card-image">📚</div>
-          <div class="portfolio-card-content">
-            <span class="portfolio-card-tag">Education</span>
-            <h3>Kuils River Primary School</h3>
-            <p>Modern website for 900+ learners. Staff directory, news portal, and parent communication hub. Built fast, performing faster.</p>
-            <a class="btn btn-primary" href="https://kuils-river-primary-school.netlify.app/" target="_blank" rel="noopener">View Live →</a>
-          </div>
-        </div>
-
-        <div class="portfolio-card" data-scroll>
-          <div class="portfolio-card-image">🏁</div>
-          <div class="portfolio-card-content">
-            <span class="portfolio-card-tag">Automotive</span>
-            <h3>Performance Den</h3>
-            <p>High-speed showcase for custom vehicles and performance modifications. Instagram feeds, video galleries, live inventory.</p>
-            <a class="btn btn-primary" href="https://performanceden.netlify.app/" target="_blank" rel="noopener">View Live →</a>
-          </div>
-        </div>
-
-        <div class="portfolio-card" data-scroll>
-          <div class="portfolio-card-image">💼</div>
-          <div class="portfolio-card-content">
-            <span class="portfolio-card-tag">Agency</span>
-            <h3>CTCONTECH Website</h3>
-            <p>Our own site. Dark theme, smooth animations, WhatsApp integration, automated workflows. Proof of our own standards.</p>
-            <a class="btn btn-primary" href="index.html">View Live →</a>
-          </div>
-        </div>
-      </div>
+      <!-- Arrows -->
+      <button class="gallery-arrow gallery-arrow--prev" id="galleryPrev" aria-label="Previous project">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      </button>
+      <button class="gallery-arrow gallery-arrow--next" id="galleryNext" aria-label="Next project">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
     </div>
+
+    <!-- Dots -->
+    <div class="gallery-dots" id="galleryDots"></div>
   </section>
 
   <!-- TESTIMONIALS -->
   <section data-scroll>
     <div class="container">
       <div class="section-header" data-scroll>
-        <span class="eyebrow">Social Proof</span>
-        <h2>Clients Love Working With Us</h2>
-        <p>Real feedback from real projects</p>
+        <span class="eyebrow">Client Feedback</span>
+        <h2>Don't Take Our Word For It</h2>
+        <p>Here's what our clients have to say about working with us</p>
       </div>
 
       <div class="testimonials-grid">
@@ -1178,68 +1150,19 @@
     </div>
   </section>
 
-  <!-- SERVICES -->
-  <section data-scroll>
-    <div class="container">
-      <div class="section-header" data-scroll>
-        <span class="eyebrow">Services</span>
-        <h2>We Deliver Everything</h2>
-        <p>From concept to launch to optimization—full-service web development</p>
-      </div>
-
-      <div class="value-grid">
-        <div class="value-card" data-scroll>
-          <div class="icon">🌐</div>
-          <h3>Website Development</h3>
-          <p>Modern, fast websites built with React. Responsive, SEO-ready, conversion-optimized.</p>
-        </div>
-
-        <div class="value-card" data-scroll>
-          <div class="icon">⚙️</div>
-          <h3>Process Automation</h3>
-          <p>Smart workflows that work while you sleep. Lead routing, CRM sync, automated reporting.</p>
-        </div>
-
-        <div class="value-card" data-scroll>
-          <div class="icon">📊</div>
-          <h3>Integration & Analytics</h3>
-          <p>Connect your tools. Real-time data, integrated systems, measurable results.</p>
-        </div>
-
-        <div class="value-card" data-scroll>
-          <div class="icon">🚀</div>
-          <h3>Performance Optimization</h3>
-          <p>Lighthouse 90+, mobile-first indexing ready. Fast loads = more conversions.</p>
-        </div>
-
-        <div class="value-card" data-scroll>
-          <div class="icon">📱</div>
-          <h3>Mobile First Design</h3>
-          <p>Your customers are on phones. We design mobile first, then scale up beautifully.</p>
-        </div>
-
-        <div class="value-card" data-scroll>
-          <div class="icon">🔍</div>
-          <h3>SEO & Growth</h3>
-          <p>Built for search. Optimized structure, meta tags, content strategy, performance.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- FINAL CTA -->
   <section data-scroll>
     <div class="container">
       <div class="cta-section" data-scroll>
-        <h2>Ready to Grow Online?</h2>
-        <p>Let's build something remarkable together. We'll create a website and automation strategy that converts and scales. No guesswork. Real results.</p>
+        <h2>Let's Build Your Website</h2>
+        <p>Whether you're starting from scratch or replacing an outdated site, we'll build something that actually brings in customers. No jargon, no surprises — just results.</p>
         
         <div class="cta-buttons">
           <a class="btn btn-primary" href="https://wa.me/27823203406?text=Hi%20CTCONTECH%2C%20I%27d%20like%20to%20discuss%20building%20a%20website." target="_blank" rel="noopener">
-            💬 Chat on WhatsApp
+            Chat on WhatsApp <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
           <a class="btn btn-secondary" href="tel:+27823203406">
-            📞 Call Us: 082 320 3406
+            Call Us: 082 320 3406
           </a>
         </div>
       </div>
@@ -1252,7 +1175,7 @@
       <div class="footer-grid">
         <div class="footer-col">
           <h4>CTCONTECH</h4>
-          <p>Building fast, modern websites and smart automation for growing businesses. Based in Cape Town. Serving nationwide.</p>
+          <p>Custom web design and development for small businesses. Based in Cape Town. Serving nationwide.</p>
           <div style="margin-top:calc(var(--spacing) * 3);">
             <strong style="display:block; margin-bottom:calc(var(--spacing) * 1);">Headquarters</strong>
             <p style="margin:0; font-size:13px;">Cape Town, South Africa</p>
@@ -1261,8 +1184,8 @@
 
         <div class="footer-col">
           <h4>Services</h4>
-          <a href="web-development.html">Web Development</a>
-          <a href="process-automation.html">Process Automation</a>
+          <a href="services.html">Services</a>
+          <a href="about.html">About Us</a>
           <a href="portfolio.html">Portfolio</a>
           <a href="#about">About Us</a>
         </div>
@@ -1270,9 +1193,9 @@
         <div class="footer-col">
           <h4>Contact</h4>
           <div class="footer-contact">
-            <a href="tel:+27823203406">📞 082 320 3406</a>
-            <a href="mailto:ctconenquiry@gmail.com">✉️ ctconenquiry@gmail.com</a>
-            <a href="https://wa.me/27823203406" target="_blank" rel="noopener">💬 WhatsApp Us</a>
+            <a href="tel:+27823203406">082 320 3406</a>
+            <a href="mailto:ctconenquiry@gmail.com">ctconenquiry@gmail.com</a>
+            <a href="https://wa.me/27823203406" target="_blank" rel="noopener">WhatsApp Us</a>
           </div>
         </div>
 
@@ -1288,7 +1211,7 @@
       </div>
 
       <div class="footer-bottom">
-        <p>🚀 Ready to launch? Let's build something great. <a href="https://wa.me/27823203406" target="_blank" rel="noopener" style="color:var(--accent);">Start here</a></p>
+        <p>Ready to launch? Let's build something great. <a href="https://wa.me/27823203406" target="_blank" rel="noopener" style="color:var(--accent);">Start here</a></p>
       </div>
     </div>
   </footer>
@@ -1359,6 +1282,151 @@
 
     document.querySelectorAll('[data-scroll]').forEach(el => observer.observe(el));
 
+    // ---- Animated Network Background ----
+    (function(){
+      const canvas = document.getElementById('networkCanvas');
+      if(!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const hero = canvas.closest('.hero');
+      let particles = [];
+      const PARTICLE_COUNT = 120;
+      const CONNECTION_DIST = 180;
+      let mouse = {x: null, y: null};
+
+      function resize(){
+        canvas.width = hero.offsetWidth;
+        canvas.height = hero.offsetHeight;
+        // Redistribute origins on resize
+        particles.forEach(p => {
+          p.originX = Math.random() * canvas.width;
+          p.originY = Math.random() * canvas.height;
+        });
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      hero.addEventListener('mousemove', (e) => {
+        const rect = hero.getBoundingClientRect();
+        mouse.x = e.clientX - rect.left;
+        mouse.y = e.clientY - rect.top;
+      });
+      hero.addEventListener('mouseleave', () => { mouse.x = null; mouse.y = null; });
+
+      class Particle {
+        constructor(){
+          this.x = Math.random() * canvas.width;
+          this.y = Math.random() * canvas.height;
+          this.originX = this.x;
+          this.originY = this.y;
+          this.vx = (Math.random() - 0.5) * 0.6;
+          this.vy = (Math.random() - 0.5) * 0.6;
+          this.r = Math.random() * 2.5 + 0.5;
+          this.baseR = this.r;
+          this.pulse = Math.random() * Math.PI * 2;
+        }
+        update(){
+          // Pulse size
+          this.pulse += 0.02;
+          this.r = this.baseR + Math.sin(this.pulse) * 0.5;
+          // Mouse influence: gentle push, capped force
+          if(mouse.x !== null){
+            const dx = this.x - mouse.x;
+            const dy = this.y - mouse.y;
+            const dist = Math.sqrt(dx*dx + dy*dy);
+            if(dist < 150 && dist > 1){
+              const force = Math.min(0.15, 8 / (dist * dist)) * 50;
+              this.vx += (dx / dist) * force * 0.04;
+              this.vy += (dy / dist) * force * 0.04;
+            }
+          }
+          // Gentle pull back toward origin so particles never leave the screen
+          const driftX = this.originX - this.x;
+          const driftY = this.originY - this.y;
+          this.vx += driftX * 0.0008;
+          this.vy += driftY * 0.0008;
+          // Dampen velocity
+          this.vx *= 0.98;
+          this.vy *= 0.98;
+          // Cap max speed
+          const speed = Math.sqrt(this.vx*this.vx + this.vy*this.vy);
+          if(speed > 1.2){
+            this.vx = (this.vx / speed) * 1.2;
+            this.vy = (this.vy / speed) * 1.2;
+          }
+          // Keep minimum drift so network feels alive
+          if(speed < 0.3){
+            this.vx += (Math.random() - 0.5) * 0.3;
+            this.vy += (Math.random() - 0.5) * 0.3;
+          }
+          this.x += this.vx;
+          this.y += this.vy;
+          if(this.x < 0) this.x = canvas.width;
+          if(this.x > canvas.width) this.x = 0;
+          if(this.y < 0) this.y = canvas.height;
+          if(this.y > canvas.height) this.y = 0;
+        }
+        draw(){
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(124, 194, 66, 0.6)';
+          ctx.fill();
+          // Glow on larger particles
+          if(this.baseR > 1.8){
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.r * 3, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(124, 194, 66, 0.06)';
+            ctx.fill();
+          }
+        }
+      }
+
+      for(let i = 0; i < PARTICLE_COUNT; i++) particles.push(new Particle());
+
+      function drawConnections(){
+        for(let i = 0; i < particles.length; i++){
+          for(let j = i + 1; j < particles.length; j++){
+            const dx = particles[i].x - particles[j].x;
+            const dy = particles[i].y - particles[j].y;
+            const dist = Math.sqrt(dx*dx + dy*dy);
+            if(dist < CONNECTION_DIST){
+              const alpha = 0.25 * (1 - dist / CONNECTION_DIST);
+              ctx.strokeStyle = 'rgba(124, 194, 66, ' + alpha + ')';
+              ctx.lineWidth = 0.6;
+              ctx.beginPath();
+              ctx.moveTo(particles[i].x, particles[i].y);
+              ctx.lineTo(particles[j].x, particles[j].y);
+              ctx.stroke();
+            }
+          }
+        }
+        // Mouse connections
+        if(mouse.x !== null){
+          for(let i = 0; i < particles.length; i++){
+            const dx = particles[i].x - mouse.x;
+            const dy = particles[i].y - mouse.y;
+            const dist = Math.sqrt(dx*dx + dy*dy);
+            if(dist < CONNECTION_DIST * 1.2){
+              const alpha = 0.35 * (1 - dist / (CONNECTION_DIST * 1.2));
+              ctx.strokeStyle = 'rgba(124, 194, 66, ' + alpha + ')';
+              ctx.lineWidth = 0.8;
+              ctx.beginPath();
+              ctx.moveTo(particles[i].x, particles[i].y);
+              ctx.lineTo(mouse.x, mouse.y);
+              ctx.stroke();
+            }
+          }
+        }
+      }
+
+      function animate(){
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => { p.update(); p.draw(); });
+        drawConnections();
+        requestAnimationFrame(animate);
+      }
+      animate();
+    })();
+
     // Counter animation for stats
     function animateCounter(element, duration = 2000) {
       const target = parseInt(element.getAttribute('data-count')) || 0;
@@ -1395,6 +1463,42 @@
 
       statsObserver.observe(statsSection);
     }
+
+    // -------- WORK GALLERY CAROUSEL --------
+    ;(function(){
+      const slides = document.getElementById('gallerySlides');
+      const dotsWrap = document.getElementById('galleryDots');
+      if(!slides) return;
+      const total = slides.children.length;
+      let current = 0;
+
+      // Build dots
+      for(let i=0;i<total;i++){
+        const d = document.createElement('button');
+        d.className = 'gallery-dot' + (i===0?' active':'');
+        d.setAttribute('aria-label','Go to slide '+(i+1));
+        d.addEventListener('click',()=>goTo(i));
+        dotsWrap.appendChild(d);
+      }
+
+      function goTo(n){
+        current = ((n % total) + total) % total;
+        slides.style.transform = 'translateX(-' + (current * 100) + '%)';
+        dotsWrap.querySelectorAll('.gallery-dot').forEach((d,i)=>d.classList.toggle('active',i===current));
+      }
+
+      document.getElementById('galleryPrev')?.addEventListener('click',()=>goTo(current-1));
+      document.getElementById('galleryNext')?.addEventListener('click',()=>goTo(current+1));
+
+      // Touch/swipe support
+      let startX=0,isDragging=false;
+      slides.addEventListener('touchstart',e=>{startX=e.touches[0].clientX;isDragging=true;},{passive:true});
+      slides.addEventListener('touchend',e=>{
+        if(!isDragging)return;isDragging=false;
+        const diff=startX-e.changedTouches[0].clientX;
+        if(Math.abs(diff)>50) goTo(current+(diff>0?1:-1));
+      },{passive:true});
+    })();
   </script>
 </body>
 </html>

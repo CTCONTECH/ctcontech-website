@@ -1,0 +1,405 @@
+<!-- =========================
+     CTCONTECH — About Us
+     ========================= -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="CTCONTECH is a Cape Town web design studio helping small businesses grow online. Modern tech, fast delivery, direct access to your developer." />
+  <title>About – CTCONTECH</title>
+
+  <link rel="icon" type="image/png" href="/public/assets/Logo/UPDATED%20SHIELD.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0a0a0a;
+      --bg-alt:#111318;
+      --surface:#15181d;
+      --text:#f4f6f8;
+      --muted:#a8b0b7;
+      --accent:#7cc242;
+      --accent-dark:#66b63d;
+      --line:rgba(255,255,255,.08);
+      --radius:16px;
+      --max:1160px;
+      --nav-h:74px;
+    }
+
+    *{box-sizing:border-box; margin:0; padding:0;}
+    html{scroll-behavior:smooth; overflow-x:hidden;}
+    body{
+      font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.6;
+      font-size:16px;
+      overflow-x:hidden;
+    }
+    a{color:inherit;text-decoration:none;}
+    img{max-width:100%;display:block;height:auto;}
+    .container{width:min(100% - 40px, var(--max)); margin:0 auto;}
+
+    /* NAV */
+    .nav{
+      position:sticky; top:0; z-index:50;
+      background:linear-gradient(180deg, rgba(10,10,10,.98) 0%, rgba(10,10,10,.95) 100%);
+      backdrop-filter:blur(16px);
+      border-bottom:1px solid var(--line);
+      height:var(--nav-h);
+      display:flex; align-items:center; justify-content:center;
+      padding:0 20px;
+      transition: box-shadow .2s ease;
+    }
+    .nav.scrolled{box-shadow:0 8px 24px rgba(0,0,0,.3);}
+
+    .nav-inner{display:flex; align-items:center; justify-content:space-between; gap:20px;}
+    .brand{display:flex; align-items:center; gap:12px; min-width:220px;}
+    .brand .logo{width:60px;height:60px;display:grid;place-items:center;overflow:visible;flex-shrink:0;}
+    .brand .logo img{display:block;width:60px;height:60px;object-fit:contain;}
+    .brand .wordmark{font-weight:800;font-size:18px;background:linear-gradient(135deg,var(--text),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .brand small{display:block;color:var(--muted);font-size:11px;margin-top:2px;}
+
+    .menu{display:flex;align-items:center;gap:24px;}
+    .menu a{font-size:13px;font-weight:600;color:var(--muted);padding:8px 0;opacity:.85;position:relative;transition:color .2s;}
+    .menu a:hover,.menu a.active{color:var(--accent);opacity:1;}
+    .menu a::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:2px;border-radius:999px;background:var(--accent);transform:scaleX(0);opacity:0;transition:.2s;}
+    .menu a:hover::after,.menu a.active::after{transform:scaleX(1);opacity:1;}
+
+    .nav-contact{font-size:12px;color:var(--muted);display:flex;gap:16px;align-items:center;}
+    .nav-contact a{color:var(--accent);font-weight:700;transition:opacity .2s;}
+    .nav-contact a:hover{opacity:.8;}
+
+    .cta{display:flex;align-items:center;gap:12px;}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;cursor:pointer;padding:10px 18px;border-radius:10px;font-weight:700;font-size:13px;transition:.15s transform,.15s box-shadow,.15s filter;white-space:nowrap;}
+    .btn:hover{transform:translateY(-2px);}
+    .btn-primary{background:var(--accent);color:#000;box-shadow:0 12px 28px rgba(124,194,66,.3);}
+    .btn-primary:hover{filter:brightness(1.08);box-shadow:0 16px 36px rgba(124,194,66,.4);}
+    .btn-secondary{background:var(--surface);border:1px solid var(--line);color:var(--text);}
+    .btn-secondary:hover{border-color:var(--accent);color:var(--accent);}
+
+    .burger{display:none;border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:9px 10px;cursor:pointer;color:var(--text);}
+    .burger span{display:block;width:18px;height:2px;background:currentColor;margin:3px 0;transition:.2s;}
+
+    .mobile-panel{border-top:1px solid var(--line);background:var(--surface);display:none;max-height:0;overflow:hidden;opacity:0;transform:translateY(-8px);transition:max-height .22s,opacity .18s,transform .18s;}
+    .mobile-panel.open{display:block;max-height:520px;opacity:1;transform:translateY(0);}
+    .mobile-panel a{display:block;padding:14px 20px;border-bottom:1px solid var(--line);font-weight:700;font-size:13px;color:var(--muted);transition:color .2s;}
+    .mobile-panel a:hover{color:var(--accent);}
+    .mobile-panel .mobile-cta{padding:12px 20px;}
+    .mobile-panel .mobile-cta .btn{width:100%;}
+
+    /* HERO */
+    .hero{position:relative;min-height:480px;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:80px 20px 60px;border-bottom:1px solid var(--line);}
+    .hero::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 70% 0%,rgba(124,194,66,.12) 0%,transparent 50%),radial-gradient(circle at 30% 100%,rgba(124,194,66,.08) 0%,transparent 50%);z-index:0;pointer-events:none;}
+    .hero-content{position:relative;z-index:1;text-align:center;max-width:800px;margin:0 auto;}
+    .hero .eyebrow{display:inline-block;color:var(--accent);font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:16px;}
+    .hero h1{margin:0 0 16px;font-size:clamp(28px,4vw,48px);line-height:1.1;font-weight:800;letter-spacing:-.5px;}
+    .hero p{margin:0 0 28px;color:var(--muted);font-size:16px;line-height:1.7;max-width:700px;margin-left:auto;margin-right:auto;}
+
+    /* SECTIONS */
+    section{padding:60px 0;}
+    .section-header{text-align:center;margin-bottom:48px;}
+    .section-header .eyebrow{display:inline-block;color:var(--accent);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px;}
+    .section-header h2{margin:0 0 12px;font-size:clamp(28px,3.5vw,42px);font-weight:800;letter-spacing:-.3px;}
+    .section-header p{color:var(--muted);font-size:16px;max-width:600px;margin:0 auto;}
+
+    /* STORY */
+    .story{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;}
+    .story-text h2{font-size:clamp(24px,3vw,36px);font-weight:800;margin:0 0 20px;letter-spacing:-.3px;}
+    .story-text p{color:var(--muted);font-size:15px;line-height:1.8;margin-bottom:16px;}
+    .story-text p:last-child{margin-bottom:0;}
+    .story-visual{position:relative;}
+
+    /* CODE EDITOR MOCKUP */
+    .code-editor{
+      background:#1e1e2e;border:1px solid var(--line);border-radius:12px;overflow:hidden;font-family:'Fira Code',Consolas,monospace;font-size:13px;box-shadow:0 20px 60px rgba(0,0,0,.4);
+    }
+    .code-editor .title-bar{
+      background:#181825;padding:10px 16px;display:flex;align-items:center;gap:8px;border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .code-editor .dot{width:10px;height:10px;border-radius:50%;}
+    .code-editor .dot.red{background:#f38ba8;}.code-editor .dot.yellow{background:#f9e2af;}.code-editor .dot.green{background:#a6e3a1;}
+    .code-editor .tab{margin-left:12px;color:var(--muted);font-size:11px;font-weight:600;}
+    .code-editor pre{padding:20px;margin:0;line-height:1.7;overflow-x:auto;color:#cdd6f4;}
+    .code-editor .kw{color:#cba6f7;}.code-editor .fn{color:#89b4fa;}.code-editor .str{color:#a6e3a1;}.code-editor .cm{color:#6c7086;font-style:italic;}.code-editor .op{color:#89dceb;}
+
+    /* HIGHLIGHTS */
+    .highlights{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;margin-top:48px;}
+    .highlight-card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:28px 24px;transition:all .2s;}
+    .highlight-card:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:0 16px 40px rgba(124,194,66,.15);}
+    .highlight-card .icon{margin-bottom:12px;}
+    .highlight-card .icon svg{display:block;}
+    .highlight-card h3{font-size:16px;font-weight:800;margin:0 0 8px;}
+    .highlight-card p{font-size:13px;color:var(--muted);line-height:1.6;margin:0;}
+
+    /* VALUES */
+    .values-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;margin-top:40px;}
+    .value-card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:32px 24px;transition:all .2s;}
+    .value-card:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:0 16px 40px rgba(124,194,66,.15);}
+    .value-card h3{font-size:18px;font-weight:800;margin:0 0 12px;color:var(--accent);}
+    .value-card p{font-size:14px;color:var(--muted);line-height:1.7;margin:0;}
+
+    /* NEUTRAL SECTION */
+    .about-neutral{
+      background:linear-gradient(180deg,#f5f5f0,#e8e8e0);
+      color:#1a1a1a;
+      padding:80px 0;
+    }
+    .about-neutral .section-header h2{color:#1a1a1a;}
+    .about-neutral .section-header p{color:#555;}
+    .about-neutral .eyebrow{color:var(--accent-dark);}
+
+    .company-info{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;}
+    .info-block h3{font-size:18px;font-weight:800;color:#1a1a1a;margin:0 0 12px;}
+    .info-block p{font-size:14px;color:#555;line-height:1.8;margin:0 0 16px;}
+    .info-block ul{list-style:none;margin:0;padding:0;}
+    .info-block li{padding:8px 0;font-size:14px;color:#555;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(0,0,0,.06);}
+    .info-block li:last-child{border-bottom:none;}
+    .info-block li strong{color:#1a1a1a;min-width:100px;}
+
+    /* CTA */
+    .cta-section{padding:60px 20px;text-align:center;background:linear-gradient(135deg,rgba(124,194,66,.08) 0%,transparent 100%);border-top:1px solid var(--line);}
+    .cta-content{max-width:700px;margin:0 auto;}
+    .cta-content h2{margin:0 0 12px;font-size:clamp(24px,3vw,36px);font-weight:800;}
+    .cta-content p{color:var(--muted);font-size:16px;margin:0 0 24px;}
+
+    /* FOOTER */
+    footer{background:var(--bg-alt);color:var(--muted);padding:32px 0;border-top:1px solid var(--line);font-size:12px;}
+    .footer-inner{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap;}
+    .footer-right{text-align:right;}
+    .footer-right a{text-decoration:underline;text-underline-offset:3px;opacity:.8;transition:opacity .2s;}
+    .footer-right a:hover{opacity:1;color:var(--accent);}
+
+    /* REVEAL */
+    .reveal{opacity:0;transform:translateY(20px);transition:opacity .6s,transform .6s;}
+    .reveal.show{opacity:1;transform:translateY(0);}
+
+    @media (max-width:768px){
+      .menu{display:none;}.burger{display:inline-block;}.nav-contact{display:none;}
+      .hero{min-height:420px;padding:60px 20px 40px;}
+      .story{grid-template-columns:1fr;gap:32px;}
+      .story-visual{order:-1;}
+      .company-info{grid-template-columns:1fr;}
+      .highlights{grid-template-columns:1fr;}
+      .values-grid{grid-template-columns:1fr;}
+      .footer-inner{flex-direction:column;}.footer-right{text-align:left;}
+    }
+    @media (max-width:480px){
+      .brand .logo{width:48px;height:48px;}.brand .logo img{width:48px;height:48px;}
+      .brand .wordmark{font-size:16px;}.brand small{font-size:10px;}
+      .btn{padding:8px 14px;font-size:12px;}
+      .hero h1{font-size:clamp(24px,5vw,36px);}
+      .container{width:min(100% - 20px,var(--max));}
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <header class="nav" aria-label="Top navigation">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html">
+        <div class="logo" aria-hidden="true">
+          <img src="/public/assets/Logo/UPDATED%20SHIELD.png" alt="CTCONTECH">
+        </div>
+        <div>
+          <div class="wordmark">CTCONTECH</div>
+          <small>Concept to Creation</small>
+        </div>
+      </a>
+      <nav class="menu" aria-label="Primary navigation">
+        <a href="index.html">HOME</a>
+        <a href="services.html">SERVICES</a>
+        <a href="about.html" class="active">ABOUT</a>
+        <a href="portfolio.html">PORTFOLIO</a>
+      </nav>
+      <div class="cta">
+        <button class="burger" id="burger" aria-label="Open menu" aria-controls="mobilePanel" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+        <a class="btn btn-primary" href="https://wa.me/27823203406?text=Hi%20CTCONTECH%2C%20I%20need%20a%20website.%20Can%20we%20discuss%3F" target="_blank" rel="noopener">Get Started</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-panel" id="mobilePanel" aria-label="Mobile menu">
+    <a href="index.html">HOME</a>
+    <a href="services.html">SERVICES</a>
+    <a href="about.html" class="active">ABOUT</a>
+    <a href="portfolio.html">PORTFOLIO</a>
+    <a href="tel:+27823203406">082 320 3406</a>
+    <div class="mobile-cta">
+      <a class="btn btn-primary" href="https://wa.me/27823203406?text=Hi%20CTCONTECH%2C%20I%20need%20a%20website." target="_blank" rel="noopener">Get Started</a>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <span class="eyebrow">About CTCONTECH</span>
+          <h1>Small Team. Big Results.</h1>
+          <p>We're a Cape Town web design studio that helps small businesses look professional online — without the agency price tag or the runaround.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- OUR STORY -->
+    <section>
+      <div class="container">
+        <div class="story reveal">
+          <div class="story-text">
+            <h2>Built for Small Business</h2>
+            <p>CTCONTECH started with a simple idea: small businesses deserve great websites too. Not bloated WordPress themes. Not cookie-cutter templates. Real, custom-built sites that perform.</p>
+            <p>We use the same modern technologies that power enterprise platforms — React, TypeScript, Tailwind CSS — but we package them at a price point that makes sense for growing businesses.</p>
+            <p>When you work with us, you talk directly to the person writing the code. No account managers, no handoffs, no surprises. Just clear communication and fast delivery.</p>
+          </div>
+          <div class="story-visual">
+            <div class="code-editor">
+              <div class="title-bar">
+                <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
+                <span class="tab">about-ctcontech.tsx</span>
+              </div>
+              <pre><span class="cm">// What we're about</span>
+<span class="kw">const</span> <span class="fn">ctcontech</span> <span class="op">=</span> {
+  <span class="fn">location</span><span class="op">:</span> <span class="str">"Cape Town, SA"</span>,
+  <span class="fn">focus</span><span class="op">:</span> <span class="str">"Small Business Web Design"</span>,
+  <span class="fn">stack</span><span class="op">:</span> [<span class="str">"React"</span>, <span class="str">"TypeScript"</span>, <span class="str">"Tailwind"</span>],
+  <span class="fn">delivery</span><span class="op">:</span> <span class="str">"2 weeks average"</span>,
+  <span class="fn">approach</span><span class="op">:</span> <span class="str">"Direct access, no middlemen"</span>,
+};</pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- HIGHLIGHTS -->
+        <div class="highlights">
+          <div class="highlight-card reveal">
+            <div class="icon"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/><line x1="14" y1="4" x2="10" y2="20"/></svg></div>
+            <h3>Modern Stack</h3>
+            <p>React, TypeScript, and Tailwind CSS. Enterprise-grade tech at small business prices.</p>
+          </div>
+          <div class="highlight-card reveal">
+            <div class="icon"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+            <h3>Fast Delivery</h3>
+            <p>Most projects go live within 2 weeks. No drawn-out timelines or endless meetings.</p>
+          </div>
+          <div class="highlight-card reveal">
+            <div class="icon"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+            <h3>Direct Access</h3>
+            <p>Talk to the person building your site. No account managers. No phone trees.</p>
+          </div>
+          <div class="highlight-card reveal">
+            <div class="icon"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            <h3>Post-Launch Support</h3>
+            <p>We don't disappear after launch. Monthly maintenance plans from R500.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY US — VALUES -->
+    <section style="border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="eyebrow">Our Approach</span>
+          <h2>What Makes Us Different</h2>
+          <p>We do things differently than traditional agencies</p>
+        </div>
+        <div class="values-grid">
+          <div class="value-card reveal">
+            <h3>No Templates</h3>
+            <p>Every site is designed from scratch. Your business is unique — your website should be too. We don't reskin themes and call it custom.</p>
+          </div>
+          <div class="value-card reveal">
+            <h3>Transparent Pricing</h3>
+            <p>You'll know exactly what it costs before we start. No scope creep, no hourly billing surprises. Fixed prices for fixed deliverables.</p>
+          </div>
+          <div class="value-card reveal">
+            <h3>Speed Obsessed</h3>
+            <p>A slow website loses customers. We optimise every build for sub-second load times, high Lighthouse scores, and great SEO performance.</p>
+          </div>
+          <div class="value-card reveal">
+            <h3>Owner-Operated</h3>
+            <p>You're not a ticket number at a big agency. You're working with the founder who personally codes, designs, and delivers your project.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEUTRAL COMPANY INFO SECTION -->
+    <section class="about-neutral">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="eyebrow">Company Details</span>
+          <h2>Who We Are</h2>
+          <p>A registered South African company serving businesses nationwide</p>
+        </div>
+        <div class="company-info reveal">
+          <div class="info-block">
+            <h3>CTCON (Pty) Ltd</h3>
+            <p>CTCONTECH is a division of CTCON (Pty) Ltd, a registered South African company based in Cape Town. We specialise in web design and development for small businesses across the country.</p>
+            <ul>
+              <li><strong>Company Reg</strong> 2021/559551/07</li>
+              <li><strong>Location</strong> Cape Town, Western Cape</li>
+              <li><strong>Phone</strong> <a href="tel:+27823203406" style="color:var(--accent-dark);text-decoration:underline;">082 320 3406</a></li>
+              <li><strong>Service Area</strong> Nationwide (remote-first)</li>
+            </ul>
+          </div>
+          <div class="info-block">
+            <h3>How We Work</h3>
+            <p>Every project starts with a conversation — not a sales pitch. We learn about your business, goals, and budget. Then we propose a solution that fits.</p>
+            <p>We work in short, focused sprints. You'll see progress within days, not weeks. We keep you in the loop at every stage with regular updates and previews.</p>
+            <p>After launch, we're still here. Choose a maintenance plan or call us when you need changes. No lock-in contracts. No exit fees.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section" id="contact">
+      <div class="cta-content reveal">
+        <h2>Let's Talk About Your Project</h2>
+        <p>No pressure, no obligation. Just a conversation with the person who'll actually build your website.</p>
+        <a class="btn btn-primary" href="https://wa.me/27823203406?text=Hi%20CTCONTECH%2C%20I%27d%20like%20to%20discuss%20a%20website%20project." target="_blank" rel="noopener">Start a Conversation</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container footer-inner">
+      <div class="footer-left">
+        © <span id="y"></span> CTCONTECH (a division of CTCON (Pty) Ltd)<br/>
+        Company Reg: 2021/559551/07
+      </div>
+      <div class="footer-right">
+        Cape Town based · Serving businesses nationwide<br/>
+        <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="tel:+27823203406">082 320 3406</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const navEl=document.querySelector('.nav');
+    window.addEventListener('scroll',()=>navEl?.classList.toggle('scrolled',window.scrollY>8),{passive:true});
+
+    const burger=document.getElementById('burger'),panel=document.getElementById('mobilePanel');
+    function closeMenu(){panel?.classList.remove('open');burger?.setAttribute('aria-expanded','false');}
+    burger?.addEventListener('click',e=>{e.stopPropagation();const o=panel.classList.toggle('open');burger.setAttribute('aria-expanded',String(o));});
+    panel?.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMenu));
+    document.addEventListener('click',e=>{if(!panel?.classList.contains('open'))return;if(!panel.contains(e.target)&&!burger?.contains(e.target))closeMenu();});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu();});
+
+    document.getElementById('y').textContent=new Date().getFullYear();
+
+    const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show');});},{threshold:.1});
+    document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+  </script>
+</body>
+</html>
