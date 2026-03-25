@@ -64,10 +64,19 @@
     .brand small{display:block;color:var(--muted);font-size:11px;margin-top:2px;}
 
     .menu{display:flex;align-items:center;gap:24px;}
-    .menu a{font-size:13px;font-weight:600;color:var(--muted);padding:8px 0;opacity:.85;position:relative;transition:color .2s;}
-    .menu a:hover,.menu a.active{color:var(--accent);opacity:1;}
-    .menu a::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:2px;border-radius:999px;background:var(--accent);transform:scaleX(0);opacity:0;transition:.2s;}
-    .menu a:hover::after,.menu a.active::after{transform:scaleX(1);opacity:1;}
+    .menu > a,.menu .dropdown > a{font-size:13px;font-weight:600;color:var(--muted);padding:8px 0;opacity:.85;position:relative;transition:color .2s;text-decoration:none;}
+    .menu > a:hover,.menu > a.active,.menu .dropdown:hover > a,.menu .dropdown.active > a{color:var(--accent);opacity:1;}
+    .menu > a::after,.menu .dropdown > a::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:2px;border-radius:999px;background:var(--accent);transform:scaleX(0);opacity:0;transition:.2s;}
+    .menu > a:hover::after,.menu > a.active::after,.menu .dropdown:hover > a::after,.menu .dropdown.active > a::after{transform:scaleX(1);opacity:1;}
+    .dropdown{position:relative;}
+    .dropdown > a{display:inline-flex;align-items:center;gap:4px;cursor:pointer;}
+    .dropdown > a .chevron{width:12px;height:12px;transition:transform .2s;}
+    .dropdown:hover > a .chevron{transform:rotate(180deg);}
+    .dropdown-menu{position:absolute;top:100%;left:50%;transform:translateX(-50%);min-width:240px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:8px 0;margin-top:12px;opacity:0;visibility:hidden;transform:translateX(-50%) translateY(8px);transition:opacity .2s,visibility .2s,transform .2s;box-shadow:0 16px 40px rgba(0,0,0,.4);z-index:100;}
+    .dropdown:hover .dropdown-menu{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0);}
+    .dropdown-menu a{display:block;padding:10px 20px;font-size:13px;font-weight:600;color:var(--muted);transition:all .15s;white-space:nowrap;}
+    .dropdown-menu a:hover{color:var(--accent);background:rgba(124,194,66,.06);}
+    .dropdown-menu a::after{display:none;}
 
     .nav-contact{font-size:12px;color:var(--muted);display:flex;gap:16px;align-items:center;}
     .nav-contact a{color:var(--accent);font-weight:700;transition:opacity .2s;}
@@ -213,9 +222,15 @@
       </a>
       <nav class="menu" aria-label="Primary navigation">
         <a href="index.html">HOME</a>
-        <a href="services.html">SERVICES</a>
-        <a href="about.html" class="active">ABOUT</a>
+        <div class="dropdown">
+          <a href="services.html">SERVICES <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></a>
+          <div class="dropdown-menu">
+            <a href="services.html#web-design">Website Design &amp; Development</a>
+            <a href="services.html#hosting">Web Hosting</a>
+          </div>
+        </div>
         <a href="portfolio.html">PORTFOLIO</a>
+        <a href="#contact">CONTACT</a>
       </nav>
       <div class="cta">
         <button class="burger" id="burger" aria-label="Open menu" aria-controls="mobilePanel" aria-expanded="false">
@@ -229,9 +244,10 @@
   <div class="mobile-panel" id="mobilePanel" aria-label="Mobile menu">
     <a href="index.html">HOME</a>
     <a href="services.html">SERVICES</a>
-    <a href="about.html" class="active">ABOUT</a>
+    <a href="services.html#web-design" style="padding-left:36px;font-size:12px;">Website Design &amp; Development</a>
+    <a href="services.html#hosting" style="padding-left:36px;font-size:12px;">Web Hosting</a>
     <a href="portfolio.html">PORTFOLIO</a>
-    <a href="tel:+27823203406">082 320 3406</a>
+    <a href="#contact">CONTACT</a>
     <div class="mobile-cta">
       <a class="btn btn-primary" href="https://wa.me/27823203406?text=Hi%20CTCONTECH%2C%20I%20need%20a%20website." target="_blank" rel="noopener">Get Started</a>
     </div>
