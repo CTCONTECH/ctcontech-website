@@ -1,0 +1,589 @@
+<!-- =========================
+     CTCONTECH — Contact Page
+     ========================= -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Get in touch with CTCONTECH. Let's discuss your web design project. Based in Cape Town, serving businesses nationwide." />
+  <title>Contact – CTCONTECH</title>
+
+  <link rel="icon" type="image/png" href="/public/assets/Logo/UPDATED%20SHIELD.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0a0a0a;
+      --bg-alt:#111318;
+      --surface:#15181d;
+      --text:#f4f6f8;
+      --muted:#a8b0b7;
+      --accent:#7cc242;
+      --accent-dark:#66b63d;
+      --line:rgba(255,255,255,.08);
+      --shadow:0 18px 40px rgba(0,0,0,.4);
+      --shadow-soft:0 12px 28px rgba(0,0,0,.2);
+      --radius:16px;
+      --max:1160px;
+      --nav-h:74px;
+      --spacing:8px;
+    }
+
+    *{box-sizing:border-box; margin:0; padding:0;}
+    html{scroll-behavior:smooth; overflow-x:hidden;}
+    body{
+      font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.6;
+      font-size:16px;
+      overflow-x:hidden;
+    }
+    a{color:inherit;text-decoration:none;}
+    img{max-width:100%;display:block;height:auto;}
+    .container{width:min(100% - 40px, var(--max)); margin:0 auto;}
+
+    /* ---------- NAV ---------- */
+    .nav{
+      position:sticky; top:0; z-index:50;
+      background:linear-gradient(180deg, rgba(10,10,10,.98) 0%, rgba(10,10,10,.95) 100%);
+      backdrop-filter:blur(16px);
+      border-bottom:1px solid var(--line);
+      height:var(--nav-h);
+      display:flex; align-items:center;
+      justify-content:center;
+      padding:0 20px;
+      transition: box-shadow .2s ease, border-color .2s ease;
+    }
+    .nav.scrolled{
+      box-shadow:0 8px 24px rgba(0,0,0,.3);
+      border-bottom-color:rgba(255,255,255,.12);
+    }
+
+    .nav-inner{display:flex; align-items:center; justify-content:space-between; gap:20px;}
+    .brand{display:flex; align-items:center; gap:12px; min-width:220px;}
+    .brand .logo{
+      width:60px; height:60px;
+      display:grid; place-items:center;
+      overflow:visible;
+      flex-shrink:0;
+    }
+    .brand .logo img{display:block; width:60px; height:60px; object-fit:contain; object-position:center;}
+    .brand .wordmark{
+      font-weight:800; letter-spacing:.3px;
+      display:flex; align-items:baseline; gap:0;
+      font-size:18px;
+      background:linear-gradient(135deg, var(--text), var(--accent));
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+    }
+    .brand small{display:block; color:var(--muted); font-size:11px; margin-top:2px;}
+
+    .menu{display:flex; align-items:center; gap:24px; margin-left:auto;}
+    .menu > a, .menu .dropdown > a{
+      font-size:13px; font-weight:600;
+      color:var(--muted);
+      padding:8px 0;
+      opacity:.85;
+      position:relative;
+      transition: color .2s ease;
+      text-decoration:none;
+    }
+    .menu > a:hover, .menu > a.active,
+    .menu .dropdown:hover > a, .menu .dropdown.active > a{
+      color:var(--accent);
+      opacity:1;
+    }
+    .menu > a::after, .menu .dropdown > a::after{
+      content:"";
+      position:absolute; left:0; right:0; bottom:-4px;
+      height:2px; border-radius:999px;
+      background:var(--accent);
+      transform:scaleX(0);
+      opacity:0;
+      transition:.2s ease;
+    }
+    .menu > a:hover::after, .menu > a.active::after,
+    .menu .dropdown:hover > a::after, .menu .dropdown.active > a::after{transform:scaleX(1); opacity:1;}
+
+    .dropdown{position:relative;}
+    .dropdown > a{display:inline-flex;align-items:center;gap:4px;cursor:pointer;}
+    .dropdown > a .chevron{width:12px;height:12px;transition:transform .2s;}
+    .dropdown:hover > a .chevron{transform:rotate(180deg);}
+    .dropdown-menu{position:absolute;top:100%;left:50%;transform:translateX(-50%);min-width:240px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:8px 0;margin-top:12px;opacity:0;visibility:hidden;transform:translateX(-50%) translateY(8px);transition:opacity .2s,visibility .2s,transform .2s;box-shadow:0 16px 40px rgba(0,0,0,.4);z-index:100;}
+    .dropdown:hover .dropdown-menu{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0);}
+    .dropdown-menu a{display:block;padding:10px 20px;font-size:13px;font-weight:600;color:var(--muted);transition:all .15s;white-space:nowrap;}
+    .dropdown-menu a:hover{color:var(--accent);background:rgba(124,194,66,.06);}
+    .dropdown-menu a::after{display:none;}
+
+    .cta{display:flex; align-items:center; gap:12px;}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:8px;
+      border:0; cursor:pointer;
+      padding:10px 18px;
+      border-radius:10px;
+      font-weight:700;
+      font-size:13px;
+      transition:.15s transform, .15s box-shadow, .15s filter;
+      white-space:nowrap;
+    }
+    .btn:hover{transform:translateY(-2px);}
+    .btn:active{transform:translateY(0);}
+    .btn-primary{
+      background:var(--accent);
+      color:#000;
+      box-shadow:0 12px 28px rgba(124,194,66,.3);
+    }
+    .btn-primary:hover{
+      filter:brightness(1.08);
+      box-shadow:0 16px 36px rgba(124,194,66,.4);
+    }
+    .btn-secondary{
+      background:var(--surface);
+      border:1px solid var(--line);
+      color:var(--text);
+      box-shadow:0 8px 20px rgba(0,0,0,.2);
+    }
+    .btn-secondary:hover{
+      border-color:var(--accent);
+      color:var(--accent);
+    }
+
+    .burger{display:none; border:1px solid var(--line); background:var(--surface); border-radius:10px; padding:9px 10px; cursor:pointer; color:var(--text);}
+    .burger span{display:block; width:18px; height:2px; background:currentColor; margin:3px 0; transition:.2s ease;}
+    .burger.open span:nth-child(1){transform:rotate(45deg) translateY(8px);}
+    .burger.open span:nth-child(2){opacity:0;}
+    .burger.open span:nth-child(3){transform:rotate(-45deg) translateY(-8px);}
+
+    .mobile-panel{
+      border-top:1px solid var(--line);
+      background:var(--surface);
+      display:none;
+      max-height:0;
+      overflow:hidden;
+      opacity:0;
+      transform:translateY(-8px);
+      transition:max-height .22s ease, opacity .18s ease, transform .18s ease;
+    }
+    .mobile-panel.open{
+      display:block;
+      max-height:520px;
+      opacity:1;
+      transform:translateY(0);
+    }
+    .mobile-panel a{
+      display:block;
+      padding:14px 20px;
+      border-bottom:1px solid var(--line);
+      font-weight:700;
+      font-size:13px;
+      color:var(--muted);
+      transition: color .2s ease;
+    }
+    .mobile-panel a:hover{color:var(--accent);}
+    .mobile-panel .mobile-cta{padding:12px 20px;}
+    .mobile-panel .mobile-cta .btn{width:100%;}
+
+    /* ---------- HERO ---------- */
+    .hero{
+      position:relative;
+      min-height:480px;
+      display:flex; align-items:center;
+      justify-content:center;
+      overflow:hidden;
+      padding:80px 20px 60px;
+      border-bottom:1px solid var(--line);
+    }
+    .hero::before{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        radial-gradient(circle at 70% 0%, rgba(124,194,66,.12) 0%, transparent 50%),
+        radial-gradient(circle at 30% 100%, rgba(124,194,66,.08) 0%, transparent 50%);
+      z-index:0;
+      pointer-events:none;
+    }
+    .hero-content{
+      position:relative;
+      z-index:1;
+      text-align:center;
+      max-width:800px;
+      margin:0 auto;
+    }
+    .hero .eyebrow{
+      display:inline-block;
+      color:var(--accent);
+      font-size:13px;
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:.5px;
+      margin-bottom:16px;
+    }
+    .hero h1{margin:0 0 16px;font-size:clamp(28px,4vw,48px);line-height:1.1;font-weight:800;letter-spacing:-.5px;}
+    .hero p{margin:0 0 28px;color:var(--muted);font-size:16px;line-height:1.7;max-width:700px;margin-left:auto;margin-right:auto;}
+
+    /* ---------- SECTIONS ---------- */
+    section{padding:60px 0;}
+    .section-header{text-align:center;margin-bottom:48px;}
+    .section-header .eyebrow{display:inline-block;color:var(--accent);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px;}
+    .section-header h2{margin:0 0 12px;font-size:clamp(28px,3.5vw,42px);font-weight:800;letter-spacing:-.3px;}
+    .section-header p{color:var(--muted);font-size:16px;max-width:600px;margin:0 auto;}
+
+    /* ---------- CONTACT METHODS ---------- */
+    .contact-methods{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:40px;}
+    .contact-card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:32px 28px;text-align:center;transition:all .2s;}
+    .contact-card:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:0 16px 40px rgba(124,194,66,.15);}
+    .contact-card .icon{margin-bottom:16px;display:inline-block;}
+    .contact-card .icon svg{display:block; width:40px; height:40px;}
+    .contact-card h3{margin:0 0 12px;font-size:18px;font-weight:800;}
+    .contact-card p{margin:0 0 8px;font-size:14px;color:var(--muted);}
+    .contact-card a{color:var(--accent);font-weight:700;transition:opacity .2s;}
+    .contact-card a:hover{opacity:.8;}
+
+    /* ---------- CONTACT INFO GRID ---------- */
+    .contact-info{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:40px;align-items:start;}
+    .info-item{display:flex;align-items:flex-start;gap:12px;margin-bottom:24px;}
+    .info-item .label{font-size:13px;color:var(--muted);font-weight:600;min-width:80px;}
+    .info-item .value{font-size:14px;font-weight:600;}
+
+    /* ---------- CONTACT FORM + MAP ---------- */
+    .contact-split{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:40px;align-items:stretch;}
+    .contact-form{display:flex;flex-direction:column;gap:20px;}
+    .contact-form .form-group{display:flex;flex-direction:column;gap:6px;}
+    .contact-form label{font-size:13px;font-weight:600;color:var(--muted);}
+    .contact-form input,
+    .contact-form textarea{
+      background:var(--surface);
+      border:1px solid var(--line);
+      border-radius:10px;
+      padding:14px 16px;
+      color:var(--text);
+      font-family:inherit;
+      font-size:14px;
+      transition:border-color .2s;
+      outline:none;
+      resize:vertical;
+    }
+    .contact-form input:focus,
+    .contact-form textarea:focus{border-color:var(--accent);}
+    .contact-form textarea{min-height:140px;}
+    .contact-form .btn-submit{
+      align-self:flex-start;
+      background:linear-gradient(135deg,var(--accent),var(--accent-dark));
+      color:#000;
+      border:none;
+      border-radius:10px;
+      padding:14px 32px;
+      font-family:inherit;
+      font-size:14px;
+      font-weight:700;
+      cursor:pointer;
+      transition:transform .15s,box-shadow .15s;
+    }
+    .contact-form .btn-submit:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(124,194,66,.3);}
+    .map-wrapper{border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);min-height:400px;}
+    .map-wrapper iframe{width:100%;height:100%;border:0;display:block;min-height:400px;}
+
+    /* ---------- CTA ---------- */
+    .cta-section{padding:60px 20px;text-align:center;background:linear-gradient(135deg,rgba(124,194,66,.08) 0%,transparent 100%);border-top:1px solid var(--line);}
+    .cta-content{max-width:700px;margin:0 auto;}
+    .cta-content h2{margin:0 0 12px;font-size:clamp(24px,3vw,36px);font-weight:800;}
+    .cta-content p{color:var(--muted);font-size:16px;margin:0 0 24px;}
+
+    /* ---------- FOOTER ---------- */
+    footer{
+      background:var(--bg-alt);
+      color:var(--muted);
+      padding:calc(var(--spacing) * 10) 0 calc(var(--spacing) * 4);
+      border-top:1px solid var(--line);
+    }
+    .footer-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
+      gap:calc(var(--spacing) * 6);
+      margin-bottom:calc(var(--spacing) * 8);
+      padding-bottom:calc(var(--spacing) * 8);
+      border-bottom:1px solid var(--line);
+    }
+    .footer-col h4{
+      font-size:14px;
+      font-weight:700;
+      margin:0 0 calc(var(--spacing) * 3);
+      text-transform:uppercase;
+      letter-spacing:.5px;
+    }
+    .footer-col p{
+      font-size:13px;
+      line-height:1.8;
+      margin:0 0 calc(var(--spacing) * 2);
+    }
+    .footer-col a{
+      display:block;
+      color:var(--accent);
+      font-size:13px;
+      margin-bottom:calc(var(--spacing) * 2);
+      transition:opacity .2s ease;
+    }
+    .footer-col a:hover{opacity:.8;}
+    .footer-contact a{
+      font-weight:700;
+      font-size:14px;
+    }
+    .footer-bottom{
+      text-align:center;
+      font-size:12px;
+      color:rgba(255,255,255,.4);
+    }
+
+    /* ---------- REVEAL ON SCROLL ---------- */
+    .reveal{
+      opacity:0;
+      transform:translateY(20px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .reveal.show{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width:768px){
+      .menu{display:none;}
+      .burger{display:inline-block;}
+      .hero{min-height:420px; padding:60px 20px 40px;}
+      .contact-info{grid-template-columns:1fr;}
+      .contact-split{grid-template-columns:1fr;}
+      .map-wrapper{min-height:300px;}
+      .map-wrapper iframe{min-height:300px;}
+      .contact-methods{grid-template-columns:1fr;}
+      .footer-inner{flex-direction:column;}
+      .footer-right{text-align:left;}
+    }
+    @media (max-width:480px){
+      .brand .logo{width:48px; height:48px;}
+      .brand .logo img{width:48px; height:48px;}
+      .brand .wordmark{font-size:16px;}
+      .brand small{font-size:10px;}
+      .nav-inner{gap:10px;}
+      .cta{gap:8px;}
+      .btn{padding:8px 14px; font-size:12px;}
+      .hero h1{font-size:clamp(24px, 5vw, 36px);}
+      .container{width:min(100% - 20px, var(--max));}
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <header class="nav" aria-label="Top navigation">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html">
+        <div class="logo" aria-hidden="true">
+          <img src="/public/assets/Logo/UPDATED%20SHIELD.png" alt="CTCONTECH">
+        </div>
+        <div>
+          <div class="wordmark">CTCONTECH</div>
+          <small>Concept to Creation</small>
+        </div>
+      </a>
+
+      <nav class="menu" aria-label="Primary navigation">
+        <a href="index.html">HOME</a>
+        <div class="dropdown">
+          <a href="services.html">SERVICES <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></a>
+          <div class="dropdown-menu">
+            <a href="services.html#web-design">Website Design &amp; Development</a>
+            <a href="services.html#hosting">Web Hosting</a>
+          </div>
+        </div>
+        <a href="portfolio.html">PORTFOLIO</a>
+        <a href="contact.html" class="active">CONTACT</a>
+      </nav>
+
+      <div class="cta">
+        <button class="burger" id="burger" aria-label="Open menu" aria-controls="mobilePanel" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+
+        <a class="btn btn-primary" href="https://wa.me/27823203406?text=Hi%20CTCONTECH%2C%20I%20need%20a%20website.%20Can%20we%20discuss%3F" target="_blank" rel="noopener">Get Started</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-panel" id="mobilePanel" aria-label="Mobile menu">
+    <a href="index.html">HOME</a>
+    <a href="services.html">SERVICES</a>
+    <a href="services.html#web-design" style="padding-left:36px;font-size:12px;">Website Design &amp; Development</a>
+    <a href="services.html#hosting" style="padding-left:36px;font-size:12px;">Web Hosting</a>
+    <a href="portfolio.html">PORTFOLIO</a>
+    <a href="contact.html" class="active">CONTACT</a>
+    <div class="mobile-cta">
+      <a class="btn btn-primary" href="https://wa.me/27823203406?text=Hi%20CTCONTECH%2C%20I%20need%20a%20website." target="_blank" rel="noopener">Get Started</a>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <span class="eyebrow">Let's Talk</span>
+          <h1>Get in Touch</h1>
+          <p>Have a project in mind? Questions about our services? We'd love to hear from you. Reach out and let's create something great together.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT FORM + MAP -->
+    <section id="contact-form" style="border-bottom:1px solid var(--line);">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="eyebrow">Get Started</span>
+          <h2>Send Us a Message</h2>
+          <p>Fill out the form and we'll get back to you within 24 hours</p>
+        </div>
+
+        <div class="contact-split">
+          <form class="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="contact">
+            <p style="display:none"><label>Don't fill this out: <input name="bot-field"></label></p>
+            <div class="form-group">
+              <label for="name">Full Name</label>
+              <input type="text" id="name" name="name" placeholder="John Smith" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" placeholder="john@example.com" required>
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone Number (optional)</label>
+              <input type="tel" id="phone" name="phone" placeholder="082 000 0000">
+            </div>
+            <div class="form-group">
+              <label for="message">Your Message</label>
+              <textarea id="message" name="message" placeholder="Tell us about your project..." required></textarea>
+            </div>
+            <button type="submit" class="btn-submit">Send Message</button>
+          </form>
+
+          <div class="map-wrapper">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d211071.1437498789!2d18.3758814!3d-33.9248685!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1dcc500f8826eed7%3A0x687fe1fc2828aa87!2sCape%20Town%2C%20South%20Africa!5e0!3m2!1sen!2s!4v1"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="CTCONTECH Location — Cape Town, South Africa">
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+      <div class="cta-content reveal">
+        <h2>Ready to Start Your Project?</h2>
+        <p>Let's discuss your vision and build a website that drives real business results.</p>
+        <a class="btn btn-primary" href="https://wa.me/27823203406?text=I%27m%20ready%20to%20discuss%20my%20project.%20When%20can%20we%20chat%3F" target="_blank" rel="noopener">
+          Start a Conversation
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4>CTCONTECH</h4>
+          <p>Custom web design and development for small businesses. Based in Cape Town. Serving nationwide.</p>
+          <div style="margin-top:calc(var(--spacing) * 3);">
+            <strong style="display:block; margin-bottom:calc(var(--spacing) * 1);">Headquarters</strong>
+            <p style="margin:0; font-size:13px;">Cape Town, South Africa</p>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Services</h4>
+          <a href="services.html#web-design">Website Design &amp; Development</a>
+          <a href="services.html#hosting">Web Hosting</a>
+          <a href="portfolio.html">Portfolio</a>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <div class="footer-contact">
+            <a href="tel:+27823203406">082 320 3406</a>
+            <a href="mailto:ctconenquiry@gmail.com">ctconenquiry@gmail.com</a>
+            <a href="https://wa.me/27823203406" target="_blank" rel="noopener">WhatsApp Us</a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy</a>
+          <a href="terms.html" target="_blank" rel="noopener">Terms & Conditions</a>
+          <p style="font-size:12px; margin-top:calc(var(--spacing) * 3);">
+            © <span id="y"></span> CTCONTECH (CTCON (Pty) Ltd)<br/>
+            Reg: 2021/559551/07
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>Ready to launch? Let's build something great. <a href="https://wa.me/27823203406" target="_blank" rel="noopener" style="color:var(--accent);">Start here</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Nav scroll effect
+    const navEl = document.querySelector('.nav');
+    const onScroll = () => navEl?.classList.toggle('scrolled', window.scrollY > 8);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    // Mobile menu
+    const burger = document.getElementById('burger');
+    const panel = document.getElementById('mobilePanel');
+    
+    function closeMenu() {
+      burger.classList.remove('open');
+      panel.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+    }
+    
+    burger?.addEventListener('click', () => {
+      burger.classList.toggle('open');
+      panel.classList.toggle('open');
+      burger.setAttribute('aria-expanded', burger.classList.contains('open'));
+    });
+    
+    panel?.addEventListener('click', e => {
+      if (e.target.tagName === 'A') closeMenu();
+    });
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    
+    reveals.forEach(reveal => observer.observe(reveal));
+
+    // Year in footer
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

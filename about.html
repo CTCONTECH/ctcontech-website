@@ -27,6 +27,7 @@
       --radius:16px;
       --max:1160px;
       --nav-h:74px;
+      --spacing:8px;
     }
 
     *{box-sizing:border-box; margin:0; padding:0;}
@@ -63,7 +64,7 @@
     .brand .wordmark{font-weight:800;font-size:18px;background:linear-gradient(135deg,var(--text),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
     .brand small{display:block;color:var(--muted);font-size:11px;margin-top:2px;}
 
-    .menu{display:flex;align-items:center;gap:24px;}
+    .menu{display:flex;align-items:center;gap:24px;margin-left:auto;}
     .menu > a,.menu .dropdown > a{font-size:13px;font-weight:600;color:var(--muted);padding:8px 0;opacity:.85;position:relative;transition:color .2s;text-decoration:none;}
     .menu > a:hover,.menu > a.active,.menu .dropdown:hover > a,.menu .dropdown.active > a{color:var(--accent);opacity:1;}
     .menu > a::after,.menu .dropdown > a::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:2px;border-radius:999px;background:var(--accent);transform:scaleX(0);opacity:0;transition:.2s;}
@@ -176,11 +177,14 @@
     .cta-content p{color:var(--muted);font-size:16px;margin:0 0 24px;}
 
     /* FOOTER */
-    footer{background:var(--bg-alt);color:var(--muted);padding:32px 0;border-top:1px solid var(--line);font-size:12px;}
-    .footer-inner{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap;}
-    .footer-right{text-align:right;}
-    .footer-right a{text-decoration:underline;text-underline-offset:3px;opacity:.8;transition:opacity .2s;}
-    .footer-right a:hover{opacity:1;color:var(--accent);}
+    footer{background:var(--bg-alt);color:var(--muted);padding:calc(var(--spacing) * 10) 0 calc(var(--spacing) * 4);border-top:1px solid var(--line);}
+    .footer-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));gap:calc(var(--spacing) * 6);margin-bottom:calc(var(--spacing) * 8);padding-bottom:calc(var(--spacing) * 8);border-bottom:1px solid var(--line);}
+    .footer-col h4{font-size:14px;font-weight:700;margin:0 0 calc(var(--spacing) * 3);text-transform:uppercase;letter-spacing:.5px;}
+    .footer-col p{font-size:13px;line-height:1.8;margin:0 0 calc(var(--spacing) * 2);}
+    .footer-col a{display:block;color:var(--accent);font-size:13px;margin-bottom:calc(var(--spacing) * 2);transition:opacity .2s ease;}
+    .footer-col a:hover{opacity:.8;}
+    .footer-contact a{font-weight:700;font-size:14px;}
+    .footer-bottom{text-align:center;font-size:12px;color:rgba(255,255,255,.4);}
 
     /* REVEAL */
     .reveal{opacity:0;transform:translateY(20px);transition:opacity .6s,transform .6s;}
@@ -194,7 +198,7 @@
       .company-info{grid-template-columns:1fr;}
       .highlights{grid-template-columns:1fr;}
       .values-grid{grid-template-columns:1fr;}
-      .footer-inner{flex-direction:column;}.footer-right{text-align:left;}
+      .footer-grid{grid-template-columns:1fr;}
     }
     @media (max-width:480px){
       .brand .logo{width:48px;height:48px;}.brand .logo img{width:48px;height:48px;}
@@ -230,7 +234,7 @@
           </div>
         </div>
         <a href="portfolio.html">PORTFOLIO</a>
-        <a href="#contact">CONTACT</a>
+        <a href="contact.html">CONTACT</a>
       </nav>
       <div class="cta">
         <button class="burger" id="burger" aria-label="Open menu" aria-controls="mobilePanel" aria-expanded="false">
@@ -247,7 +251,7 @@
     <a href="services.html#web-design" style="padding-left:36px;font-size:12px;">Website Design &amp; Development</a>
     <a href="services.html#hosting" style="padding-left:36px;font-size:12px;">Web Hosting</a>
     <a href="portfolio.html">PORTFOLIO</a>
-    <a href="#contact">CONTACT</a>
+    <a href="contact.html">CONTACT</a>
     <div class="mobile-cta">
       <a class="btn btn-primary" href="https://wa.me/27823203406?text=Hi%20CTCONTECH%2C%20I%20need%20a%20website." target="_blank" rel="noopener">Get Started</a>
     </div>
@@ -389,14 +393,42 @@
 
   <!-- FOOTER -->
   <footer>
-    <div class="container footer-inner">
-      <div class="footer-left">
-        © <span id="y"></span> CTCONTECH (a division of CTCON (Pty) Ltd)<br/>
-        Company Reg: 2021/559551/07
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4>CTCONTECH</h4>
+          <p>Custom web design and development for small businesses. Based in Cape Town. Serving nationwide.</p>
+          <div style="margin-top:calc(var(--spacing) * 3);">
+            <strong style="display:block; margin-bottom:calc(var(--spacing) * 1);">Headquarters</strong>
+            <p style="margin:0; font-size:13px;">Cape Town, South Africa</p>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <a href="services.html#web-design">Website Design &amp; Development</a>
+          <a href="services.html#hosting">Web Hosting</a>
+          <a href="portfolio.html">Portfolio</a>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <div class="footer-contact">
+            <a href="tel:+27823203406">082 320 3406</a>
+            <a href="mailto:ctconenquiry@gmail.com">ctconenquiry@gmail.com</a>
+            <a href="https://wa.me/27823203406" target="_blank" rel="noopener">WhatsApp Us</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy</a>
+          <a href="terms.html" target="_blank" rel="noopener">Terms & Conditions</a>
+          <p style="font-size:12px; margin-top:calc(var(--spacing) * 3);">
+            © <span id="y"></span> CTCONTECH (CTCON (Pty) Ltd)<br/>
+            Reg: 2021/559551/07
+          </p>
+        </div>
       </div>
-      <div class="footer-right">
-        Cape Town based · Serving businesses nationwide<br/>
-        <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="tel:+27823203406">082 320 3406</a>
+      <div class="footer-bottom">
+        <p>Ready to launch? Let's build something great. <a href="https://wa.me/27823203406" target="_blank" rel="noopener" style="color:var(--accent);">Start here</a></p>
       </div>
     </div>
   </footer>
