@@ -131,7 +131,7 @@
     }
     .brand small{display:block; color:var(--muted); font-size:11px; margin-top:2px;}
 
-    .menu{display:flex; align-items:center; gap:24px;}
+      .menu{display:flex; align-items:center; gap:24px; margin-left:auto;}
     .menu > a, .menu .dropdown > a{
       font-size:13px; font-weight:600;
       color:var(--muted);
@@ -303,11 +303,11 @@
     .hero .eyebrow{
       display:inline-block;
       color:var(--accent);
-      font-size:13px;
+      font-size:22px;
       font-weight:700;
       text-transform:uppercase;
-      letter-spacing:.5px;
-      margin-bottom:16px;
+      letter-spacing:3.5px;
+      margin-bottom:24px;
       opacity:.9;
       animation:fadeInUp .6s ease-out;
     }
@@ -345,42 +345,6 @@
 
     .hero-actions .btn{padding:14px 28px; font-size:14px;}
 
-    /* ---------- STATS ---------- */
-    .stats{
-      display:grid;
-      grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));
-      gap:calc(var(--spacing) * 4);
-      margin-top:calc(var(--spacing) * 8);
-    }
-
-    .stat-item{
-      text-align:center;
-      padding:calc(var(--spacing) * 3);
-      border-radius:12px;
-      background:rgba(124,194,66,.06);
-      border:1px solid rgba(124,194,66,.12);
-      transition: all .3s ease;
-    }
-
-    .stat-item:hover{
-      border-color:var(--accent);
-      background:rgba(124,194,66,.1);
-      transform:translateY(-4px);
-    }
-
-    .stat-item .number{
-      font-size:32px;
-      font-weight:800;
-      color:var(--accent);
-      margin-bottom:calc(var(--spacing) * 1);
-    }
-
-    .stat-item .label{
-      font-size:13px;
-      color:var(--muted);
-      font-weight:600;
-    }
-
     /* ---------- SECTIONS ---------- */
     section{padding:calc(var(--spacing) * 15) 0; position:relative;}
     section:nth-child(even){background:linear-gradient(180deg, rgba(124,194,66,.02) 0%, rgba(124,194,66,.01) 100%);}
@@ -416,21 +380,44 @@
       line-height:1.7;
     }
 
-    /* ---------- VALUE PROPS ---------- */
+    /* ---------- VALUE PROPS — CAROUSEL HYBRID ---------- */
     .value-grid{
+      position:relative;
+      overflow:hidden;
+      padding:20px 0;
+    }
+
+    .value-carousel-track{
+      display:flex;
+      transition:transform .6s cubic-bezier(.4,0,.2,1);
+      will-change:transform;
+    }
+
+    .value-slide{
+      min-width:100%;
       display:grid;
-      grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));
-      gap:calc(var(--spacing) * 4);
+      grid-template-columns:repeat(2, minmax(0, 1fr));
+      gap:calc(var(--spacing) * 2);
+      align-items:stretch;
     }
 
     .value-card{
       background:var(--surface);
       border:1px solid var(--line);
       border-radius:16px;
-      padding:calc(var(--spacing) * 6);
-      transition: all .3s ease;
+      padding:calc(var(--spacing) * 4);
+      transition: all .4s cubic-bezier(.4,0,.2,1);
       position:relative;
       overflow:hidden;
+      opacity:.6;
+      transform:scale(.95);
+    }
+
+    .value-card.active{
+      opacity:1;
+      transform:scale(1);
+      border-color:var(--accent);
+      box-shadow:0 20px 60px rgba(124,194,66,.25);
     }
 
     .value-card::before{
@@ -440,39 +427,80 @@
       width:4px; height:100%;
       background:linear-gradient(180deg, var(--accent), var(--accent-dark));
       transform:scaleY(0);
-      transition:transform .3s ease;
+      transition:transform .4s ease;
       transform-origin:top;
     }
 
-    .value-card:hover{
-      border-color:var(--accent);
-      box-shadow:0 16px 40px rgba(124,194,66,.2);
-      transform:translateY(-6px);
-    }
-
-    .value-card:hover::before{transform:scaleY(1);}
+    .value-card.active::before{transform:scaleY(1);}
 
     .value-card .icon{
-      margin-bottom:calc(var(--spacing) * 2);
+      margin-bottom:calc(var(--spacing) * 1.5);
       display:inline-block;
-      transition: transform .3s ease;
+      transition: transform .4s ease;
+      opacity:.7;
     }
 
-    .value-card:hover .icon{transform:translateY(-4px);}
+    .value-card.active .icon{
+      transform:scale(1.1);
+      opacity:1;
+    }
 
-    .value-card .icon svg{display:block;}
+    .value-card .icon svg{display:block; width:36px; height:36px;}
 
     .value-card h3{
-      margin:0 0 calc(var(--spacing) * 2);
-      font-size:20px;
+      margin:0 0 calc(var(--spacing) * 1.5);
+      font-size:18px;
       font-weight:800;
+      opacity:.7;
+      transition:opacity .4s ease;
     }
+
+    .value-card.active h3{opacity:1;}
 
     .value-card p{
       margin:0;
-      font-size:14px;
+      font-size:13px;
       color:var(--muted);
-      line-height:1.8;
+      line-height:1.7;
+      opacity:.5;
+      transition:opacity .4s ease;
+    }
+
+    .value-card.active p{opacity:1;}
+
+    /* Carousel controls */
+    .carousel-controls{
+      display:flex;
+      gap:12px;
+      justify-content:center;
+      align-items:center;
+      margin-top:32px;
+    }
+
+    .carousel-dots{
+      display:flex;
+      gap:8px;
+    }
+
+    .carousel-dot{
+      width:8px;
+      height:8px;
+      border-radius:50%;
+      background:rgba(255,255,255,.2);
+      border:1px solid rgba(255,255,255,.1);
+      cursor:pointer;
+      transition:all .3s ease;
+    }
+
+    .carousel-dot.active{
+      width:24px;
+      border-radius:999px;
+      background:var(--accent);
+      border-color:var(--accent);
+    }
+
+    .carousel-dot:hover{
+      background:rgba(124,194,66,.6);
     }
 
     /* ---------- PROCESS SECTION ---------- */
@@ -482,8 +510,8 @@
 
     .process-grid{
       display:grid;
-      grid-template-columns:repeat(auto-fit, minmax(160px, 1fr));
-      gap:0;
+      grid-template-columns:repeat(3, 1fr);
+      gap:48px 0;
       position:relative;
       max-width:900px;
       margin:0 auto;
@@ -499,15 +527,15 @@
     .process-step::before{
       content:"";
       position:absolute;
-      top:50%;
-      right:-50%;
+      top:calc(var(--spacing) * 6 + 28px);
+      left:50%;
       width:100%;
       height:2px;
       background:linear-gradient(90deg, var(--accent), transparent);
-      transform:translateY(-50%);
     }
 
-    .process-step:last-child::before{
+    .process-step:last-child::before,
+    .process-step:nth-child(3n)::before{
       display:none;
     }
 
@@ -568,9 +596,8 @@
     }
     .gallery-slide-img{
       width:100%;
-      height:70vh;
-      min-height:420px;
-      max-height:700px;
+      height:90vh;
+      min-height:500px;
       background:#111;
       overflow:hidden;
       position:relative;
@@ -808,7 +835,7 @@
     }
 
     .footer-col a{
-      display:inline-block;
+      display:block;
       color:var(--accent);
       font-size:13px;
       margin-bottom:calc(var(--spacing) * 2);
@@ -835,6 +862,25 @@
       .nav-contact{display:none}
     }
 
+    @media (max-width:768px){
+      .value-slide{grid-template-columns:1fr;}
+      .value-card{
+        padding:calc(var(--spacing) * 3);
+      }
+      .value-card h3{
+        font-size:16px;
+      }
+      .value-card p{
+        font-size:12px;
+      }
+    }
+
+    @media (max-width:640px){
+      .carousel-controls{
+        margin-top:24px;
+      }
+    }
+
     @media (max-width:480px){
       .brand .logo{width:48px; height:48px;}
       .brand .logo img{width:48px; height:48px;}
@@ -849,8 +895,9 @@
       .container{width:min(100% - 20px, var(--max));}
       .hero-actions{gap:12px;}
       .section-header h2{font-size:clamp(24px, 5vw, 36px);}
-      .process-grid{grid-template-columns:repeat(2, 1fr); gap:calc(var(--spacing) * 4);}
-      .process-step::before{display:none;}
+      .process-grid{grid-template-columns:repeat(2, 1fr); gap:calc(var(--spacing) * 5) 0;}
+      .process-step:nth-child(3n)::before{display:block;}
+      .process-step:nth-child(2n)::before{display:none;}
       .cta-buttons{flex-direction:column;}
       .cta-buttons .btn{width:100%;}
       .footer-grid{grid-template-columns:1fr;}
@@ -883,7 +930,7 @@
           </div>
         </div>
         <a href="portfolio.html">PORTFOLIO</a>
-        <a href="#contact">CONTACT</a>
+        <a href="contact.html">CONTACT</a>
       </nav>
 
       <div class="cta">
@@ -906,7 +953,7 @@
     <a href="services.html#web-design" style="padding-left:36px;font-size:12px;">Website Design &amp; Development</a>
     <a href="services.html#hosting" style="padding-left:36px;font-size:12px;">Web Hosting</a>
     <a href="portfolio.html">PORTFOLIO</a>
-    <a href="#contact">CONTACT</a>
+    <a href="contact.html">CONTACT</a>
     <div class="mobile-cta">
       <a class="btn btn-primary"
          href="https://wa.me/27823203406?text=Hi%20CTCONTECH%2C%20I%27d%20like%20to%20discuss%20a%20project."
@@ -921,28 +968,12 @@
     <canvas class="hero-canvas" id="networkCanvas"></canvas>
     <div class="container">
       <div class="hero-content">
-        <span class="eyebrow fade-in-up">Web Design & Development for Small Business</span>
-        <h1 class="fade-in-up stagger-1">Your Small Business Deserves a Website That Works as Hard as You Do</h1>
+        <span class="eyebrow fade-in-up">Web Design & Development for Small Businesses</span>
         <p class="fade-in-up stagger-2">We design and build fast, modern websites that turn visitors into customers. No cookie-cutter templates. No bloated code. Just clean, conversion-focused sites built for businesses like yours.</p>
         
         <div class="hero-actions fade-in-up stagger-3">
           <a class="btn btn-primary" href="https://wa.me/27823203406?text=Hi%20CTCONTECH%2C%20I%20want%20to%20discuss%20a%20web%20project." target="_blank" rel="noopener">Start Your Project <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
           <a class="btn btn-secondary" href="#about">See Our Work</a>
-        </div>
-
-        <div class="stats fade-in-up stagger-3" data-scroll>
-          <div class="stat-item">
-            <div class="number" data-count="3">3</div>
-            <div class="label">Live Projects</div>
-          </div>
-          <div class="stat-item">
-            <div class="number">2 Weeks</div>
-            <div class="label">Avg. Delivery</div>
-          </div>
-          <div class="stat-item">
-            <div class="number">100%</div>
-            <div class="label">Client Satisfaction</div>
-          </div>
         </div>
       </div>
     </div>
@@ -957,36 +988,54 @@
         <p>Custom websites built to bring in customers — we handle the design, code, and performance so you can focus on your business</p>
       </div>
 
-      <div class="value-grid">
-        <div class="value-card" data-scroll>
-          <div class="icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
-          <h3>Custom Website Design</h3>
-          <p>Bespoke designs built around your brand and audience. Mobile-first, fast-loading, SEO-ready from day one.</p>
-        </div>
+      <div class="value-grid" id="valueCarousel">
+        <div class="value-carousel-track" id="valueTrack">
+          <div class="value-slide">
+            <div class="value-card active" data-scroll>
+              <div class="icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+              <h3>Custom Website Design</h3>
+              <p>Bespoke designs built around your brand and audience. Mobile-first, fast-loading, SEO-ready from day one.</p>
+            </div>
 
-        <div class="value-card" data-scroll>
-          <div class="icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/><line x1="14" y1="4" x2="10" y2="20"/></svg></div>
-          <h3>Web Development</h3>
-          <p>Clean, modern code using React & TypeScript. Scalable architecture that grows with your business.</p>
-        </div>
+            <div class="value-card active" data-scroll>
+              <div class="icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/><line x1="14" y1="4" x2="10" y2="20"/></svg></div>
+              <h3>Web Development</h3>
+              <p>Clean, modern code using React & TypeScript. Scalable architecture that grows with your business.</p>
+            </div>
+          </div>
 
-        <div class="value-card" data-scroll>
-          <div class="icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
-          <h3>Performance & SEO</h3>
-          <p>Speed matters. We optimize every build for Google rankings, fast load times, and real conversions.</p>
-        </div>
+          <div class="value-slide">
+            <div class="value-card" data-scroll>
+              <div class="icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+              <h3>Performance & SEO</h3>
+              <p>Speed matters. We optimize every build for Google rankings, fast load times, and real conversions.</p>
+            </div>
 
-        <div class="value-card" data-scroll>
-          <div class="icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
-          <h3>Mobile-First Design</h3>
-          <p>Your customers are on their phones. We design for mobile first, then scale up beautifully for desktop.</p>
-        </div>
+            <div class="value-card" data-scroll>
+              <div class="icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
+              <h3>Mobile-First Design</h3>
+              <p>Your customers are on their phones. We design for mobile first, then scale up beautifully for desktop.</p>
+            </div>
+          </div>
 
-        <div class="value-card" data-scroll>
-          <div class="icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-          <h3>Ongoing Support</h3>
-          <p>We don't disappear after launch. Direct access, quick updates, and a partner who's invested in your growth.</p>
+          <div class="value-slide">
+            <div class="value-card" data-scroll>
+              <div class="icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+              <h3>Ongoing Support</h3>
+              <p>We don't disappear after launch. Direct access, quick updates, and a partner who's invested in your growth.</p>
+            </div>
+
+            <div class="value-card" data-scroll>
+              <div class="icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="10" rx="2"/><rect x="2" y="17" width="20" height="4" rx="1"/></svg></div>
+              <h3>Web Hosting</h3>
+              <p>Reliable, fast hosting starting from R150/month. Fully managed, SSL included, 99.9% uptime guarantee.</p>
+            </div>
+          </div>
         </div>
+      </div>
+
+      <div class="carousel-controls">
+        <div class="carousel-dots" id="carouselDots"></div>
       </div>
     </div>
   </section>
@@ -1194,11 +1243,8 @@
         <p>Whether you're starting from scratch or replacing an outdated site, we'll build something that actually brings in customers. No jargon, no surprises — just results.</p>
         
         <div class="cta-buttons">
-          <a class="btn btn-primary" href="https://wa.me/27823203406?text=Hi%20CTCONTECH%2C%20I%27d%20like%20to%20discuss%20building%20a%20website." target="_blank" rel="noopener">
-            Chat on WhatsApp <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-          <a class="btn btn-secondary" href="tel:+27823203406">
-            Call Us: 082 320 3406
+          <a class="btn btn-primary" href="contact.html#contact-form">
+            Get in Touch <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
         </div>
       </div>
@@ -1462,43 +1508,6 @@
       animate();
     })();
 
-    // Counter animation for stats
-    function animateCounter(element, duration = 2000) {
-      const target = parseInt(element.getAttribute('data-count')) || 0;
-      if (target === 0) return;
-      
-      const start = 0;
-      const increment = target / (duration / 16);
-      let current = start;
-
-      const counter = setInterval(() => {
-        current += increment;
-        if (current >= target) {
-          element.textContent = target;
-          clearInterval(counter);
-        } else {
-          element.textContent = Math.ceil(current);
-        }
-      }, 16);
-    }
-
-    // Trigger counters when stats section is visible
-    const statsSection = document.querySelector('.stats');
-    if (statsSection) {
-      const statsObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            document.querySelectorAll('.stat-item .number[data-count]').forEach(counter => {
-              animateCounter(counter);
-            });
-            statsObserver.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.5 });
-
-      statsObserver.observe(statsSection);
-    }
-
     // -------- WORK GALLERY CAROUSEL --------
     ;(function(){
       const slides = document.getElementById('gallerySlides');
@@ -1533,6 +1542,70 @@
         const diff=startX-e.changedTouches[0].clientX;
         if(Math.abs(diff)>50) goTo(current+(diff>0?1:-1));
       },{passive:true});
+    })();
+
+    // -------- VALUE CAROUSEL (HYBRID APPROACH) --------
+    ;(function(){
+      const track = document.getElementById('valueTrack');
+      const dotsWrap = document.getElementById('carouselDots');
+      if(!track || !dotsWrap) return;
+
+      const slides = track.querySelectorAll('.value-slide');
+      const cycleCount = slides.length; // 3 cycles, 2 cards per cycle
+      let current = 0;
+      let autoRotateTimer;
+
+      for(let i=0; i<cycleCount; i++){
+        const dot = document.createElement('button');
+        dot.className = 'carousel-dot' + (i===0 ? ' active' : '');
+        dot.setAttribute('aria-label', 'Go to cycle ' + (i+1));
+        dot.addEventListener('click', () => {
+          stopAutoRotate();
+          goTo(i);
+          startAutoRotate();
+        });
+        dotsWrap.appendChild(dot);
+      }
+
+      function goTo(n){
+        current = ((n % cycleCount) + cycleCount) % cycleCount;
+        track.style.transform = 'translateX(-' + (current * 100) + '%)';
+
+        slides.forEach((slide, i) => {
+          slide.querySelectorAll('.value-card').forEach(card => {
+            card.classList.toggle('active', i === current);
+          });
+        });
+
+        dotsWrap.querySelectorAll('.carousel-dot').forEach((dot, i) => {
+          dot.classList.toggle('active', i === current);
+        });
+      }
+
+      function stopAutoRotate(){
+        if(autoRotateTimer) clearInterval(autoRotateTimer);
+      }
+
+      function startAutoRotate(){
+        autoRotateTimer = setInterval(() => {
+          goTo(current + 1);
+        }, 6500);
+      }
+
+      document.addEventListener('keydown', (e) => {
+        if(e.key === 'ArrowLeft'){
+          stopAutoRotate();
+          goTo(current - 1);
+          startAutoRotate();
+        } else if(e.key === 'ArrowRight'){
+          stopAutoRotate();
+          goTo(current + 1);
+          startAutoRotate();
+        }
+      });
+
+      goTo(0);
+      startAutoRotate();
     })();
   </script>
 </body>
