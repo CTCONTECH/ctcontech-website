@@ -606,10 +606,10 @@
       position:relative;
     }
     .gallery-slide-img iframe{
-      width:1600px;
-      height:1600px;
+      width:1800px;
+      height:1800px;
       transform-origin:top left;
-      transform:scale(var(--iframe-scale, 0.84));
+      transform:scale(var(--iframe-scale, 0.75));
       border:0;
       pointer-events:none;
       position:absolute;
@@ -1540,7 +1540,7 @@
       // Scale iframes to fill container width as a miniaturised 1440px desktop preview
       function scaleIframes(){
         document.querySelectorAll('.gallery-slide-img').forEach(el=>{
-          const scale = el.offsetWidth / 1600;
+          const scale = el.offsetWidth / 1800;
           el.style.setProperty('--iframe-scale', scale);
           const iframe = el.querySelector('iframe');
           if(iframe) iframe.style.height = Math.ceil(el.offsetHeight / scale) + 'px';
