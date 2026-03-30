@@ -1,0 +1,420 @@
+<!-- =========================
+     CTCONTECH — Web Hosting
+     ========================= -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Fast, secure web hosting for small businesses. Netlify & Vercel deployment, free SSL, global CDN. Plans from R150/month." />
+  <title>Web Hosting – CTCONTECH</title>
+
+  <link rel="icon" type="image/png" href="/public/assets/Logo/UPDATED%20SHIELD.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0a0a0a;
+      --bg-alt:#111318;
+      --surface:#15181d;
+      --text:#f4f6f8;
+      --muted:#a8b0b7;
+      --accent:#7cc242;
+      --accent-dark:#66b63d;
+      --line:rgba(255,255,255,.08);
+      --radius:16px;
+      --max:1160px;
+      --nav-h:74px;
+      --spacing:8px;
+    }
+
+    *{box-sizing:border-box; margin:0; padding:0;}
+    html{scroll-behavior:smooth; overflow-x:hidden;}
+    body{
+      font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.6;
+      font-size:16px;
+      overflow-x:hidden;
+    }
+    a{color:inherit;text-decoration:none;}
+    img{max-width:100%;display:block;height:auto;}
+    .container{width:min(100% - 40px, var(--max)); margin:0 auto;}
+
+    /* NAV */
+    .nav{
+      position:sticky; top:0; z-index:50;
+      background:linear-gradient(180deg, rgba(10,10,10,.98) 0%, rgba(10,10,10,.95) 100%);
+      backdrop-filter:blur(16px);
+      border-bottom:1px solid var(--line);
+      height:var(--nav-h);
+      display:flex; align-items:center; justify-content:center;
+      padding:0 20px;
+      transition: box-shadow .2s ease;
+    }
+    .nav.scrolled{box-shadow:0 8px 24px rgba(0,0,0,.3);}
+
+    .nav-inner{display:flex; align-items:center; justify-content:space-between; gap:20px;}
+    .brand{display:flex; align-items:center; gap:12px; min-width:220px;}
+    .brand .logo{width:60px;height:60px;display:grid;place-items:center;overflow:visible;flex-shrink:0;}
+    .brand .logo img{display:block;width:60px;height:60px;object-fit:contain;object-position:center;}
+    .brand .wordmark{
+      font-weight:800; letter-spacing:.3px;
+      display:flex; align-items:baseline; gap:0;
+      font-size:18px;
+      background:linear-gradient(135deg, var(--text), var(--accent));
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+    }
+    .brand small{display:block; color:var(--muted); font-size:11px; margin-top:2px;}
+
+    .menu{display:flex; align-items:center; gap:24px; margin-left:auto;}
+    .menu > a, .menu .dropdown > a{font-size:13px;font-weight:600;color:var(--muted);padding:8px 0;opacity:.85;position:relative;transition:color .2s ease;}
+    .menu > a:hover, .menu > a.active,
+    .menu .dropdown:hover > a, .menu .dropdown.active > a{color:var(--accent);opacity:1;}
+    .menu > a::after, .menu .dropdown > a::after{content:"";position:absolute;left:0;bottom:0;width:100%;height:2px;background:var(--accent);border-radius:1px;transform:scaleX(0);transition:transform .2s ease;opacity:0;}
+    .menu > a:hover::after, .menu > a.active::after,
+    .menu .dropdown:hover > a::after, .menu .dropdown.active > a::after{transform:scaleX(1);opacity:1;}
+
+    .dropdown{position:relative;}
+    .dropdown > a{display:flex;align-items:center;gap:4px;cursor:default;}
+    .dropdown > a .chevron{width:12px;height:12px;transition:transform .2s;}
+    .dropdown:hover > a .chevron{transform:rotate(180deg);}
+    .dropdown-menu{position:absolute;top:100%;left:50%;transform:translateX(-50%);min-width:240px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:8px 0;margin-top:12px;opacity:0;visibility:hidden;transform:translateX(-50%) translateY(8px);transition:opacity .2s,visibility .2s,transform .2s;box-shadow:0 16px 40px rgba(0,0,0,.4);z-index:100;}
+    .dropdown:hover .dropdown-menu{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0);}
+    .dropdown-menu a{display:block;padding:10px 20px;font-size:13px;font-weight:600;color:var(--muted);transition:all .15s;}
+    .dropdown-menu a:hover{background:rgba(124,194,66,.1);color:var(--accent);}
+
+    .cta{display:flex;align-items:center;gap:16px;min-width:160px;justify-content:flex-end;}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border-radius:10px;font-weight:700;font-size:13px;transition:.15s transform,.15s box-shadow,.15s filter;border:none;cursor:pointer;}
+    .btn:hover{transform:translateY(-2px);}
+    .btn:active{transform:translateY(0);}
+    .btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent-dark));color:#000;box-shadow:0 4px 16px rgba(124,194,66,.35);}
+    .btn-primary:hover{filter:brightness(1.08);box-shadow:0 8px 24px rgba(124,194,66,.4);}
+    .btn-secondary{background:transparent;border:1.5px solid var(--line);color:var(--text);}
+
+    .burger{display:none;background:0;border:0;cursor:pointer;padding:8px;flex-direction:column;gap:5px;}
+    .burger span{width:24px;height:2px;background:var(--text);border-radius:2px;transition:.2s transform,.2s opacity;}
+    .burger.open span:nth-child(1){transform:rotate(45deg) translateY(8px);}
+    .burger.open span:nth-child(2){opacity:0;}
+    .burger.open span:nth-child(3){transform:rotate(-45deg) translateY(-8px);}
+
+    .mobile-panel{
+      display:none;position:fixed;top:var(--nav-h);left:0;right:0;z-index:49;
+      background:rgba(10,10,10,.98);backdrop-filter:blur(12px);padding:16px 20px;
+      flex-direction:column;gap:4px;border-bottom:1px solid var(--line);
+      max-height:0;overflow:hidden;opacity:0;transform:translateY(-8px);
+      transition:max-height .22s ease,opacity .18s ease,transform .18s ease;
+    }
+    .mobile-panel.open{
+      display:flex;max-height:400px;opacity:1;transform:translateY(0);
+    }
+    .mobile-panel a{padding:12px 16px;font-size:14px;font-weight:600;color:var(--muted);border-radius:8px;transition:background .15s;}
+    .mobile-panel a:hover,.mobile-panel a.active{background:rgba(124,194,66,.1);color:var(--accent);}
+    .mobile-cta{margin-top:8px;padding:8px 16px;}
+
+    /* HERO */
+    .hero{position:relative;min-height:520px;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:80px 20px 60px;border-bottom:1px solid var(--line);}
+    .hero::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 40%,rgba(124,194,66,.10) 0%,transparent 60%);z-index:0;pointer-events:none;}
+    .hero::after{content:"";position:absolute;inset:0;background-image:radial-gradient(circle,rgba(124,194,66,.04) 1px,transparent 1px);background-size:24px 24px;z-index:0;pointer-events:none;mask-image:radial-gradient(ellipse 60% 60% at 50% 50%,#000 20%,transparent 100%);-webkit-mask-image:radial-gradient(ellipse 60% 60% at 50% 50%,#000 20%,transparent 100%);}
+    .hero-content{position:relative;z-index:1;text-align:center;max-width:800px;margin:0 auto;}
+    .hero .eyebrow{display:inline-block;color:var(--accent);font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:16px;}
+    .hero h1{margin:0 0 16px;font-size:clamp(28px,4vw,48px);line-height:1.1;font-weight:800;letter-spacing:-.5px;}
+    .hero p{margin:0 0 28px;color:var(--muted);font-size:16px;line-height:1.7;max-width:700px;margin-left:auto;margin-right:auto;}
+    .hero-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+
+    /* SECTIONS */
+    section{padding:60px 0;}
+    .section-header{text-align:center;margin-bottom:48px;}
+    .section-header .eyebrow{display:inline-block;color:var(--accent);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px;}
+    .section-header h2{margin:0 0 12px;font-size:clamp(28px,3.5vw,42px);font-weight:800;letter-spacing:-.3px;}
+    .section-header p{color:var(--muted);font-size:16px;max-width:600px;margin:0 auto;}
+
+    /* PRICING */
+    .pricing-section{padding:60px 0;border-bottom:1px solid var(--line);}
+    .pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:40px;}
+    .pricing-card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:28px;transition:all .2s;display:flex;flex-direction:column;}
+    .pricing-card:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:0 16px 40px rgba(124,194,66,.15);}
+    .pricing-card h3{margin:0 0 8px;font-size:18px;font-weight:800;}
+    .pricing-card .price{font-size:24px;font-weight:800;color:var(--accent);margin:16px 0;}
+    .pricing-card .timeline{font-size:13px;color:var(--muted);margin-bottom:20px;}
+    .pricing-card ul{list-style:none;margin:0 0 24px;flex:1;}
+    .pricing-card li{padding:8px 0;font-size:13px;color:var(--muted);display:flex;align-items:flex-start;gap:8px;}
+    .pricing-card li::before{content:"✓";color:var(--accent);font-weight:700;flex-shrink:0;}
+    .pricing-card .btn{width:100%;}
+
+    /* FEATURES */
+    .features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:40px;}
+    .feature-card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:32px 24px;text-align:center;transition:all .2s;}
+    .feature-card:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:0 16px 40px rgba(124,194,66,.15);}
+    .feature-card .feat-icon{margin-bottom:16px;}
+    .feature-card h3{margin:0 0 8px;font-size:16px;font-weight:800;}
+    .feature-card p{margin:0;font-size:13px;color:var(--muted);line-height:1.7;}
+
+    /* CTA */
+    .cta-section{padding:60px 20px;text-align:center;background:linear-gradient(135deg,rgba(124,194,66,.08) 0%,transparent 100%);border-top:1px solid var(--line);}
+    .cta-content{max-width:700px;margin:0 auto;}
+    .cta-content h2{margin:0 0 12px;font-size:clamp(24px,3vw,36px);font-weight:800;}
+    .cta-content p{color:var(--muted);font-size:16px;margin:0 0 24px;}
+
+    /* FOOTER */
+    footer{background:var(--bg-alt);color:var(--muted);padding:calc(var(--spacing) * 10) 0 calc(var(--spacing) * 4);border-top:1px solid var(--line);}
+    .footer-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));gap:calc(var(--spacing) * 6);margin-bottom:calc(var(--spacing) * 8);padding-bottom:calc(var(--spacing) * 8);border-bottom:1px solid var(--line);}
+    .footer-col h4{font-size:14px;font-weight:700;margin:0 0 calc(var(--spacing) * 3);text-transform:uppercase;letter-spacing:.5px;}
+    .footer-col p{font-size:13px;line-height:1.8;margin:0 0 calc(var(--spacing) * 2);}
+    .footer-col a{display:block;color:var(--accent);font-size:13px;margin-bottom:calc(var(--spacing) * 2);transition:opacity .2s ease;}
+    .footer-col a:hover{opacity:.8;}
+    .footer-contact a{font-weight:700;font-size:14px;}
+    .footer-bottom{text-align:center;font-size:12px;color:rgba(255,255,255,.4);}
+
+    /* REVEAL */
+    .reveal{opacity:0;transform:translateY(20px);transition:opacity .6s,transform .6s;}
+    .reveal.show{opacity:1;transform:translateY(0);}
+
+    @media (max-width:768px){
+      .menu{display:none;}.burger{display:inline-block;}.nav-contact{display:none;}
+      .hero{min-height:420px;padding:60px 20px 40px;}
+      .pricing-grid{grid-template-columns:1fr;}
+      .features-grid{grid-template-columns:1fr;}
+      .footer-grid{grid-template-columns:1fr;}
+    }
+    @media (max-width:480px){
+      .brand .logo{width:48px;height:48px;}.brand .logo img{width:48px;height:48px;}
+      .brand .wordmark{font-size:16px;}.brand small{font-size:10px;}
+      .btn{padding:8px 14px;font-size:12px;}
+      .hero h1{font-size:clamp(24px,5vw,36px);}
+      .container{width:min(100% - 20px,var(--max));}
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <header class="nav" aria-label="Top navigation">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html">
+        <div class="logo" aria-hidden="true">
+          <img src="/public/assets/Logo/UPDATED%20SHIELD.png" alt="CTCONTECH">
+        </div>
+        <div>
+          <div class="wordmark">CTCONTECH</div>
+          <small>Concept to Creation</small>
+        </div>
+      </a>
+      <nav class="menu" aria-label="Primary navigation">
+        <a href="index.html">HOME</a>
+        <div class="dropdown active">
+          <a href="#">SERVICES <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></a>
+          <div class="dropdown-menu">
+            <a href="web-design.html">Website Design &amp; Development</a>
+            <a href="web-hosting.html">Web Hosting</a>
+          </div>
+        </div>
+        <a href="portfolio.html">PORTFOLIO</a>
+        <a href="contact.html">CONTACT</a>
+      </nav>
+      <div class="cta">
+        <button class="burger" id="burger" aria-label="Open menu" aria-controls="mobilePanel" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+        <a class="btn btn-primary" href="https://wa.me/27823203406?text=Hi%20CTCONTECH%2C%20I%20need%20a%20website.%20Can%20we%20discuss%3F" target="_blank" rel="noopener">Get Started</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-panel" id="mobilePanel" aria-label="Mobile menu">
+    <a href="index.html">HOME</a>
+    <a href="#" class="active">SERVICES</a>
+    <a href="web-design.html" style="padding-left:36px;font-size:12px;">Website Design &amp; Development</a>
+    <a href="web-hosting.html" style="padding-left:36px;font-size:12px;">Web Hosting</a>
+    <a href="portfolio.html">PORTFOLIO</a>
+    <a href="contact.html">CONTACT</a>
+    <div class="mobile-cta">
+      <a class="btn btn-primary" href="https://wa.me/27823203406?text=Hi%20CTCONTECH%2C%20I%20need%20a%20website." target="_blank" rel="noopener">Get Started</a>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <span class="eyebrow">Reliable Web Hosting</span>
+          <h1>Fast, Secure Hosting That Just Works</h1>
+          <p>Your website deserves hosting that's always on, loads instantly, and scales when you need it. Simple plans, no surprises.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#hosting-plans">View Plans</a>
+            <a class="btn btn-secondary" href="contact.html#contact-form">Talk to Us</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY OUR HOSTING -->
+    <section>
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="eyebrow">Why Choose Us</span>
+          <h2>Hosting Built for Performance</h2>
+          <p>We don't just host your site — we make sure it flies</p>
+        </div>
+        <div class="features-grid">
+          <div class="feature-card reveal">
+            <div class="feat-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+            <h3>Lightning Fast</h3>
+            <p>Global CDN ensures your site loads in milliseconds, no matter where your visitors are.</p>
+          </div>
+          <div class="feature-card reveal">
+            <div class="feat-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            <h3>Secure by Default</h3>
+            <p>Free SSL certificates, security headers, and DDoS protection on every plan.</p>
+          </div>
+          <div class="feature-card reveal">
+            <div class="feat-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+            <h3>99.9% Uptime</h3>
+            <p>Your site stays online. Period. Continuous monitoring and instant failover.</p>
+          </div>
+          <div class="feature-card reveal">
+            <div class="feat-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+            <h3>Custom Domain</h3>
+            <p>Connect your own domain with full DNS management and email forwarding setup.</p>
+          </div>
+          <div class="feature-card reveal">
+            <div class="feat-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+            <h3>Managed for You</h3>
+            <p>We handle deployments, updates, and troubleshooting — you focus on your business.</p>
+          </div>
+          <div class="feature-card reveal">
+            <div class="feat-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+            <h3>Developer Friendly</h3>
+            <p>Git-based deployments, serverless functions, and automatic builds on every push.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOSTING PLANS -->
+    <section class="pricing-section" id="hosting-plans">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="eyebrow">Hosting Plans</span>
+          <h2>Web Hosting</h2>
+          <p>Fast, secure hosting so your site stays online and loads instantly</p>
+        </div>
+        <div class="pricing-grid">
+          <div class="pricing-card reveal">
+            <h3>Starter Hosting</h3>
+            <div class="price">R150<span style="font-size:14px;">/mo</span></div>
+            <ul style="margin-top:20px;">
+              <li>Netlify or Vercel deployment</li>
+              <li>Free SSL certificate</li>
+              <li>Global CDN</li>
+              <li>99.9% uptime</li>
+              <li>Custom domain setup</li>
+            </ul>
+            <a class="btn btn-primary" href="https://wa.me/27823203406?text=Hi%20CTCONTECH%2C%20I%27m%20interested%20in%20Starter%20Hosting." target="_blank" rel="noopener">Get Started</a>
+          </div>
+          <div class="pricing-card reveal">
+            <h3>Business Hosting</h3>
+            <div class="price">R400<span style="font-size:14px;">/mo</span></div>
+            <ul style="margin-top:20px;">
+              <li>Everything in Starter</li>
+              <li>Priority builds &amp; deploys</li>
+              <li>Form handling</li>
+              <li>Analytics integration</li>
+              <li>Email forwarding setup</li>
+            </ul>
+            <a class="btn btn-primary" href="https://wa.me/27823203406?text=Hi%20CTCONTECH%2C%20I%27m%20interested%20in%20Business%20Hosting." target="_blank" rel="noopener">Get Started</a>
+          </div>
+          <div class="pricing-card reveal">
+            <h3>Premium Hosting</h3>
+            <div class="price">R800<span style="font-size:14px;">/mo</span></div>
+            <ul style="margin-top:20px;">
+              <li>Everything in Business</li>
+              <li>Database hosting</li>
+              <li>Server-side functions</li>
+              <li>Advanced security headers</li>
+              <li>Monthly performance reports</li>
+            </ul>
+            <a class="btn btn-primary" href="https://wa.me/27823203406?text=Hi%20CTCONTECH%2C%20I%27m%20interested%20in%20Premium%20Hosting." target="_blank" rel="noopener">Get Started</a>
+          </div>
+        </div>
+        <p style="font-size:13px;color:var(--muted);text-align:center;margin-top:40px;padding-top:40px;border-top:1px solid var(--line);">Domain registration billed separately. All hosting includes free SSL and CDN.</p>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section" id="contact">
+      <div class="cta-content reveal">
+        <h2>Need Hosting for Your Website?</h2>
+        <p>Whether you're launching a new site or migrating an existing one, we'll get you set up quickly and keep things running smoothly.</p>
+        <a class="btn btn-primary" href="contact.html#contact-form">Get in Touch</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4>CTCONTECH</h4>
+          <p>Custom web design and development for small businesses. Based in Cape Town. Serving nationwide.</p>
+          <div style="margin-top:calc(var(--spacing) * 3);">
+            <strong style="display:block; margin-bottom:calc(var(--spacing) * 1);">Headquarters</strong>
+            <p style="margin:0; font-size:13px;">Cape Town, South Africa</p>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <a href="web-design.html">Website Design &amp; Development</a>
+          <a href="web-hosting.html">Web Hosting</a>
+          <a href="portfolio.html">Portfolio</a>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <div class="footer-contact">
+            <a href="tel:+27823203406">082 320 3406</a>
+            <a href="mailto:ctconenquiry@gmail.com">ctconenquiry@gmail.com</a>
+            <a href="https://wa.me/27823203406" target="_blank" rel="noopener">WhatsApp Us</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy</a>
+          <a href="terms.html" target="_blank" rel="noopener">Terms & Conditions</a>
+          <p style="font-size:12px; margin-top:calc(var(--spacing) * 3);">
+            © <span id="y"></span> CTCONTECH (CTCON (Pty) Ltd)<br/>
+            Reg: 2021/559551/07
+          </p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>Ready to launch? Let's build something great. <a href="https://wa.me/27823203406" target="_blank" rel="noopener" style="color:var(--accent);">Start here</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const navEl=document.querySelector('.nav');
+    window.addEventListener('scroll',()=>navEl?.classList.toggle('scrolled',window.scrollY>8),{passive:true});
+
+    const burger=document.getElementById('burger'),panel=document.getElementById('mobilePanel');
+    function closeMenu(){panel?.classList.remove('open');burger?.setAttribute('aria-expanded','false');}
+    burger?.addEventListener('click',e=>{e.stopPropagation();const o=panel.classList.toggle('open');burger.setAttribute('aria-expanded',String(o));});
+    panel?.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMenu));
+    document.addEventListener('click',e=>{if(!panel?.classList.contains('open'))return;if(!panel.contains(e.target)&&!burger?.contains(e.target))closeMenu();});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu();});
+
+    document.getElementById('y').textContent=new Date().getFullYear();
+
+    const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show');});},{threshold:.1});
+    document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+  </script>
+</body>
+</html>

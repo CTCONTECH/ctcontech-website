@@ -6,7 +6,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>CTCONTECH – Terms</title>
+  <title>Terms & Conditions - CTCONTECH</title>
 
   <link rel="icon" type="image/png" href="/public/assets/Logo/UPDATED%20SHIELD.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -71,7 +71,6 @@
       flex-shrink:0;
     }
     .brand .logo img{display:block; width:60px; height:60px; object-fit:contain; object-position:center;}
-    .brand .logo svg{display:block; width:28px; height:28px; color:#000;}
     .brand .wordmark{
       font-weight:800; letter-spacing:.3px;
       display:flex; align-items:baseline; gap:0;
@@ -112,6 +111,16 @@
       opacity:1;
     }
 
+    .dropdown{position:relative;}
+    .dropdown > a{display:inline-flex;align-items:center;gap:4px;cursor:default;}
+    .dropdown > a .chevron{width:12px;height:12px;transition:transform .2s;}
+    .dropdown:hover > a .chevron{transform:rotate(180deg);}
+    .dropdown-menu{position:absolute;top:100%;left:50%;transform:translateX(-50%);min-width:240px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:8px 0;margin-top:12px;opacity:0;visibility:hidden;transform:translateX(-50%) translateY(8px);transition:opacity .2s,visibility .2s,transform .2s;box-shadow:0 16px 40px rgba(0,0,0,.4);z-index:100;}
+    .dropdown:hover .dropdown-menu{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0);}
+    .dropdown-menu a{display:block;padding:10px 20px;font-size:13px;font-weight:600;color:var(--muted);transition:all .15s;white-space:nowrap;}
+    .dropdown-menu a:hover{color:var(--accent);background:rgba(124,194,66,.06);}
+    .dropdown-menu a::after{display:none;}
+
     .cta{display:flex; align-items:center; gap:12px;}
     .btn{
       display:inline-flex; align-items:center; justify-content:center; gap:8px;
@@ -133,16 +142,6 @@
     .btn-primary:hover{
       filter:brightness(1.08);
       box-shadow:0 16px 36px rgba(124,194,66,.4);
-    }
-    .btn-secondary{
-      background:var(--surface);
-      border:1px solid var(--line);
-      color:var(--text);
-      box-shadow:0 8px 20px rgba(0,0,0,.2);
-    }
-    .btn-secondary:hover{
-      border-color:var(--accent);
-      color:var(--accent);
     }
 
     .burger{display:none; border:1px solid var(--line); background:var(--surface); border-radius:10px; padding:9px 10px; cursor:pointer; color:var(--text);}
@@ -256,50 +255,24 @@
     .paper li{margin:8px 0;}
     .paper a{color:var(--accent);}
     .muted{color:var(--muted);}
-    .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;}
 
-    /* ---------- Footer ---------- */
-    footer{
-      background:var(--bg-alt);
-      color:var(--muted);
-      padding:24px 0;
-      border-top:1px solid var(--line);
-    }
-    .footer-compact{
-      display:flex;
-      justify-content:space-between;
-      align-items:flex-start;
-      gap:20px;
-      flex-wrap:wrap;
-      font-size:13px;
-      line-height:1.8;
-    }
-    .footer-compact .left{min-width:300px;}
-    .footer-compact .right{text-align:right;}
-    .footer-compact a{
-      color:var(--accent);
-      text-decoration:none;
-      transition: opacity .2s ease;
-    }
-    .footer-compact a:hover{opacity:.8;}
-
-    /* ---------- Reveal on scroll ---------- */
-    .reveal{opacity:0; transform:translateY(14px); transition: opacity .55s ease, transform .55s ease;}
-    .reveal.show{opacity:1; transform:translateY(0);}
-    @media (prefers-reduced-motion: reduce){
-      html{scroll-behavior:auto}
-      .reveal{opacity:1; transform:none; transition:none}
-      .btn{transition:none}
-    }
+    /* ---------- FOOTER ---------- */
+    footer{background:var(--bg-alt);color:var(--muted);padding:calc(8px * 10) 0 calc(8px * 4);border-top:1px solid var(--line);}
+    .footer-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));gap:calc(8px * 6);margin-bottom:calc(8px * 8);padding-bottom:calc(8px * 8);border-bottom:1px solid var(--line);}
+    .footer-col h4{font-size:14px;font-weight:700;margin:0 0 calc(8px * 3);text-transform:uppercase;letter-spacing:.5px;}
+    .footer-col p{font-size:13px;line-height:1.8;margin:0 0 calc(8px * 2);}
+    .footer-col a{display:block;color:var(--accent);font-size:13px;margin-bottom:calc(8px * 2);transition:opacity .2s ease;}
+    .footer-col a:hover{opacity:.8;}
+    .footer-contact a{font-weight:700;font-size:14px;}
+    .footer-bottom{text-align:center;font-size:12px;color:rgba(255,255,255,.4);}
 
     /* ---------- RESPONSIVE ---------- */
     @media (max-width: 920px){
       .menu{display:none}
       .burger{display:inline-block}
-      .footer-compact .right{text-align:left}
+      .footer-grid{grid-template-columns:1fr}
     }
 
-    /* Mobile optimization for very small screens */
     @media (max-width:480px){
       .brand .logo{width:48px; height:48px;}
       .brand .logo img{width:48px; height:48px;}
@@ -325,55 +298,51 @@
           <img src="/public/assets/Logo/UPDATED%20SHIELD.png" alt="CTCONTECH Logo">
         </div>
         <div>
-          <div class="wordmark" aria-label="CTCONTECH">
-            <span>CTCON</span><span>TECH</span>
-          </div>
-          <small>Reliable remote support</small>
+          <div class="wordmark">CTCONTECH</div>
+          <small>Concept to Creation</small>
         </div>
       </a>
 
       <nav class="menu" aria-label="Primary">
         <a href="index.html">HOME</a>
-        <a href="web-development.html">WEB DEVELOPMENT</a>
-        <a href="process-automation.html">PROCESS AUTOMATION</a>
+        <div class="dropdown">
+          <a href="#">SERVICES <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></a>
+          <div class="dropdown-menu">
+            <a href="web-design.html">Website Design &amp; Development</a>
+            <a href="web-hosting.html">Web Hosting</a>
+          </div>
+        </div>
         <a href="portfolio.html">PORTFOLIO</a>
+        <a href="contact.html">CONTACT</a>
       </nav>
 
       <div class="cta">
         <button class="burger" id="burger" aria-label="Open menu" aria-controls="mobilePanel" aria-expanded="false">
           <span></span><span></span><span></span>
         </button>
-
-        <a class="btn btn-primary"
-           href="https://wa.me/27823203406?text=Hi%20CTCONTECH%2C%20I%27d%20like%20to%20request%20a%20quote."
-           target="_blank" rel="noopener">
-          Request a Quote
-        </a>
+        <a class="btn btn-primary" href="https://wa.me/27823203406?text=Hi%20CTCONTECH%2C%20I%20need%20a%20website.%20Can%20we%20discuss%3F" target="_blank" rel="noopener">Get Started</a>
       </div>
     </div>
   </header>
 
   <div class="mobile-panel" id="mobilePanel" aria-label="Mobile menu">
     <a href="index.html">HOME</a>
-      <a href="web-development.html">WEB DEVELOPMENT</a>
-      <a href="process-automation.html">PROCESS AUTOMATION</a>
-      <a href="portfolio.html">PORTFOLIO</a>
+    <a href="#">SERVICES</a>
+    <a href="web-design.html" style="padding-left:36px;font-size:12px;">Website Design &amp; Development</a>
+    <a href="web-hosting.html" style="padding-left:36px;font-size:12px;">Web Hosting</a>
+    <a href="portfolio.html">PORTFOLIO</a>
+    <a href="contact.html">CONTACT</a>
     <div class="mobile-cta">
-      <a class="btn btn-primary"
-         href="https://wa.me/27823203406?text=Hi%20CTCONTECH%2C%20I%27d%20like%20to%20request%20a%20quote."
-         target="_blank" rel="noopener">
-        Request a Quote
-      </a>
+      <a class="btn btn-primary" href="https://wa.me/27823203406?text=Hi%20CTCONTECH%2C%20I%20need%20a%20website." target="_blank" rel="noopener">Get Started</a>
     </div>
   </div>
 
   <!-- HERO -->
   <section class="hero">
     <div class="hero-content">
-      <h1>Terms</h1>
-      <p>
-        These Terms apply to your use of the CTCONTECH website and your interactions with us when requesting support or a quote.
-      </p>
+      <span class="eyebrow">Legal</span>
+      <h1>Terms &amp; Conditions</h1>
+      <p>These terms govern your use of the CTCONTECH website and the web design, development, and hosting services we provide.</p>
     </div>
   </section>
 
@@ -381,131 +350,160 @@
   <main>
     <div class="container">
       <div class="paper">
-        <h2>1) About CTCONTECH</h2>
-        <p>
-          CTCONTECH is a division of CTCON (Pty) Ltd, offering remote IT support and website development services.
-        </p>
 
-        <h2>2) Using this website</h2>
+        <h2>1. About Us</h2>
+        <p>CTCONTECH is a trading name of <strong>CTCON (Pty) Ltd</strong>, a company registered in South Africa (Reg. No. 2021/559551/07), based in Cape Town.</p>
+        <p>We provide website design, development, and hosting services for businesses and professionals.</p>
+
+        <h2>2. Acceptance of Terms</h2>
+        <p>By using this website, requesting a quote, or engaging our services, you agree to these Terms and Conditions. If you do not agree, please do not use the website or services.</p>
+
+        <h2>3. Services Covered</h2>
+        <p>Our services may include, depending on your package and agreement:</p>
         <ul>
-          <li>You may use this website for lawful purposes only.</li>
-          <li>You may not attempt to disrupt the site, probe security, or misuse content.</li>
-          <li>We may update or remove content at any time.</li>
+          <li>Website design and front-end development.</li>
+          <li>CMS setup and integrations.</li>
+          <li>Website hosting, deployment, and maintenance.</li>
+          <li>Domain and DNS configuration support.</li>
+        </ul>
+        <p>Any additional work outside the agreed scope is treated as a variation and may incur additional fees.</p>
+
+        <h2>4. Quotes and Proposals</h2>
+        <ul>
+          <li>Quotes are valid for 14 days unless otherwise stated.</li>
+          <li>All quotes are based on the information provided at the time of estimation.</li>
+          <li>Changes in scope, timelines, or deliverables may result in revised pricing.</li>
         </ul>
 
-        <h2>3) Quotes and service delivery</h2>
+        <h2>5. Client Responsibilities</h2>
+        <p>To deliver your project on time, you agree to:</p>
         <ul>
-          <li>Quotes are based on the information you provide and may change if scope changes.</li>
-          <li>Service availability depends on scheduling and the nature of the request.</li>
-          <li>Remote support may require you to approve access methods/tools; we only proceed with your permission.</li>
+          <li>Provide accurate content, branding assets, and required access credentials.</li>
+          <li>Review drafts and provide feedback within agreed timelines.</li>
+          <li>Ensure you have rights to all text, images, logos, and media supplied to us.</li>
+        </ul>
+        <p>Project timelines may be delayed where required client input is not provided on time.</p>
+
+        <h2>6. Payment Terms</h2>
+        <ul>
+          <li>A deposit may be required before work starts.</li>
+          <li>Milestone and final payments are due as specified in your proposal or invoice.</li>
+          <li>Hosting and maintenance plans are billed monthly in advance unless agreed otherwise.</li>
+          <li>Late payments may result in paused work or temporary service suspension after notice.</li>
         </ul>
 
-        <h2>4) Third-party platforms</h2>
-        <p>
-          This website links to third-party services (such as WhatsApp). We are not responsible for third-party availability
-          or privacy practices on those platforms.
-        </p>
-
-        <h2>5) Disclaimers</h2>
+        <h2>7. Revisions and Approvals</h2>
         <ul>
-          <li>This website is provided on an “as is” basis.</li>
-          <li>We do not guarantee that all information is complete, current, or error-free.</li>
+          <li>Each package includes a defined number of revision rounds.</li>
+          <li>Additional revision rounds or major rework are billed separately.</li>
+          <li>A deliverable is deemed approved once accepted by you in writing or if no feedback is received within 7 days after delivery.</li>
         </ul>
 
-        <h2>6) Limitation of liability</h2>
-        <p>
-          To the extent permitted by law, CTCONTECH/CTCON will not be liable for indirect or consequential losses arising from
-          website use, delays, interruptions, or third-party service failures. This does not exclude liability that cannot be
-          excluded by law.
-        </p>
+        <h2>8. Hosting and Domain Services</h2>
+        <ul>
+          <li>Hosting uptime and performance depend on third-party infrastructure providers.</li>
+          <li>Domain registrations and renewals remain your responsibility unless we manage them under a written agreement.</li>
+          <li>Failure to pay hosting/domain fees on time may cause suspension, expiration, or loss of services.</li>
+        </ul>
 
-        <h2>7) Privacy</h2>
-        <p>
-          Please review our <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy</a>.
-        </p>
+        <h2>9. Third-Party Tools and Integrations</h2>
+        <p>Your website may rely on third-party services such as Netlify, Vercel, payment gateways, maps, fonts, plugins, or APIs.</p>
+        <p>We are not liable for outages, policy changes, pricing changes, or feature removals imposed by third-party providers.</p>
 
-        <h2>8) Changes to these Terms</h2>
-        <p>
-          We may update these Terms from time to time. The “Last updated” date reflects the most recent revision.
-        </p>
+        <h2>10. Intellectual Property</h2>
+        <ul>
+          <li>Upon full payment, you receive ownership of final approved website deliverables created specifically for your project, unless otherwise agreed.</li>
+          <li>We retain ownership of our pre-existing frameworks, reusable code libraries, and internal tools.</li>
+          <li>You grant us a non-exclusive right to showcase completed work in our portfolio unless explicitly agreed otherwise in writing.</li>
+        </ul>
 
-        <h2>Contact</h2>
+        <h2>11. Acceptable Use</h2>
+        <p>You may not use our website or hosted services for unlawful, abusive, fraudulent, or malicious activities, including malware distribution, phishing, or copyright infringement.</p>
+        <p>We reserve the right to suspend or terminate services that violate applicable law or these Terms.</p>
+
+        <h2>12. Warranties and Disclaimers</h2>
+        <p>Services and website content are provided on an "as is" and "as available" basis.</p>
+        <ul>
+          <li>We do not guarantee uninterrupted or error-free operation at all times.</li>
+          <li>We do not warrant compatibility with every browser, plugin, or external system unless explicitly scoped.</li>
+          <li>You are responsible for maintaining backups unless a managed backup service is included in your plan.</li>
+        </ul>
+
+        <h2>13. Limitation of Liability</h2>
+        <p>To the fullest extent permitted by law, CTCONTECH and CTCON (Pty) Ltd are not liable for indirect, incidental, special, or consequential damages, including loss of data, profit, revenue, or goodwill arising from use of our website or services.</p>
+        <p>Where liability cannot be excluded, our total liability is limited to the amount paid by you for the specific service giving rise to the claim.</p>
+
+        <h2>14. Termination, Governing Law, and Contact</h2>
+        <p>Either party may terminate a service agreement in writing subject to any agreed notice period and settlement of outstanding amounts.</p>
+        <p>These Terms are governed by the laws of the Republic of South Africa. Any disputes are subject to the jurisdiction of South African courts.</p>
         <p class="muted">
-          Email: <b>ctconenquiry@gmail.com</b><br/>
-          Phone/WhatsApp: <b>082 320 3406</b><br/>
-          Last updated: <b>January 12, 2026</b>
+          Questions about these Terms?<br/><br/>
+          <strong>CTCON (Pty) Ltd (trading as CTCONTECH)</strong><br/>
+          Email: <a href="mailto:ctconenquiry@gmail.com">ctconenquiry@gmail.com</a><br/>
+          Phone / WhatsApp: <a href="tel:+27823203406">082 320 3406</a><br/>
+          Location: Cape Town, South Africa<br/><br/>
+          Please also review our <a href="privacy.html">Privacy Policy</a>.<br/>
+          Last updated: <strong>March 2026</strong>
         </p>
+
       </div>
     </div>
   </main>
 
-  <!-- COMPACT FOOTER -->
+  <!-- FOOTER -->
   <footer>
-    <div class="container footer-compact">
-      <div class="left">
-        © <span id="y"></span> CTCONTECH (a division of CTCON (Pty) Ltd)<br/>
-        Company Registration No: <span class="mono">2021/559551/07</span>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4>CTCONTECH</h4>
+          <p>Custom web design and development for small businesses. Based in Cape Town. Serving nationwide.</p>
+          <div style="margin-top:calc(8px * 3);">
+            <strong style="display:block; margin-bottom:calc(8px * 1);">Headquarters</strong>
+            <p style="margin:0; font-size:13px;">Cape Town, South Africa</p>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <a href="web-design.html">Website Design &amp; Development</a>
+          <a href="web-hosting.html">Web Hosting</a>
+          <a href="portfolio.html">Portfolio</a>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <div class="footer-contact">
+            <a href="tel:+27823203406">082 320 3406</a>
+            <a href="mailto:ctconenquiry@gmail.com">ctconenquiry@gmail.com</a>
+            <a href="https://wa.me/27823203406" target="_blank" rel="noopener">WhatsApp Us</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html" target="_blank" rel="noopener">Terms &amp; Conditions</a>
+          <p style="font-size:12px; margin-top:calc(8px * 3);">
+            &copy; <span id="y"></span> CTCONTECH (CTCON (Pty) Ltd)<br/>
+            Reg: 2021/559551/07
+          </p>
+        </div>
       </div>
-      <div class="right">
-        Remote support nationwide • On-site visits by appointment • Cape Town<br/>
-        <a href="privacy.html" target="_blank" rel="noopener">Privacy</a> • <a href="terms.html" target="_blank" rel="noopener">Terms</a>
+      <div class="footer-bottom">
+        <p>Ready to launch? Let's build something great. <a href="https://wa.me/27823203406" target="_blank" rel="noopener" style="color:var(--accent);">Start here</a></p>
       </div>
     </div>
   </footer>
 
   <script>
-    // Nav: add shadow on scroll
-    const navEl = document.querySelector('.nav');
-    const onScroll = () => navEl?.classList.toggle('scrolled', window.scrollY > 8);
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
+    const navEl=document.querySelector('.nav');
+    window.addEventListener('scroll',()=>navEl?.classList.toggle('scrolled',window.scrollY>8),{passive:true});
 
-    // Mobile menu UX (match Index)
-    const burger = document.getElementById('burger');
-    const panel = document.getElementById('mobilePanel');
-    function closeMenu() {
-      panel?.classList.remove('open');
-      burger?.setAttribute('aria-expanded', 'false');
-    }
-    burger?.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const open = panel.classList.toggle('open');
-      burger.setAttribute('aria-expanded', String(open));
-    });
-    panel?.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
-    document.addEventListener('click', (e) => {
-      if (!panel?.classList.contains('open')) return;
-      const target = e.target;
-      if (!(target instanceof Node)) return;
-      const clickedInside = panel.contains(target) || burger?.contains(target);
-      if (!clickedInside) closeMenu();
-    });
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeMenu();
-    });
+    const burger=document.getElementById('burger'),panel=document.getElementById('mobilePanel');
+    function closeMenu(){panel?.classList.remove('open');burger?.setAttribute('aria-expanded','false');}
+    burger?.addEventListener('click',e=>{e.stopPropagation();const o=panel.classList.toggle('open');burger.setAttribute('aria-expanded',String(o));});
+    panel?.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMenu));
+    document.addEventListener('click',e=>{if(!panel?.classList.contains('open'))return;if(!panel.contains(e.target)&&!burger?.contains(e.target))closeMenu();});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu();});
 
-    // Footer: auto year
-    const yEl = document.getElementById('y');
-    if (yEl) yEl.textContent = String(new Date().getFullYear());
-
-    // Reveal on scroll (replay on back/forward)
-    let revealObserver = null;
-    function setupReveals() {
-      const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (prefersReduced) return;
-
-      document.querySelectorAll('.hero, main, footer').forEach(el => el.classList.add('reveal'));
-      document.querySelectorAll('.reveal').forEach(el => el.classList.remove('show'));
-
-      if (revealObserver) revealObserver.disconnect();
-      revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => entry.isIntersecting && entry.target.classList.add('show'));
-      }, { threshold: 0.12 });
-
-      document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-    }
-    setupReveals();
-    window.addEventListener('pageshow', setupReveals);
+    document.getElementById('y').textContent=new Date().getFullYear();
   </script>
 </body>
 </html>

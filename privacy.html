@@ -1,4 +1,4 @@
-<!-- =========================
+﻿<!-- =========================
      FILE: privacy.html
      ========================= -->
 <!doctype html>
@@ -6,7 +6,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>CTCONTECH – Privacy Policy</title>
+  <title>Privacy Policy – CTCONTECH</title>
 
   <link rel="icon" type="image/png" href="/public/assets/Logo/UPDATED%20SHIELD.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -111,6 +111,16 @@
       transform:scaleX(1);
       opacity:1;
     }
+
+    .dropdown{position:relative;}
+    .dropdown > a{display:inline-flex;align-items:center;gap:4px;cursor:default;}
+    .dropdown > a .chevron{width:12px;height:12px;transition:transform .2s;}
+    .dropdown:hover > a .chevron{transform:rotate(180deg);}
+    .dropdown-menu{position:absolute;top:100%;left:50%;transform:translateX(-50%);min-width:240px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:8px 0;margin-top:12px;opacity:0;visibility:hidden;transform:translateX(-50%) translateY(8px);transition:opacity .2s,visibility .2s,transform .2s;box-shadow:0 16px 40px rgba(0,0,0,.4);z-index:100;}
+    .dropdown:hover .dropdown-menu{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0);}
+    .dropdown-menu a{display:block;padding:10px 20px;font-size:13px;font-weight:600;color:var(--muted);transition:all .15s;white-space:nowrap;}
+    .dropdown-menu a:hover{color:var(--accent);background:rgba(124,194,66,.06);}
+    .dropdown-menu a::after{display:none;}
 
     .cta{display:flex; align-items:center; gap:12px;}
     .btn{
@@ -259,29 +269,14 @@
     .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;}
 
     /* ---------- Footer ---------- */
-    footer{
-      background:var(--bg-alt);
-      color:var(--muted);
-      padding:24px 0;
-      border-top:1px solid var(--line);
-    }
-    .footer-compact{
-      display:flex;
-      justify-content:space-between;
-      align-items:flex-start;
-      gap:20px;
-      flex-wrap:wrap;
-      font-size:13px;
-      line-height:1.8;
-    }
-    .footer-compact .left{min-width:300px;}
-    .footer-compact .right{text-align:right;}
-    .footer-compact a{
-      color:var(--accent);
-      text-decoration:none;
-      transition: opacity .2s ease;
-    }
-    .footer-compact a:hover{opacity:.8;}
+    footer{background:var(--bg-alt);color:var(--muted);padding:calc(8px * 10) 0 calc(8px * 4);border-top:1px solid var(--line);}
+    .footer-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));gap:calc(8px * 6);margin-bottom:calc(8px * 8);padding-bottom:calc(8px * 8);border-bottom:1px solid var(--line);}
+    .footer-col h4{font-size:14px;font-weight:700;margin:0 0 calc(8px * 3);text-transform:uppercase;letter-spacing:.5px;}
+    .footer-col p{font-size:13px;line-height:1.8;margin:0 0 calc(8px * 2);}
+    .footer-col a{display:block;color:var(--accent);font-size:13px;margin-bottom:calc(8px * 2);transition:opacity .2s ease;}
+    .footer-col a:hover{opacity:.8;}
+    .footer-contact a{font-weight:700;font-size:14px;}
+    .footer-bottom{text-align:center;font-size:12px;color:rgba(255,255,255,.4);}
 
     /* ---------- Reveal on scroll ---------- */
     .reveal{opacity:0; transform:translateY(14px); transition: opacity .55s ease, transform .55s ease;}
@@ -296,7 +291,7 @@
     @media (max-width: 920px){
       .menu{display:none}
       .burger{display:inline-block}
-      .footer-compact .right{text-align:left}
+      .footer-grid{grid-template-columns:1fr}
     }
 
     /* Mobile optimization for very small screens */
@@ -325,56 +320,51 @@
           <img src="/public/assets/Logo/UPDATED%20SHIELD.png" alt="CTCONTECH Logo">
         </div>
         <div>
-          <div class="wordmark" aria-label="CTCONTECH">
-            <span>CTCON</span><span>TECH</span>
-          </div>
-          <small>Reliable remote support</small>
+          <div class="wordmark">CTCONTECH</div>
+          <small>Concept to Creation</small>
         </div>
       </a>
 
       <nav class="menu" aria-label="Primary">
         <a href="index.html">HOME</a>
-        <a href="web-development.html">WEB DEVELOPMENT</a>
-        <a href="process-automation.html">PROCESS AUTOMATION</a>
+        <div class="dropdown">
+          <a href="#">SERVICES <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></a>
+          <div class="dropdown-menu">
+            <a href="web-design.html">Website Design &amp; Development</a>
+            <a href="web-hosting.html">Web Hosting</a>
+          </div>
+        </div>
         <a href="portfolio.html">PORTFOLIO</a>
+        <a href="contact.html">CONTACT</a>
       </nav>
 
       <div class="cta">
         <button class="burger" id="burger" aria-label="Open menu" aria-controls="mobilePanel" aria-expanded="false">
           <span></span><span></span><span></span>
         </button>
-
-        <a class="btn btn-primary"
-           href="https://wa.me/27823203406?text=Hi%20CTCONTECH%2C%20I%27d%20like%20to%20request%20a%20quote."
-           target="_blank" rel="noopener">
-          Request a Quote
-        </a>
+        <a class="btn btn-primary" href="https://wa.me/27823203406?text=Hi%20CTCONTECH%2C%20I%20need%20a%20website.%20Can%20we%20discuss%3F" target="_blank" rel="noopener">Get Started</a>
       </div>
     </div>
   </header>
 
   <div class="mobile-panel" id="mobilePanel" aria-label="Mobile menu">
     <a href="index.html">HOME</a>
-      <a href="web-development.html">WEB DEVELOPMENT</a>
-      <a href="process-automation.html">PROCESS AUTOMATION</a>
-      <a href="portfolio.html">PORTFOLIO</a>
+    <a href="#">SERVICES</a>
+    <a href="web-design.html" style="padding-left:36px;font-size:12px;">Website Design &amp; Development</a>
+    <a href="web-hosting.html" style="padding-left:36px;font-size:12px;">Web Hosting</a>
+    <a href="portfolio.html">PORTFOLIO</a>
+    <a href="contact.html">CONTACT</a>
     <div class="mobile-cta">
-      <a class="btn btn-primary"
-         href="https://wa.me/27823203406?text=Hi%20CTCONTECH%2C%20I%27d%20like%20to%20request%20a%20quote."
-         target="_blank" rel="noopener">
-        Request a Quote
-      </a>
+      <a class="btn btn-primary" href="https://wa.me/27823203406?text=Hi%20CTCONTECH%2C%20I%20need%20a%20website." target="_blank" rel="noopener">Get Started</a>
     </div>
   </div>
 
   <!-- HERO -->
   <section class="hero">
     <div class="hero-content">
+      <span class="eyebrow">Legal</span>
       <h1>Privacy Policy</h1>
-      <p>
-        We respect your privacy. This page explains what information we collect, how we use it,
-        and how you can contact us about your data.
-      </p>
+      <p>We respect your privacy. This page explains what information we collect, how we use it, and your rights regarding your data.</p>
     </div>
   </section>
 
@@ -382,142 +372,174 @@
   <main>
     <div class="container">
       <div class="paper">
-        <h2>Who we are</h2>
-        <p>
-          CTCONTECH is a practical division of CTCON (Pty) Ltd, providing remote IT support and website development services.
-        </p>
 
-        <h2>What information we collect</h2>
+        <h2>1. Who We Are</h2>
+        <p>CTCONTECH is a trading name of <strong>CTCON (Pty) Ltd</strong>, a web design and development company based in Cape Town, South Africa. Company Registration No: 2021/559551/07.</p>
+        <p>We build websites and provide web hosting services for small businesses. This Privacy Policy applies to our website and any services we provide.</p>
+
+        <h2>2. Information We Collect</h2>
+        <p>We may collect the following categories of personal information:</p>
         <ul>
-          <li><b>Contact details</b> you provide (name, phone number, email address).</li>
-          <li><b>Enquiry details</b> (your message, preferred contact time, and the issue you need help with).</li>
-          <li><b>Support-related details</b> you share to troubleshoot (only what’s necessary for the job).</li>
-          <li><b>Basic technical logs</b> from hosting providers (e.g., IP address, browser type) for security and performance.</li>
+          <li><strong>Contact details</strong> &mdash; name, phone number, and email address, provided when you reach out to us.</li>
+          <li><strong>Project details</strong> &mdash; information about your business and website requirements that you share during enquiries or project discussions.</li>
+          <li><strong>Communication records</strong> &mdash; messages exchanged via email, WhatsApp, or phone for the purpose of delivering services.</li>
+          <li><strong>Technical logs</strong> &mdash; IP address, browser type, and page visit data automatically collected by our hosting provider (Netlify) for security and performance purposes.</li>
+          <li><strong>Form submissions</strong> &mdash; data submitted through the contact form on our website.</li>
         </ul>
 
-        <h2>How we collect it</h2>
+        <h2>3. How We Collect It</h2>
         <ul>
-          <li>When you contact us via WhatsApp, email, phone, or through website links that open those services.</li>
-          <li>From basic hosting logs generated when you load pages (typical website operation).</li>
+          <li>Directly from you when you contact us via the website contact form, email, phone, or WhatsApp.</li>
+          <li>Automatically through hosting logs when you visit our site (standard website operation).</li>
+          <li>Through third-party platforms such as Google Maps embedded on our contact page (subject to Google's own Privacy Policy).</li>
         </ul>
 
-        <h2>WhatsApp form on the Home page</h2>
-        <p>
-          The “Describe your issue” form on the Home page creates a pre-filled WhatsApp message on your device.
-          Your message is not stored on the website itself.
-        </p>
-
-        <h2>How we use your information</h2>
+        <h2>4. How We Use Your Information</h2>
         <ul>
-          <li>To respond to enquiries and provide quotes.</li>
-          <li>To deliver IT support or website services you request.</li>
-          <li>To schedule call-backs and track service delivery when needed.</li>
-          <li>To maintain security and prevent abuse.</li>
+          <li>To respond to your enquiries and provide quotes or proposals.</li>
+          <li>To deliver the website design, development, or hosting services you have engaged us for.</li>
+          <li>To communicate project updates, revisions, and milestones.</li>
+          <li>To issue invoices and manage billing.</li>
+          <li>To improve the performance and security of our website.</li>
+          <li>To comply with applicable legal and regulatory obligations.</li>
         </ul>
 
-        <h2>Sharing your information</h2>
-        <p>
-          We do not sell your personal information. We may share limited information only when needed to deliver the service
-          (for example, with hosting/email providers or platforms you request support for).
-        </p>
+        <h2>5. Legal Basis for Processing</h2>
+        <p>We process your personal information on the following grounds:</p>
+        <ul>
+          <li><strong>Contractual necessity</strong> &mdash; to fulfil services you have requested.</li>
+          <li><strong>Legitimate interests</strong> &mdash; to operate and improve our business, respond to enquiries, and prevent fraud.</li>
+          <li><strong>Consent</strong> &mdash; where you have voluntarily provided information through a contact form or direct communication.</li>
+          <li><strong>Legal obligation</strong> &mdash; where we are required to retain records under South African law.</li>
+        </ul>
 
-        <h2>Retention</h2>
-        <p>
-          We keep information only as long as needed for service delivery, support history, and reasonable business record-keeping.
-        </p>
+        <h2>6. Sharing Your Information</h2>
+        <p>We do not sell, rent, or trade your personal information. We may share limited information only where strictly necessary:</p>
+        <ul>
+          <li><strong>Service providers</strong> &mdash; hosting platforms (Netlify, Vercel), domain registrars, and payment processors used in delivering services to you.</li>
+          <li><strong>Legal requirements</strong> &mdash; where we are required to disclose information by law, court order, or regulatory authority.</li>
+          <li><strong>Business transfers</strong> &mdash; in the event of a merger, acquisition, or sale of assets, your data may transfer to the successor entity.</li>
+        </ul>
+        <p>All third-party providers are required to handle your data securely and only for the purposes we specify.</p>
 
-        <h2>Security</h2>
-        <p>
-          We use reasonable safeguards appropriate for a small business service provider. No system is perfectly secure,
-          but we aim to protect your data from unauthorised access.
-        </p>
+        <h2>7. Third-Party Services</h2>
+        <p>Our website uses the following third-party services that may process data independently:</p>
+        <ul>
+          <li><strong>Google Maps</strong> &mdash; embedded on our contact page. Subject to <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a>.</li>
+          <li><strong>Google Fonts</strong> &mdash; used to load web fonts. Subject to <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a>.</li>
+          <li><strong>Netlify</strong> &mdash; our hosting and form provider. Subject to <a href="https://www.netlify.com/privacy/" target="_blank" rel="noopener">Netlify's Privacy Policy</a>.</li>
+          <li><strong>WhatsApp</strong> &mdash; clicking WhatsApp links opens the app on your device. Subject to <a href="https://www.whatsapp.com/legal/privacy-policy" target="_blank" rel="noopener">WhatsApp's Privacy Policy</a>.</li>
+        </ul>
 
-        <h2>Your rights</h2>
-        <p>
-          You can request access, correction, or deletion of your information where applicable.
-        </p>
+        <h2>8. Cookies &amp; Tracking</h2>
+        <p>Our website does not use advertising or tracking cookies. We do not run analytics platforms such as Google Analytics. Hosting logs (IP address, browser, page requests) are retained by Netlify for operational and security purposes.</p>
+        <p>If you interact with embedded third-party content (e.g. Google Maps), those services may set their own cookies on your device. Please refer to their respective privacy policies.</p>
 
-        <h2>Contact</h2>
+        <h2>9. Data Retention</h2>
+        <p>We retain personal information only as long as necessary for the purpose it was collected:</p>
+        <ul>
+          <li>Enquiry and contact records &mdash; up to 2 years.</li>
+          <li>Client project records and communications &mdash; for the duration of the project plus 5 years for business record-keeping.</li>
+          <li>Invoicing and financial records &mdash; as required by South African law (generally 5 years).</li>
+        </ul>
+        <p>After the applicable retention period, data is securely deleted or anonymised.</p>
+
+        <h2>10. Security</h2>
+        <p>We take the security of your personal information seriously and implement reasonable technical and organisational safeguards, including:</p>
+        <ul>
+          <li>HTTPS/SSL encryption on all web pages.</li>
+          <li>Access restricted to authorised personnel only.</li>
+          <li>Regular software and dependency updates.</li>
+        </ul>
+        <p>No method of transmission over the internet is 100% secure. While we strive to protect your data, we cannot guarantee absolute security.</p>
+
+        <h2>11. Your Rights (POPIA)</h2>
+        <p>Under the <strong>Protection of Personal Information Act (POPIA)</strong>, you have the right to:</p>
+        <ul>
+          <li><strong>Access</strong> &mdash; request a copy of the personal information we hold about you.</li>
+          <li><strong>Correction</strong> &mdash; request that inaccurate or incomplete information be corrected.</li>
+          <li><strong>Deletion</strong> &mdash; request erasure of your personal information where there is no lawful reason for us to continue processing it.</li>
+          <li><strong>Objection</strong> &mdash; object to the processing of your personal information in certain circumstances.</li>
+          <li><strong>Withdrawal of consent</strong> &mdash; withdraw consent at any time where processing is based on consent.</li>
+          <li><strong>Complaint</strong> &mdash; lodge a complaint with the <a href="https://inforegulator.org.za" target="_blank" rel="noopener">Information Regulator of South Africa</a>.</li>
+        </ul>
+        <p>To exercise any of these rights, please contact us using the details below.</p>
+
+        <h2>12. Children's Privacy</h2>
+        <p>Our services are directed at businesses and adults. We do not knowingly collect personal information from persons under the age of 18.</p>
+
+        <h2>13. Changes to This Policy</h2>
+        <p>We may update this Privacy Policy from time to time. Material changes will be reflected by an updated "Last updated" date below. We encourage you to review this page periodically.</p>
+
+        <h2>14. Contact Us</h2>
         <p class="muted">
-          Email: <b>ctconenquiry@gmail.com</b><br/>
-          Phone/WhatsApp: <b>082 320 3406</b><br/>
-          Last updated: <b>January 12, 2026</b>
+          If you have any questions about this Privacy Policy or wish to exercise your rights, please contact us:<br/><br/>
+          <strong>CTCON (Pty) Ltd (trading as CTCONTECH)</strong><br/>
+          Email: <a href="mailto:ctconenquiry@gmail.com">ctconenquiry@gmail.com</a><br/>
+          Phone / WhatsApp: <a href="tel:+27823203406">082 320 3406</a><br/>
+          Location: Cape Town, South Africa<br/><br/>
+          Last updated: <strong>March 2026</strong>
         </p>
+
       </div>
+    </div>
     </div>
   </main>
 
-  <!-- COMPACT FOOTER -->
+  <!-- FOOTER -->
   <footer>
-    <div class="container footer-compact">
-      <div class="left">
-        © <span id="y"></span> CTCONTECH (a division of CTCON (Pty) Ltd)<br/>
-        Company Registration No: <span class="mono">2021/559551/07</span>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4>CTCONTECH</h4>
+          <p>Custom web design and development for small businesses. Based in Cape Town. Serving nationwide.</p>
+          <div style="margin-top:calc(8px * 3);">
+            <strong style="display:block; margin-bottom:calc(8px * 1);">Headquarters</strong>
+            <p style="margin:0; font-size:13px;">Cape Town, South Africa</p>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <a href="web-design.html">Website Design &amp; Development</a>
+          <a href="web-hosting.html">Web Hosting</a>
+          <a href="portfolio.html">Portfolio</a>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <div class="footer-contact">
+            <a href="tel:+27823203406">082 320 3406</a>
+            <a href="mailto:ctconenquiry@gmail.com">ctconenquiry@gmail.com</a>
+            <a href="https://wa.me/27823203406" target="_blank" rel="noopener">WhatsApp Us</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html" target="_blank" rel="noopener">Terms &amp; Conditions</a>
+          <p style="font-size:12px; margin-top:calc(8px * 3);">
+            © <span id="y"></span> CTCONTECH (CTCON (Pty) Ltd)<br/>
+            Reg: 2021/559551/07
+          </p>
+        </div>
       </div>
-      <div class="right">
-        Remote support nationwide • On-site visits by appointment • Cape Town<br/>
-        <a href="privacy.html" target="_blank" rel="noopener">Privacy</a> • <a href="terms.html" target="_blank" rel="noopener">Terms</a>
+      <div class="footer-bottom">
+        <p>Ready to launch? Let's build something great. <a href="https://wa.me/27823203406" target="_blank" rel="noopener" style="color:var(--accent);">Start here</a></p>
       </div>
     </div>
   </footer>
 
   <script>
-    // Nav: add shadow on scroll
-    const navEl = document.querySelector('.nav');
-    const onScroll = () => navEl?.classList.toggle('scrolled', window.scrollY > 8);
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
+    const navEl=document.querySelector('.nav');
+    window.addEventListener('scroll',()=>navEl?.classList.toggle('scrolled',window.scrollY>8),{passive:true});
 
-    // Mobile menu UX (match Index)
-    const burger = document.getElementById('burger');
-    const panel = document.getElementById('mobilePanel');
-    function closeMenu() {
-      panel?.classList.remove('open');
-      burger?.setAttribute('aria-expanded', 'false');
-    }
-    burger?.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const open = panel.classList.toggle('open');
-      burger.setAttribute('aria-expanded', String(open));
-    });
-    panel?.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
-    document.addEventListener('click', (e) => {
-      if (!panel?.classList.contains('open')) return;
-      const target = e.target;
-      if (!(target instanceof Node)) return;
-      const clickedInside = panel.contains(target) || burger?.contains(target);
-      if (!clickedInside) closeMenu();
-    });
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeMenu();
-    });
+    const burger=document.getElementById('burger'),panel=document.getElementById('mobilePanel');
+    function closeMenu(){panel?.classList.remove('open');burger?.setAttribute('aria-expanded','false');}
+    burger?.addEventListener('click',e=>{e.stopPropagation();const o=panel.classList.toggle('open');burger.setAttribute('aria-expanded',String(o));});
+    panel?.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMenu));
+    document.addEventListener('click',e=>{if(!panel?.classList.contains('open'))return;if(!panel.contains(e.target)&&!burger?.contains(e.target))closeMenu();});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu();});
 
-    // Footer: auto year
-    const yEl = document.getElementById('y');
-    if (yEl) yEl.textContent = String(new Date().getFullYear());
-
-    // Reveal on scroll (replay on back/forward)
-    let revealObserver = null;
-    function setupReveals() {
-      const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (prefersReduced) return;
-
-      // Add reveal targets (idempotent)
-      document.querySelectorAll('.hero, main, footer').forEach(el => el.classList.add('reveal'));
-
-      // Reset state
-      document.querySelectorAll('.reveal').forEach(el => el.classList.remove('show'));
-
-      // Rebuild observer
-      if (revealObserver) revealObserver.disconnect();
-      revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => entry.isIntersecting && entry.target.classList.add('show'));
-      }, { threshold: 0.12 });
-
-      document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-    }
-    setupReveals();
-    window.addEventListener('pageshow', setupReveals);
+    document.getElementById('y').textContent=new Date().getFullYear();
   </script>
 </body>
 </html>
