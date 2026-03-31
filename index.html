@@ -1,4 +1,4 @@
-<!-- =========================
+﻿<!-- =========================
      CTCONTECH — Web Design & Development for Small Business
      ========================= -->
 <!doctype html>
@@ -413,25 +413,29 @@
       transform:scale(.95);
     }
 
+
     .value-card.active{
       opacity:1;
       transform:scale(1);
-      border-color:var(--accent);
-      box-shadow:0 20px 60px rgba(124,194,66,.25);
+      border-color:rgba(124,194,66,.28);
+      box-shadow:
+        0 0 0 1px rgba(124,194,66,.14),
+        0 8px 32px rgba(0,0,0,.3),
+        0 0 72px rgba(124,194,66,.07);
     }
 
     .value-card::before{
       content:"";
       position:absolute;
-      top:0; left:0;
-      width:4px; height:100%;
-      background:linear-gradient(180deg, var(--accent), var(--accent-dark));
-      transform:scaleY(0);
-      transition:transform .4s ease;
-      transform-origin:top;
+      inset:0;
+      border-radius:16px;
+      background:radial-gradient(ellipse at 20% 0%, rgba(124,194,66,.07) 0%, transparent 65%);
+      opacity:0;
+      transition:opacity .4s ease;
+      pointer-events:none;
     }
 
-    .value-card.active::before{transform:scaleY(1);}
+    .value-card.active::before{opacity:1;}
 
     .value-card .icon{
       margin-bottom:calc(var(--spacing) * 1.5);
@@ -1113,7 +1117,6 @@
               <h3>Kuils River Primary School</h3>
               <p>Modern website for 900+ learners. Staff directory, news portal, and parent communication hub.</p>
             </div>
-            <a class="btn btn-primary" href="https://kuilsriverprimary.co.za/" target="_blank" rel="noopener">View Live <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg></a>
           </div>
         </div>
 
@@ -1142,7 +1145,6 @@
               <h3>CTCONTECH Website</h3>
               <p>Our own site. Dark theme, particle network animation, WhatsApp integration. Proof of our own standards.</p>
             </div>
-            <a class="btn btn-primary" href="https://ctcontech.netlify.app/" target="_blank" rel="noopener">View Live <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg></a>
           </div>
         </div>
 
@@ -1273,7 +1275,6 @@
         <div class="footer-col">
           <h4>Contact</h4>
           <div class="footer-contact">
-            <a href="tel:+27823203406">082 320 3406</a>
             <a href="mailto:ctconenquiry@gmail.com">ctconenquiry@gmail.com</a>
             <a href="https://wa.me/27823203406" target="_blank" rel="noopener">WhatsApp Us</a>
           </div>
