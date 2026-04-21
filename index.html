@@ -867,6 +867,7 @@
       .menu{display:none}
       .burger{display:inline-block}
       .nav-contact{display:none}
+      .cta .btn{display:none}
     }
 
     @media (max-width:768px){
@@ -897,6 +898,7 @@
       .cta{gap:8px;}
       .btn{padding:12px 20px; font-size:13px; min-height:44px; flex:0 1 auto; max-width:160px; overflow:hidden; text-overflow:ellipsis;}
       .hero{min-height:500px; padding:80px 20px 60px;}
+      .hero .eyebrow{font-size:13px; letter-spacing:2px;}
       .hero h1{font-size:clamp(28px, 6vw, 42px);}
       .hero p{font-size:15px;}
       .container{width:min(100% - 20px, var(--max));}
@@ -1370,13 +1372,15 @@
       const ctx = canvas.getContext('2d');
       const hero = canvas.closest('.hero');
       let particles = [];
-      const PARTICLE_COUNT = 120;
-      const CONNECTION_DIST = 180;
+      const isMobile = window.innerWidth < 768;
+      const PARTICLE_COUNT = isMobile ? 50 : 120;
+      let CONNECTION_DIST = isMobile ? 100 : 180;
       let mouse = {x: null, y: null};
 
       function resize(){
         canvas.width = hero.offsetWidth;
         canvas.height = hero.offsetHeight;
+        CONNECTION_DIST = canvas.width < 768 ? 100 : 180;
         // Redistribute origins on resize
         particles.forEach(p => {
           p.originX = Math.random() * canvas.width;
