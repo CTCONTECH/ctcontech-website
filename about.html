@@ -102,6 +102,7 @@
     .mobile-panel.open{display:block;max-height:520px;opacity:1;transform:translateY(0);}
     .mobile-panel a{display:block;padding:14px 20px;border-bottom:1px solid var(--line);font-weight:700;font-size:13px;color:var(--muted);transition:color .2s;}
     .mobile-panel a:hover{color:var(--accent);}
+    .mobile-panel a.active{color:var(--accent);box-shadow:inset 3px 0 0 var(--accent);}
     .mobile-panel .mobile-cta{padding:12px 20px;}
     .mobile-panel .mobile-cta .btn{width:100%;}
 
@@ -256,7 +257,7 @@
   </header>
 
   <div class="mobile-panel" id="mobilePanel" aria-label="Mobile menu">
-    <a href="index.html">HOME</a>
+    <a href="index.html" class="active">HOME</a>
     <a href="#">SERVICES</a>
     <a href="web-design.html" style="padding-left:36px;font-size:12px;">Website Design &amp; Development</a>
     <a href="web-hosting.html" style="padding-left:36px;font-size:12px;">Web Hosting</a>
