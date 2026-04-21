@@ -182,8 +182,10 @@
     .reveal{opacity:0;transform:translateY(20px);transition:opacity .6s,transform .6s;}
     .reveal.show{opacity:1;transform:translateY(0);}
 
+    @media (max-width:920px){
+      .menu{display:none;}.burger{display:inline-block;}.nav-contact{display:none;}.cta .btn{display:none;}
+    }
     @media (max-width:768px){
-      .menu{display:none;}.burger{display:inline-block;}.nav-contact{display:none;}
       .hero{min-height:420px;padding:60px 20px 40px;}
       .process-steps{grid-template-columns:1fr;}
       .pricing-grid{grid-template-columns:1fr;}

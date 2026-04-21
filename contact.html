@@ -353,17 +353,20 @@
     }
 
     /* ---------- RESPONSIVE ---------- */
-    @media (max-width:768px){
+    @media (max-width:920px){
       .menu{display:none;}
       .burger{display:inline-block;}
+      .nav-contact{display:none;}
+      .cta .btn{display:none;}
+    }
+    @media (max-width:768px){
       .hero{min-height:420px; padding:60px 20px 40px;}
       .contact-info{grid-template-columns:1fr;}
       .contact-split{grid-template-columns:1fr;}
       .map-wrapper{min-height:300px;}
       .map-wrapper iframe{min-height:300px;}
       .contact-methods{grid-template-columns:1fr;}
-      .footer-inner{flex-direction:column;}
-      .footer-right{text-align:left;}
+      .footer-grid{grid-template-columns:1fr;}
     }
     @media (max-width:480px){
       .brand .logo{width:48px; height:48px;}
