@@ -10,12 +10,6 @@
   # Node version for any future dependencies
   NODE_VERSION = "20"
 
-# Redirects for single-page app routing (if needed)
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-
 # Headers for performance and security
 [[headers]]
   for = "/*"

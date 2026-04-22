@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /Temp/
+Disallow: /Working%20archive/
+
+Sitemap: https://ctcontech.co.za/sitemap.xml
