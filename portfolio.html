@@ -268,15 +268,19 @@
       text-align:center;
     }
     .stat-card .value{
-      font-size:36px;
+      font-size:clamp(22px, 3vw, 32px);
       font-weight:800;
       color:var(--accent);
       margin-bottom:8px;
+      line-height:1.15;
     }
     .stat-card .label{
       font-size:13px;
       color:var(--muted);
       font-weight:600;
+      line-height:1.6;
+      max-width:280px;
+      margin:0 auto;
     }
 
     /* ---------- SECTIONS ---------- */
@@ -694,25 +698,30 @@
       </div>
     </section>
 
-    <!-- IMPACT STATS -->
+    <!-- PROJECT STANDARDS -->
     <section class="stats-section">
       <div class="container">
+        <div class="section-header reveal" style="margin-bottom:28px;">
+          <span class="eyebrow">Project Standards</span>
+          <h2>What Every Build Includes</h2>
+          <p>Every project follows the same quality baseline so your website is reliable, fast, and ready to grow.</p>
+        </div>
         <div class="stats-grid reveal">
           <div class="stat-card">
-            <div class="value">3</div>
-            <div class="label">Live Projects</div>
+            <div class="value">Mobile-First</div>
+            <div class="label">Layouts tuned for phones, tablets, and desktop screens.</div>
           </div>
           <div class="stat-card">
-            <div class="value">2M+</div>
-            <div class="label">Annual Visitors</div>
+            <div class="value">SEO-Ready</div>
+            <div class="label">Clean structure, metadata, and index-friendly foundations.</div>
           </div>
           <div class="stat-card">
-            <div class="value">Fast</div>
-            <div class="label">Performance Rating</div>
+            <div class="value">Fast Loading</div>
+            <div class="label">Optimized assets and performance-focused build practices.</div>
           </div>
           <div class="stat-card">
-            <div class="value">100%</div>
-            <div class="label">Client Satisfaction</div>
+            <div class="value">Secure Setup</div>
+            <div class="label">Best-practice headers, form handling, and hosting hygiene.</div>
           </div>
         </div>
       </div>
@@ -740,20 +749,20 @@
             </p>
             <div class="cs-metrics">
               <div class="cs-metric">
-                <span class="value">900+</span>
-                <span class="label">Learners Served</span>
+                <span class="value">Parent-Friendly</span>
+                <span class="label">Clear navigation for announcements, resources, and school updates</span>
               </div>
               <div class="cs-metric">
-                <span class="value">2-3 weeks</span>
-                <span class="label">Delivery Time</span>
+                <span class="value">Staff-Managed</span>
+                <span class="label">Simple content structure for easy internal updates</span>
               </div>
               <div class="cs-metric">
-                <span class="value">High</span>
-                <span class="label">Performance Rating</span>
+                <span class="value">Mobile Access</span>
+                <span class="label">Responsive layout designed for parents browsing on phones</span>
               </div>
               <div class="cs-metric">
-                <span class="value">15</span>
-                <span class="label">Key Pages</span>
+                <span class="value">Institution Ready</span>
+                <span class="label">Professional web presence aligned with school credibility</span>
               </div>
             </div>
             <div class="cs-tech">
@@ -761,9 +770,6 @@
               <span class="badge">TypeScript</span>
               <span class="badge">Tailwind</span>
               <span class="badge">Responsive</span>
-            </div>
-            <div class="cs-actions">
-              <a class="btn btn-primary" href="https://kuils-river-primary-school.netlify.app/" target="_blank" rel="noopener">View Live</a>
             </div>
           </div>
         </div>
@@ -782,20 +788,20 @@
             </p>
             <div class="cs-metrics">
               <div class="cs-metric">
-                <span class="value">Fast</span>
-                <span class="label">Load Performance</span>
+                <span class="value">Showcase-Driven</span>
+                <span class="label">Visual-first layout tailored for performance vehicle presentation</span>
               </div>
               <div class="cs-metric">
-                <span class="value">100+</span>
-                <span class="label">Product Images</span>
+                <span class="value">Media Ready</span>
+                <span class="label">Built to handle image-heavy and video-rich content cleanly</span>
               </div>
               <div class="cs-metric">
-                <span class="value">25</span>
-                <span class="label">API Integrations</span>
+                <span class="value">Brand Consistency</span>
+                <span class="label">Performance-focused visual language across pages and sections</span>
               </div>
               <div class="cs-metric">
-                <span class="value">High</span>
-                <span class="label">Performance Rating</span>
+                <span class="value">Lead Focused</span>
+                <span class="label">Strong calls to action guiding visitors to contact and enquiry points</span>
               </div>
             </div>
             <div class="cs-tech">
@@ -804,51 +810,45 @@
               <span class="badge">Video Optimization</span>
               <span class="badge">Dark Theme</span>
             </div>
-            <div class="cs-actions">
-              <a class="btn btn-primary" href="https://performanceden.netlify.app/" target="_blank" rel="noopener">View Live</a>
-            </div>
           </div>
         </div>
 
-        <!-- Case Study 3: CTCONTECH Home -->
+        <!-- Case Study 3: Global Intelligent Systems -->
         <div class="case-study reveal">
           <div class="cs-viz" style="background:linear-gradient(135deg, var(--accent), var(--accent-dark)); display:flex; align-items:center; justify-content:center; border-radius:var(--radius);">
-            <img src="public/assets/projects/ctcontech/screenshot.png" alt="CTCONTECH Agency Website" style="width:100%; height:100%; object-fit:cover; border-radius:var(--radius);">
+            <img src="public/assets/projects/global-intelligent-systems/GlobalIntelligentSystems-hero-screenshot.png" alt="Global Intelligent Systems Website" style="width:100%; height:100%; object-fit:cover; border-radius:var(--radius);">
           </div>
           <div class="cs-content">
-            <span class="cs-tag">Services</span>
-            <h3 class="cs-title">CTCONTECH Agency Website</h3>
+            <span class="cs-tag">Security & Automation</span>
+            <h3 class="cs-title">Global Intelligent Systems</h3>
             <p class="cs-desc">
-              Built our own modern agency site showcasing web development and IT support services. 
-              Features dark theme, animated components, client testimonials, and seamless WhatsApp integration.
+              Designed and developed a service-focused business website for Global Intelligent Systems.
+              The build highlights access control, gate automation, fencing, and installation services with
+              strong mobile usability and conversion-first calls to action.
             </p>
             <div class="cs-metrics">
               <div class="cs-metric">
-                <span class="value">4</span>
-                <span class="label">Main Pages</span>
+                <span class="value">Service-Led</span>
+                <span class="label">Structured service sections for faster user navigation</span>
               </div>
               <div class="cs-metric">
-                <span class="value">25+</span>
-                <span class="label">Interactive Components</span>
+                <span class="value">Mobile-Ready</span>
+                <span class="label">Responsive layouts optimized for on-site client traffic</span>
               </div>
               <div class="cs-metric">
-                <span class="value">Optimized</span>
-                <span class="label">Performance Build</span>
+                <span class="value">Conversion-Focused</span>
+                <span class="label">Clear lead paths through WhatsApp and contact actions</span>
               </div>
               <div class="cs-metric">
-                <span class="value">Optimized</span>
-                <span class="label">Performance Build</span>
+                <span class="value">SEO Foundation</span>
+                <span class="label">Metadata and content hierarchy prepared for discovery</span>
               </div>
             </div>
             <div class="cs-tech">
-              <span class="badge">Vanilla JS</span>
+              <span class="badge">Custom HTML/CSS</span>
               <span class="badge">Responsive</span>
               <span class="badge">Dark Theme</span>
-              <span class="badge">SEO Optimized</span>
-            </div>
-            <div class="cs-actions">
-              <a class="btn btn-primary" href="index.html">View Live</a>
-              <a class="btn btn-secondary" href="https://github.com/ctcontech/website" target="_blank" rel="noopener">GitHub Repo</a>
+              <span class="badge">SEO Ready</span>
             </div>
           </div>
         </div>
