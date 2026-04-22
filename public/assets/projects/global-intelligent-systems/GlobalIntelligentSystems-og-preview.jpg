@@ -1,0 +1,68 @@
+
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+      <!-- Primary SEO -->
+      <title>Global Intelligent Systems (Pty) Ltd | Solar, Electrical, Security & Automation – Cape Town</title>
+      <meta name="description" content="Cape Town's trusted provider of solar panel installations, electrical services, CCTV security systems, smart automation, fencing, and air conditioning. Serving residential and commercial clients across the Western Cape." />
+      <meta name="keywords" content="solar panels Cape Town, electrical contractor Cape Town, CCTV security systems, home automation, palisade fencing, air conditioning installation, Western Cape" />
+      <meta name="author" content="Global Intelligent Systems (Pty) Ltd" />
+      <link rel="canonical" href="https://www.globalintelligentsystems.co.za/" />
+
+      <!-- Open Graph (WhatsApp, Facebook, LinkedIn previews) -->
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content="https://www.globalintelligentsystems.co.za/" />
+      <meta property="og:title" content="Global Intelligent Systems | Solar, Security & Automation – Cape Town" />
+      <meta property="og:description" content="Professional solar, electrical, security, and automation solutions for homes and businesses across the Western Cape." />
+      <meta property="og:image" content="https://www.globalintelligentsystems.co.za/images/og-preview.jpg" />
+      <meta property="og:locale" content="en_ZA" />
+      <meta property="og:site_name" content="Global Intelligent Systems" />
+
+      <!-- Twitter/X card -->
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="Global Intelligent Systems | Solar, Security & Automation – Cape Town" />
+      <meta name="twitter:description" content="Professional solar, electrical, security, and automation solutions for homes and businesses across the Western Cape." />
+      <meta name="twitter:image" content="https://www.globalintelligentsystems.co.za/images/og-preview.jpg" />
+
+      <!-- Local business structured data -->
+      <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Global Intelligent Systems (Pty) Ltd",
+        "description": "Professional solar, electrical, security, automation, fencing, and air conditioning solutions in Cape Town.",
+        "url": "https://www.globalintelligentsystems.co.za",
+        "telephone": "+27713841417",
+        "email": "globalgis42@gmail.com",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Brackenfell",
+          "addressLocality": "Cape Town",
+          "addressRegion": "Western Cape",
+          "addressCountry": "ZA"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": "-33.8688",
+          "longitude": "18.4908"
+        },
+        "areaServed": "Cape Town, Western Cape",
+        "openingHours": "Mo-Fr 08:00-17:00",
+        "sameAs": []
+      }
+      </script>
+
+      <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+      <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+      <script type="module" crossorigin src="/assets/index-DUBjXBS9.js"></script>
+      <link rel="stylesheet" crossorigin href="/assets/index-CWgaFJrH.css">
+    </head>
+
+    <body>
+      <div id="root"></div>
+    </body>
+  </html>
+  
