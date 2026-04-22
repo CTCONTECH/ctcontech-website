@@ -480,51 +480,6 @@
       margin-top:4px;
     }
 
-    /* ---------- TESTIMONIALS ---------- */
-    .testimonials-section{
-      padding:60px 0;
-      border-bottom:1px solid var(--line);
-    }
-    .testimonials-grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));
-      gap:24px;
-      margin-top:40px;
-    }
-    .testimonial{
-      background:var(--surface);
-      border:1px solid var(--line);
-      border-radius:16px;
-      padding:28px;
-      transition: all .2s ease;
-    }
-    .testimonial:hover{
-      transform:translateY(-4px);
-      border-color:var(--accent);
-    }
-    .testimonial .quote{
-      color:var(--text);
-      font-size:14px;
-      font-style:italic;
-      line-height:1.8;
-      margin-bottom:16px;
-    }
-    .testimonial .author{
-      font-weight:700;
-      font-size:13px;
-      color:var(--accent);
-    }
-    .testimonial .role{
-      font-size:12px;
-      color:var(--muted);
-      margin-top:2px;
-    }
-    .testimonial .stars{
-      color:var(--accent);
-      font-size:12px;
-      margin-bottom:12px;
-    }
-
     /* ---------- CTA SECTION ---------- */
     .cta-section{
       padding:60px 20px;
@@ -582,7 +537,7 @@
 
     @media (prefers-reduced-motion: reduce){
       html{scroll-behavior:auto;}
-      .reveal, .btn, .case-study, .tech-badge, .testimonial{
+      .reveal, .btn, .case-study, .tech-badge{
         opacity:1;
         transform:none;
         transition:none;
@@ -604,7 +559,6 @@
       .cs-content{padding:24px;}
       .cs-metrics{grid-template-columns:1fr;}
       .cs-actions{flex-direction:column;}
-      .testimonials-grid{grid-template-columns:1fr;}
       .tech-grid{grid-template-columns:repeat(2, 1fr);}
       .footer-grid{grid-template-columns:1fr;}
     }
@@ -920,48 +874,6 @@
           <div class="tech-badge reveal">
             <div class="name">Figma</div>
             <div class="category">Design</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- TESTIMONIALS -->
-    <section class="testimonials-section">
-      <div class="container">
-        <div class="section-header reveal">
-          <span class="eyebrow">Client Feedback</span>
-          <h2>What Our Clients Say</h2>
-        </div>
-
-        <div class="testimonials-grid">
-          <div class="testimonial reveal">
-            <div class="stars">★★★★★</div>
-            <p class="quote">
-              "CTCONTECH took our vision and made it reality. The Kuils River website is fast, beautiful, 
-              and exactly what we needed. Highly professional, on-time delivery."
-            </p>
-            <div class="author">Nicholas Chen</div>
-            <div class="role">Principal, Kuils River Primary School</div>
-          </div>
-
-          <div class="testimonial reveal">
-            <div class="stars">★★★★★</div>
-            <p class="quote">
-              "The Performance Den website showcases our work perfectly. The video integration and dark theme 
-              really impress our clients. The team was responsive and understood our brand immediately."
-            </p>
-            <div class="author">Marco Perez</div>
-            <div class="role">Founder, Performance Den</div>
-          </div>
-
-          <div class="testimonial reveal">
-            <div class="stars">★★★★★</div>
-            <p class="quote">
-              "Outstanding attention to detail. Fast turnaround. The developers asked the right questions 
-              upfront, which saved time and resulted in a perfect website. Will work with them again."
-            </p>
-            <div class="author">Sarah Thompson</div>
-            <div class="role">Operations Manager, Local Enterprise</div>
           </div>
         </div>
       </div>
